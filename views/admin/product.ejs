@@ -51,84 +51,6 @@
                         <!--end::Table head-->
                         <!--begin::Table body-->
                         <tbody>
-                            <% data.forEach(item => {%>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center" style="margin-right: 10px;">
-                                        <div class="d-flex justify-content-start flex-column">
-                                            <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
-                                                <%= item.title %>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <div class="d-flex justify-content-start flex-column">
-                                            <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
-                                                <%= item.price %>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <div class="d-flex justify-content-start flex-column">
-                                            <% if (!item.stock_count) {%>
-                                            <span class="badge badge-info">تخفیف نداره</span>
-                                            <% } else {%>
-                                            <span class="badge badge-success mb-1 fs-6"> <%= item.stock_count %> </span>
-                                            <% } %>    
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <div class="d-flex justify-content-start flex-column">
-                                            <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
-                                                <%= item.category.title %>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-end">
-                                    <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                        data-bs-toggle="modal" data-bs-target="#update_modal">
-                                        <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path opacity="0.3"
-                                                    d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
-                                                    fill="black" />
-                                                <path
-                                                    d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
-                                                    fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </button>
-                                    <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" url="products/<%=item.id %>" onclick="deleteitem(this)">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
-                                                    fill="black" />
-                                                <path opacity="0.5"
-                                                    d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
-                                                    fill="black" />
-                                                <path opacity="0.5"
-                                                    d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
-                                                    fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </button>
-                                </td>
-                            </tr>
-                            <% });  %>
                         </tbody>
                         <!--end::Table body-->
                     </table>
@@ -167,7 +89,8 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                         <!--begin:Form-->
-                        <form class="form" method="post" url="products" name="add">
+                        <form class="form" method="post" url="products" name="add" id="add">
+                            <input type="hidden" id="account_id">
                             <!--begin::Heading-->
                             <div class="mb-13 text-center">
                                 <!--begin::Title-->
@@ -205,12 +128,9 @@
                                 <!--end::Label-->
                                 <div class="d-flex flex-row">
                                     <select class="form-select form-select-solid" data-control="select2"
-                                        data-placeholder="یکی از گزینه هارو انتخاب کن" data-allow-clear="true"
-                                        data-dropdown-parent="#add_modal" tabindex="-1">
+                                        id="categories_id" data-placeholder="یکی از گزینه هارو انتخاب کن"
+                                        data-allow-clear="true" data-dropdown-parent="#add_modal" tabindex="-1">
                                         <option></option>
-                                        <% data.forEach(item => {%>
-                                        <option> <%= item.category.title %> </option>
-                                        <% }); %>
                                     </select>
                                 </div>
                             </div>
@@ -224,21 +144,21 @@
                                         title="اینجا باید قیمت اصلی رو وارد کنی"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input id="price" type="text" class="form-control form-control-solid"
-                                    placeholder="قیمت رو وارد کن" required />
+                                <input id="price" type="number" class="form-control form-control-solid"
+                                    style="direction: rtl;" placeholder="قیمت رو وارد کن" required />
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="d-flex flex-column mb-8 fv-row">
                                 <!--begin::Label-->
                                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                    <span class="required">قیمت با تخفیف</span>
+                                    <span class="required">موجودی انبار</span>
                                     <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                        title="اینجا قیمت رو با احتساب تخفیف وارد کن"></i>
+                                        title="اینجا موجودی انبارتو وارد کن"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input id="stock_count" type="text" class="form-control form-control-solid"
-                                    placeholder="قیمت تخفیف دار رو وارد کن" required />
+                                <input id="stock_count" type="number" class="form-control form-control-solid"
+                                    style="direction: rtl;" placeholder="موجودی انبار رو وارد کن" required />
                             </div>
                             <!--end::Input group-->
                         </form>
@@ -262,7 +182,7 @@
         <!-- edit modal -->
         <div class="modal fade" id="update_modal" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px">
+            <div class="modal-dialog modal-dialog-centered mw-650px" dir="rtl">
                 <!--begin::Modal content-->
                 <div class="modal-content rounded">
                     <!--begin::Modal header-->
@@ -287,11 +207,12 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                         <!--begin:Form-->
-                        <form class="form" name="update">
+                        <form class="form" method="patch" url="products" name="update" id="update">
+                            <input type="hidden" id="account_id">
                             <!--begin::Heading-->
                             <div class="mb-13 text-center">
                                 <!--begin::Title-->
-                                <h1 class="mb-3">بروزرسانی</h1>
+                                <h1 class="mb-3">افزودن محصول</h1>
                                 <!--end::Title-->
                                 <!--begin::Description-->
                                 <!-- <div class="text-muted fw-bold fs-5">If you need more info, please check
@@ -300,47 +221,70 @@
                                 <!--end::Description-->
                             </div>
                             <!--end::Heading-->
+                            <input type="hidden" id="account_id">
                             <!--begin::Input group-->
                             <div class="d-flex flex-column mb-8 fv-row">
                                 <!--begin::Label-->
                                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                    <span class="required">Title</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                        title="Specify a target name for future usage and reference"></i>
+                                    <span class="required">عنوان</span>
+                                    <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        title="عنوانی برای محصولت باید اینجا بنویسی"></i>
                                 </label>
                                 <!--end::Label-->
                                 <input id="title" type="text" class="form-control form-control-solid"
-                                    placeholder="Enter App Title" required />
+                                    placeholder="عنوان رو وارد کن" required />
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
-                            <div class="d-flex flex-column mb-5 fv-row">
+                            <div class="d-flex flex-column mb-8 fv-row">
                                 <!--begin::Label-->
-                                <label class="required fs-5 fw-bold mb-2">
-                                    Description</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <textarea class="form-control form-control-solid" rows="3" id="description"
-                                    placeholder="Describe your App"></textarea>
-                                <!--end::Input-->
-                            </div>
-                            <div class="d-flex flex-column mb-5 fv-row">
-                                <label for="images" class="drop-container" id="dropcontainer">
-                                    <span class="drop-title">Drop files here</span>
-                                    or
-                                    <input type="file" id="image" required>
+                                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                    <span class="required" id="demo">دسته بندی محصول</span>
+                                    <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        title="اینجا باید انتخاب کنی محصولت کدوم دسته بندی قرار بگیره"></i>
                                 </label>
+                                <!--end::Label-->
+                                <div class="d-flex flex-row">
+                                    <select class="form-select form-select-solid" data-control="select2"
+                                        id="categories_id_update" data-placeholder="یکی از گزینه هارو انتخاب کن"
+                                        data-allow-clear="true" data-dropdown-parent="#update_modal" tabindex="-1">
+                                        <option></option>
+                                    </select>
+                                </div>
                             </div>
                             <!--end::Input group-->
-                            <!--begin::Actions-->
-
-                            <!--end::Actions-->
+                            <!--begin::Input group-->
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                <!--begin::Label-->
+                                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                    <span class="required">قیمت</span>
+                                    <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        title="اینجا باید قیمت اصلی رو وارد کنی"></i>
+                                </label>
+                                <!--end::Label-->
+                                <input id="price" type="number" class="form-control form-control-solid"
+                                    style="direction: rtl;" placeholder="قیمت رو وارد کن" required />
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                <!--begin::Label-->
+                                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                    <span class="required">موجودی انبار</span>
+                                    <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        title="اینجا موجودی انبارتو وارد کن"></i>
+                                </label>
+                                <!--end::Label-->
+                                <input id="stock_count" type="number" class="form-control form-control-solid"
+                                    style="direction: rtl;" placeholder="موجودی انبار رو وارد کن" required />
+                            </div>
+                            <!--end::Input group-->
                         </form>
                         <div class="text-center">
-                            <button data-bs-dismiss="modal" class="btn btn-light me-3">Cancel</button>
-                            <button class="btn btn-primary" id="submit"">
-                            <span class=" indicator-label">Submit</span>
-                                <span class="indicator-progress">Please wait...
+                            <button data-bs-dismiss="modal" class="btn btn-light me-3">صرف نظر</button>
+                            <button class="btn btn-primary" id="submit" onclick="validateForm('update')">
+                                <span class=" indicator-label">تایید</span>
+                                <span class="indicator-progress">یه کم صبر
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         </div>
@@ -352,5 +296,33 @@
             </div>
             <!--end::Modal dialog-->
         </div>
+        <script>
+            $(document).ready(function () {
+                let categories = MagicRequest("get", "categories").then(response => response.text())
+                    .then(result => {
+                        result = JSON.parse(result).data
+                        $.each(result, function (index, value) {
+                            if (value.account.id == localStorage.getItem("account_id")) {
+                                if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ')
+                                else $("#add #categories_id").append('<option value="' + value.id + '">' + value.title + '</option> ')
+                            }
+                        })
+                    }).catch(error => console.log('error', error));
+
+
+                MagicRequest("get", "products").then(response => response.text())
+                    .then(result => {
+                        result = JSON.parse(result).data
+                        console.log(result)
+                        $.each(result, function (index, value) {
+                            let category_name = '<span class="badge badge-danger mb-1 fs-6"> بدون دسته بندی </span>'
+                            if (value?.category?.title) category_name = value.category.title;
+                            if (value.account.id == localStorage.getItem("account_id")) $("tbody").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> ' + value.title + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center"> <div class="d-flex justify-content-start flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> ' + value.price + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center"> <div class="d-flex justify-content-start flex-column"> <span class="badge badge-success mb-1 fs-6"> ' + value.stock_count + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center"> <div class="d-flex justify-content-start flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">' + category_name + '</span> </div> </div> </td> <td class="text-end"> <button url="products/'  +value.id  +'" onclick="edititem(this)" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#update_modal"> <!--begin::Svg Icon | path: icons/duotune/art/art005.svg--> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="black" /> <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="black" /> </svg> </span> <!--end::Svg Icon--> </button> <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" url="products/'  +value.id  +'" onclick="deleteitem(this)"> <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg--> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> <!--end::Svg Icon--> </button> </td> </tr> ')
+                        })
+                    }).catch(error => console.log('error', error));
+
+            })
+
+        </script>
     </div>
     <%- include('../layout-admin/footer') -%>

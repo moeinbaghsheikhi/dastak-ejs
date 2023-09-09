@@ -51,9 +51,9 @@
 					document.querySelector("#update").setAttribute("url", url)
 
 					Object.keys(res.data).forEach(function (key, index) {
-						if (key != "_id") {
-							if (key == "image" || key == "file")
-								document.querySelector("#update #" + key).setAttribute("file", res.data[key])
+						if (key != "id") {
+							if (key == "categories_id_update")
+								document.querySelector("#update #" + key).setAttribute("categories_id", res.data[key])
 							else document.querySelector("#update #" + key).value = res.data[key] || ""
 						}
 					});
