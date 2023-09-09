@@ -1,0 +1,220 @@
+<%- include('../layout-admin/header') -%>
+<!--begin::Header-->
+<div id="kt_header" class="header py-6 py-lg-0" dir="rtl" data-kt-sticky="true" data-kt-sticky-name="header"
+    data-kt-sticky-offset="{lg: '300px'}">
+    <!--begin::Container-->
+    <div class="header-container container-xxl">
+        <!--begin::Page title-->
+        <div
+            class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-20 py-3 py-lg-0 ms-3">
+            <!--begin::Heading-->
+            <h1 class="d-flex flex-column text-dark fw-bolder my-1">
+                <span class="text-white fs-1">دسته بندی</span>
+                <small class="text-gray-600 fs-6 fw-normal pt-2">اینجا میتونی محصولاتت رو دسته بندی کنی:)</small>
+            </h1>
+            <!--end::Heading-->
+        </div>
+        <!--end::Page title=-->
+        <!--begin::Wrapper-->
+        <div class="d-flex align-items-center flex-wrap">
+            <!--begin::Action-->
+            <div class="d-flex align-items-center py-3 py-lg-0">
+                <a href="#add_modal" class="btn bg-surati me-3" data-bs-toggle="modal">افزودن دسته بندی</a>
+            </div>
+            <!--end::Action-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Container-->
+    <div class="header-offset"></div>
+</div>
+<!--end::Header-->
+<div class="row">
+    <!--begin::Tables Widget-->
+    <div class="card col-11 mb-5 mb-xl-8 mt-10" style="margin: 0 auto;">
+        <!--begin::Body-->
+        <div class="card-body py-3">
+            <!--begin::Table container-->
+            <div class="table-responsive" style="direction: rtl;">
+                <!--begin::Table-->
+                <table class="table align-middle gs-0 gy-4">
+                    <!--begin::Table head-->
+                    <thead class="bg-table">
+                        <tr class="fw-bolder text-muted bg-light bg-table">
+                            <th class="ps-4 min-w-50px rounded-start">عنوان</th>
+                            <th class="min-w-50px rounded-end" style="padding: 10px;"></th>
+                        </tr>
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody>
+                
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
+                <!--end::Table-->
+            </div>
+            <!--end::Table container-->
+        </div>
+        <!--begin::Body-->
+    </div>
+    <!--end::Tables Widget 11-->
+    
+
+<script>
+    $(document).ready(function(){
+        let data = MagicRequest("get", "categories").then(response => response.text())
+        .then(result => {
+            result = JSON.parse(result).data
+            $.each(result, function(index, value){
+                if(value.account.id == localStorage.getItem("account_id")) $("tbody").append('<tr><td> <div class="d-flex align-items-center" style="margin-right: 10px;"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+value.title+'</span> </div> </div> </td> <td class="text-end"> <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" url="categories/'+value.id+'" onclick="deleteitem(this)"> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> </button> </td> </tr>"')
+            })
+        }).catch(error => console.log('error', error));
+       
+    })
+</script>
+
+    
+    <!--begin::Modal - New Target-->
+    <div class="modal fade" id="add_modal" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px" dir="rtl">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form class="form" name="add" method="post" url="categories">
+                        <input type="hidden" id="account_id">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">افزودن دسته بندی</h1>
+                            <!--end::Title-->
+                            <!--begin::Description-->
+                            <!-- <div class="text-muted fw-bold fs-5">If you need more info, please check
+                                    <a href="#" class="fw-bolder link-primary">Project Guidelines</a>.
+                                </div> -->
+                            <!--end::Description-->
+                        </div>
+                        <!--end::Heading-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fs-6 fw-bold mb-2">نام دسته بندی: </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="title" />
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--end::Actions-->
+                    </form>
+                    <div class="text-center">
+                        <button data-bs-dismiss="modal" class="btn btn-light me-3">صرف نظر</button>
+                        <button class="btn btn-primary" id="submit" onclick="validateForm('add')">
+                            <span class=" indicator-label">تایید</span>
+                            <span class="indicator-progress">یه کم صبر
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - New Target-->
+    <!-- edit modal -->
+    <div class="modal fade" id="update_modal" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form class="form" name="update">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">بروزرسانی</h1>
+                            <!--end::Title-->
+                            <!--begin::Description-->
+                            <!-- <div class="text-muted fw-bold fs-5">If you need more info, please check
+                                    <a href="#" class="fw-bolder link-primary">Project Guidelines</a>.
+                                </div> -->
+                            <!--end::Description-->
+                        </div>
+                        <!--end::Heading-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7" dir="rtl">
+                            <!--begin::Label-->
+                            <label class="required fs-6 fw-bold mb-2">نام دسته بندی: </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="name" />
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Actions-->
+                        <!--end::Actions-->
+                    </form>
+                    <div class="text-center">
+                        <button data-bs-dismiss="modal" class="btn btn-light me-3">Cancel</button>
+                        <button class="btn btn-primary" id="submit"">
+                            <span class=" indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+</div>
+<%- include('../layout-admin/footer') -%>

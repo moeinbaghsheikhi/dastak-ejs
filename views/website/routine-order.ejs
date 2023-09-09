@@ -1,0 +1,753 @@
+<%- include('../layout-website/header') -%>
+<style>
+    @media (min-width: 992px) {
+        .wrapper {
+            padding-right: 0;
+        }
+    }
+</style>
+<!--begin::Body-->
+
+<body id="kt_body" class="bg-body" dir="rtl">
+    <!--begin::Main-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Authentication - Multi-steps-->
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid stepper stepper-pills stepper-column"
+            id="kt_create_account_stepper">
+            <!--begin::Aside-->
+            <div class="d-flex flex-column flex-lg-row-auto w-xl-500px bg-lighten shadow-sm">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-500px scroll-y">
+                    <!--begin::Header-->
+                    <div class="d-flex flex-row-fluid flex-column flex-center p-10 pt-lg-20">
+                        <!--begin::Nav-->
+                        <div class="stepper-nav">
+                            <!--begin::Step 1-->
+                            <div class="stepper-item current" data-kt-stepper-element="nav">
+                                <!--begin::Line-->
+                                <div class="stepper-line w-40px"></div>
+                                <!--end::Line-->
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check bi bi-check-lg"></i>
+                                    <span class="stepper-number">1</span>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">جنسیت</h3>
+                                    <div class="stepper-desc fw-bold">باید اینجا جنسیستتو مشخص کنی</div>
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Step 1-->
+                            <!--begin::Step 2-->
+                            <div class="stepper-item" data-kt-stepper-element="nav">
+                                <!--begin::Line-->
+                                <div class="stepper-line w-40px"></div>
+                                <!--end::Line-->
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check bi bi-check-lg"></i>
+                                    <span class="stepper-number">2</span>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">نوع پوستت</h3>
+                                    <div class="stepper-desc fw-bold">اینجا باید نوع پوستت رو بگی </div>
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Step 2-->
+                            <!--begin::Step 3-->
+                            <div class="stepper-item" data-kt-stepper-element="nav">
+                                <!--begin::Line-->
+                                <div class="stepper-line w-40px"></div>
+                                <!--end::Line-->
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check bi bi-check-lg"></i>
+                                    <span class="stepper-number">3</span>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">جوش و منافذ</h3>
+                                    <div class="stepper-desc fw-bold">تعیین نوع جوش و محل آن</div>
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Step 3-->
+                            <!--begin::Step 4-->
+                            <div class="stepper-item" data-kt-stepper-element="nav">
+                                <!--begin::Line-->
+                                <div class="stepper-line w-40px"></div>
+                                <!--end::Line-->
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check bi bi-check-lg"></i>
+                                    <span class="stepper-number">4</span>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">میزان آرایش و گروه سنی</h3>
+                                    <div class="stepper-desc fw-bold">اینجا باید میزان آرایش و گروه سنی رو بگی</div>
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Step 4-->
+                            <!--begin::Step 5-->
+                            <div class="stepper-item" data-kt-stepper-element="nav">
+                                <!--begin::Line-->
+                                <div class="stepper-line w-40px"></div>
+                                <!--end::Line-->
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check bi bi-check-lg"></i>
+                                    <span class="stepper-number">5</span>
+                                </div>
+                                <!--end::Icon-->
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">نمایش محصول روتین</h3>
+                                    <div class="stepper-desc fw-bold">محصول مناسب پوستت رو نشونت میدیم:)</div>
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Step 5-->
+                        </div>
+                        <!--end::Nav-->
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Illustration-->
+                    <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-150px min-h-lg-300px"
+                        style="background-image: url(assets/media/illustrations/sigma-1/16.png"></div>
+                    <!--end::Illustration-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            <!--begin::Aside-->
+            <!--begin::Body-->
+            <div class="d-flex flex-column flex-lg-row-fluid py-10">
+                <!--begin::Content-->
+                <div class="d-flex flex-center flex-column flex-column-fluid">
+                    <!--begin::Wrapper-->
+                    <div class="w-lg-700px p-10 p-lg-15 mx-auto">
+                        <!--begin::Form-->
+                        <form class="my-auto pb-5" novalidate="novalidate" id="kt_create_account_form">
+                            <!--begin::Step 1-->
+                            <div class="current" data-kt-stepper-element="content">
+                                <!--begin::Wrapper-->
+                                <div class="w-100">
+                                    <!--begin::Heading-->
+                                    <div class="pb-10 pb-lg-15">
+                                        <!--begin::Title-->
+                                        <h2 class="fw-bolder d-flex align-items-center text-dark"> تعیین جنسیت <i
+                                                class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                title="اینجا باید جنسیتتو مشخص کنی تا ما بهترین محصول را برایتان انتخاب کنیم"></i></h2>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+                                        <div class="text-muted fw-bold fs-6">فقط توی 2 دقیقه محصولتو مناسب پوستت رو
+                                            پیدا کن
+                                            <a href="#" class="link-primary fw-bolder">اگه بلد نیستی چجوری اینو
+                                                ببین!</a>
+                                        </div>
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Heading-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <!--begin::Row-->
+                                        <div class="row">
+                                            <!--begin::Col-->
+                                            <div class="col-lg-6">
+                                                <!--begin::Option-->
+                                                <input type="radio" class="btn-check" name="account_type"
+                                                    value="personal" checked="checked"
+                                                    id="kt_create_account_form_account_type_personal" />
+                                                <label
+                                                    class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-10"
+                                                    for="kt_create_account_form_account_type_personal">
+                                                    <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-gender-male"
+                                                            viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                    <!--begin::Info-->
+                                                    <span class="d-block fw-bold text-start">
+                                                        <span
+                                                            class="text-dark fw-bolder d-block fs-4 mb-2">مرد(پسر)</span>
+                                                    </span>
+                                                    <!--end::Info-->
+                                                </label>
+                                                <!--end::Option-->
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-6">
+                                                <!--begin::Option-->
+                                                <input type="radio" class="btn-check" name="account_type"
+                                                    value="corporate"
+                                                    id="kt_create_account_form_account_type_corporate" />
+                                                <label
+                                                    class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center"
+                                                    for="kt_create_account_form_account_type_corporate">
+                                                    <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
+                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-gender-female"
+                                                            viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                    <!--begin::Info-->
+                                                    <span class="d-block fw-bold text-start">
+                                                        <span
+                                                            class="text-dark fw-bolder d-block fs-4 mb-2">زن(دختر)</span>
+                                                        <!-- <span class="text-muted fw-bold fs-6">آنلاین شاپ پوشاک، عمده
+                                                            فروشی، ارسال بسته های پستی و...</span> -->
+                                                    </span>
+                                                    <!--end::Info-->
+                                                </label>
+                                                <!--end::Option-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Row-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                            <!--end::Step 1-->
+                            <!--begin::Step 2-->
+                            <div class="" data-kt-stepper-element="content">
+                                <!--begin::Wrapper-->
+                                <div class="w-100">
+                                    <!--begin::Heading-->
+                                    <div class="pb-10 pb-lg-15">
+                                        <!--begin::Title-->
+                                        <h2 class="fw-bolder text-dark">نوع پوست</h2>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+                                        <div class="text-muted fw-bold fs-6"></div>
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Heading-->
+                                    <!--begin::Input group-->
+                                    <div class="mb-10 fv-row">
+                                        <!--begin::Label-->
+                                        <label class="d-flex align-items-center form-label mb-3">
+                                            نوع پوستت رو از گزینه های زیر انتخاب کن 
+                                            <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                title="نوع پوست باید مشخص شه تا محصول مناسبش انتخاب بشه"></i></label>
+                                        <!--end::Label-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-2" data-kt-buttons="true">
+                                            <!--begin::Col-->
+                                            <div class="col">
+                                                <!--begin::Option-->
+                                                <label
+                                                    class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                    <input type="radio" class="btn-check" name="account_team_size"
+                                                        value="10" />
+                                                    <span class="fw-bolder fs-3">چرب</span>
+                                                </label>
+                                                <!--end::Option-->
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col">
+                                                <!--begin::Option-->
+                                                <label
+                                                    class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4 active">
+                                                    <input type="radio" class="btn-check" name="account_team_size"
+                                                        checked="checked" value="50" />
+                                                    <span class="fw-bolder fs-3">خشک</span>
+                                                </label>
+                                                <!--end::Option-->
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col">
+                                                <!--begin::Option-->
+                                                <label
+                                                    class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                    <input type="radio" class="btn-check" name="account_team_size"
+                                                        value="100" />
+                                                    <span class="fw-bolder fs-3">معمولی</span>
+                                                </label>
+                                                <!--end::Option-->
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col">
+                                                <!--begin::Option-->
+                                                <label
+                                                    class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                    <input type="radio" class="btn-check" name="account_team_size"
+                                                        value="101" />
+                                                    <span class="fw-bolder fs-3">مختلط</span>
+                                                </label>
+                                                <!--end::Option-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Hint-->
+                                        <div class="form-text">
+                                            نمیدونی نوع پوستت چیه؟
+                                            <a href="#" class="link-primary fw-bolder">اینجا رو ببین</a>
+                                            </div>
+                                        <!--end::Hint-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                            <!--end::Step 2-->
+                            <!--begin::Step 3-->
+                            <div class="" data-kt-stepper-element="content">
+                                <!--begin::Wrapper-->
+                                <div class="w-100">
+                                    <!--begin::Heading-->
+                                    <div class="pb-10 pb-lg-12 pt-10 pt-lg-12">
+                                        <!--begin::Title-->
+                                        <h2 class="fw-bolder text-dark">نوع جوش</h2>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Heading-->
+                                    <!--begin::Row-->
+                                    <div class="row mb-2" data-kt-buttons="true">
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="10" />
+                                                <span class="fw-bolder fs-3">چرکی و فعال</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4 active">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    checked="checked" value="50" />
+                                                <span class="fw-bolder fs-3">زیر پوستی</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="100" />
+                                                <span class="fw-bolder fs-3">سرسیاه</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="101" />
+                                                <span class="fw-bolder fs-3">کیست</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="101" />
+                                                <span class="fw-bolder fs-3">بدون جوش</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="101" />
+                                                <span class="fw-bolder fs-3">جوش کم</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Row-->
+                                    <!--begin::Heading-->
+                                    <div class="pb-10 pb-lg-12  pt-10 pt-lg-12">
+                                        <!--begin::Title-->
+                                        <h2 class="fw-bolder text-dark">منافذ</h2>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Heading-->
+                                    <!--begin::Row-->
+                                    <div class="row mb-2" data-kt-buttons="true">
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="10" />
+                                                <span class="fw-bolder fs-3">بینی</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4 active">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    checked="checked" value="50" />
+                                                <span class="fw-bolder fs-3">گونه ها</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="100" />
+                                                <span class="fw-bolder fs-3">هردو</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="101" />
+                                                <span class="fw-bolder fs-3">هیچکدوم</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Row-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                            <!--end::Step 3-->
+                            <!--begin::Step 4-->
+                            <div class="" data-kt-stepper-element="content">
+                                <!--begin::Wrapper-->
+                                <div class="w-100">
+                                    <!--begin::Heading-->
+                                    <div class="pb-10 pb-lg-12 pt-10 pt-lg-12">
+                                        <!--begin::Title-->
+                                        <h2 class="fw-bolder text-dark">میزان آرایش</h2>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Heading-->
+                                    <!--begin::Row-->
+                                    <div class="row mb-2" data-kt-buttons="true">
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="10" />
+                                                <span class="fw-bolder fs-3">زیاد(هرروز)</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4 active">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    checked="checked" value="50" />
+                                                <span class="fw-bolder fs-3">متوسط(تا سه در هفته)</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="100" />
+                                                <span class="fw-bolder fs-3">کم(یک یا دوبار در هفته)</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="101" />
+                                                <span class="fw-bolder fs-3">بدون آرایش</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Row-->
+                                    <!--begin::Heading-->
+                                    <div class="pb-10 pb-lg-12 pt-10 pt-lg-12">
+                                        <!--begin::Title-->
+                                        <h2 class="fw-bolder text-dark">گروه سنی</h2>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Heading-->
+                                    <!--begin::Row-->
+                                    <div class="row mb-2" data-kt-buttons="true">
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="10" />
+                                                <span class="fw-bolder fs-3">نوجوانان(زیر 20)</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4 active">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    checked="checked" value="50" />
+                                                <span class="fw-bolder fs-3">جوانان(20 تا 30)</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="100" />
+                                                <span class="fw-bolder fs-3">میانسال(بالای 30)</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                        <!--begin::Col-->
+                                        <div class="col">
+                                            <!--begin::Option-->
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+                                                <input type="radio" class="btn-check" name="account_team_size"
+                                                    value="101" />
+                                                <span class="fw-bolder fs-3">مختلط</span>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Row-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                            <!--end::Step 4-->
+                            <!--begin::Step 5-->
+                            <div class="" data-kt-stepper-element="content">
+                                <!--begin::Wrapper-->
+                                <div class="w-100">
+                                    <!--begin::Heading-->
+                                    <div class="pb-8 pb-lg-10">
+                                        <!--begin::Title-->
+                                        <h2 class="fw-bolder text-dark">محصول پیشنهادی:</h2>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+                                        <div class="text-muted fw-bold fs-6">محصول پیشنهادی بر اساس فیلتر
+                                            <!-- <a href="../../demo9/dist/authentication/sign-in/basic.html"
+                                                class="link-primary fw-bolder">Sign In</a>. -->
+                                        </div>
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Heading-->
+                                    <!--begin::Body-->
+                                    <div class="mb-0">
+                                        <!--begin::Text-->
+                                        <div class="fs-6 text-gray-600 mb-5">اگه به راهنمایی نیاز دارید ما آنلاین به شنا کمک میکنیم برای راهنمایی
+                                            <a href="#"class="link-primary fw-bolder">اینجا رو کلیک کن</a>.
+                                        </div>
+                                        <!--end::Text-->
+                                        <!--begin::Alert-->
+                                        <!--begin::Notice-->
+                                        <div
+                                            class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
+                                            <!--begin::Icon-->
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10"
+                                                        fill="black" />
+                                                    <rect x="11" y="14" width="7" height="2" rx="1"
+                                                        transform="rotate(-90 11 14)" fill="black" />
+                                                    <rect x="11" y="17" width="2" height="2" rx="1"
+                                                        transform="rotate(-90 11 17)" fill="black" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                            <!--end::Icon-->
+                                            <!--begin::Wrapper-->
+                                            <div class="d-flex flex-stack flex-grow-1">
+                                                <!--begin::Content-->
+                                                <div class="fw-bold">
+                                                    <h4 class="text-gray-900 fw-bolder">توجه!</h4>
+                                                    <div class="fs-6 text-gray-700">محصول مورد نظر یافت نشد
+                                                        <a href="#" class="fw-bolder">برای این فیلتر باید محصول جدید اضافه شود</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Content-->
+                                            </div>
+                                            <!--end::Wrapper-->
+                                        </div>
+                                        <!--end::Notice-->
+                                        <!--end::Alert-->
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                            <!--end::Step 5-->
+                            <!--begin::Actions-->
+                            <div class="d-flex flex-stack pt-15">
+                                <div class="mr-2">
+                                    <button type="button" class="btn btn-lg btn-light-primary me-3"
+                                        data-kt-stepper-action="previous">
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
+
+                                        <span class="svg-icon svg-icon-4 ms-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z"
+                                                    fill="black" />
+                                                <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1"
+                                                    transform="rotate(-180)" fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->قبلی</button>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-lg btn-primary"
+                                        data-kt-stepper-action="submit">
+                                        <span class="indicator-label">تایید و ارسال
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+                                            <span class="svg-icon svg-icon-4 me-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1"
+                                                        fill="black" />
+                                                    <path
+                                                        d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z"
+                                                        fill="black" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span class="indicator-progress"> لطفا صبر کنید...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-lg btn-primary"
+                                        data-kt-stepper-action="next">ادامه
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+                                        <span class="svg-icon svg-icon-4 me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1"
+                                                    fill="black" />
+                                                <path
+                                                    d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z"
+                                                    fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon--></button>
+                                </div>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Wrapper-->
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+
+                <!--end::Footer-->
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Authentication - Multi-steps-->
+    </div>
+    <!--end::Main-->
+</body>
+<!--end::Body-->
+<!--begin::Javascript-->
+<!--begin::Global Javascript Bundle(used by all pages)-->
+<script src="assets/plugins/global/plugins.bundle.js"></script>
+<script src="assets/js/scripts.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Page Custom Javascript(used by this page)-->
+<script src="assets/js/custom/modals/create-account.js"></script>
+<!--end::Page Custom Javascript-->
+<!--end::Javascript-->
+<%- include('../layout-website/footer') -%>

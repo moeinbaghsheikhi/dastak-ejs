@@ -1,0 +1,93 @@
+@font-face {
+    font-family: "dana";
+    src: url('./../fonts/dana/dana-fanum-light.eot');
+    src: url('./../fonts/dana/dana-fanum-light.eot') format('embedded-opentype'), url('./../fonts/dana/DanaFaNum-Light.woff2') format('woff2'), url('./../fonts/dana/DanaFaNum-Light.woff') format('woff'), url('./../fonts/dana/DanaFaNum-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "dana-bold";
+    src: url('./../fonts/dana/woff2/Dana-Bold.woff2') format('woff2'), url('./../fonts/dana/woff/Dana-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: "dana-light";
+    src: url('./../fonts/dana/woff2/Dana-Hairline.woff2') format('woff2'), url('./../fonts/dana/woff/Dana-Hairline.woff') format('woff');
+}
+
+body {
+    font-family: "dana" !important;
+    text-align: right;
+}
+/* *{
+    font-family: "dana" !important;
+} */
+
+.bold-item{
+    font-family: "dana-bold" !important;
+}
+
+.light-item{
+    font-family: "dana-light" !important;
+}
+.nav-line-tabs.nav-line-tabs-2x{
+    margin: 0 auto;
+}
+.bg-surati{
+    background-color: #009EF7  !important;
+    color: white;
+}
+.bg-surati:hover{
+    color: white;
+}
+.bg-s{
+    background-color: rgb(255, 192, 203,0.1);
+}
+@media (max-width: 991.98px) {
+    .bg-s{
+        background-color: rgb(243, 245, 240,1);
+    }    
+}
+
+.bg-table{
+    background-color: rgb(0, 158, 247,0.05) !important;
+}
+.form-routine:hover{
+    border-color:#F5F8FA !important;
+}
+.form-routine:focus{
+    border-color:#F5F8FA !important;
+}
+.form-routine{
+    border-color:#F5F8FA !important;
+}
+
+.float-left{
+    float: left;
+}
+
+.service-box{
+    background-color: rgba(255,255,255,1); border-radius: 10px; padding: 10px;
+}
+.br-15{
+    border-radius: 15px
+}
+
+.dokon-section .svg-icon{
+    background-color: #fff;
+    border-radius: 50%;
+}
+.dokon-section .fw-bold{
+    color: #fff !important;
+}
+
+.comments-section{
+    opacity: 0.05;
+    cursor: not-allowed;
+}
+
+.w-48{
+    width: 48%;
+}
+.w-80{
+    width: 90%;
+}

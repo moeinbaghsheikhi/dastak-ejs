@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<!--
+Author: Keenthemes
+Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme
+Purchase: https://1.envato.market/EA4JP
+Website: http://www.keenthemes.com
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html lang="en">
+	<!--begin::Head-->
+	<head><base href="../../">
+		<title>ساخت دستــک جدید</title>
+		<meta name="description" content="دستک یک سامانه کاربردی برای فروشنده های اینترنتیه! اگه از شماره کارت دادن توی دایرکت و پیوی خسته شدی دستک واست یه پیشنهاد جذاااب داره!" />
+		<meta name="keywords" content="دستک ، فاکتورساز ، فاکتورساز آنلاین" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta charset="utf-8" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="دستک؛ فاکتوری با قابلیت های جادویی!" />
+		<meta property="og:url" content="https://keenthemes.com/metronic" />
+		<meta property="og:site_name" content="دستک | فاکتورساز دیجیتالی" />
+		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+
+		<link href="assets/plugins/custom/prismjs/prismjs.bundle.rtl.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="assets/css/rtl.css">
+		<script src="assets/js/magic_request.js"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<script>
+			let base = "http://37.120.198.201:3000/"
+			let data = {
+					"name": "",
+					"account_type": "digital",
+					"sale_count": 2,
+					"mobile": "",
+					"password": null
+				}
+
+				function set_account_type(value){
+					data.account_type = value
+					console.log(data)
+				}
+
+				function set_sale_count(value){
+					data.sale_count = value
+					console.log(data)
+				}
+
+			$(document).ready(function(){
+				$("#register_sub").click(function(){
+					data.name = $("#name").val()
+					data.mobile = $("#mobile").val()
+
+					var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(data);
+
+    var requestOptions = {
+        method: "post",
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+        'Access-Control-Allow-Origin': '*'
+    };
+	 fetch(base + "account", requestOptions).then(response => response.text())
+        .then(result => {
+            result = JSON.parse(result)
+            if(result.status==200 || result.status==201){
+                toastr.success("با موفقیت ثبت نام کردی!");
+				localStorage.setItem("login", true)
+				localStorage.setItem("account_id", result.data.id)
+				localStorage.setItem("name", result.data.name)
+				localStorage.setItem("mobile", result.data.mobile)
+				localStorage.setItem("account_type", result.data.account_type)
+				localStorage.setItem("sale_count", result.data.sale_count)
+				localStorage.setItem("password", result.data.password)
+                setTimeout(window.location.replace("/admin"), 1500)
+            }else{
+				if(result.message == "Mobile Already Exists")
+					toastr.error("این شماره موبایل قبلا ثبت نام کرده!");
+				else{console.log(result)
+                toastr.error(result.message[0]);}
+            }
+        }).catch(error => console.log('error', error));
+				})
+			})
+		</script>
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="bg-body" dir="rtl">
+		<!--begin::Main-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Authentication - Multi-steps-->
+			<div class="d-flex flex-column flex-lg-row flex-column-fluid stepper stepper-pills stepper-column" id="kt_create_account_stepper">
+				<!--begin::Aside-->
+				<div class="d-flex flex-column flex-lg-row-auto w-xl-500px bg-lighten shadow-sm">
+					<!--begin::Wrapper-->
+					<div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-500px scroll-y">
+						<!--begin::Header-->
+						<div class="d-flex flex-row-fluid flex-column flex-center p-10 pt-lg-20">
+							<!--begin::Logo-->
+							<!-- <a href="../../demo9/dist/index.html" class="mb-10 mb-lg-20">
+								<img alt="Logo" src="assets/media/logos/Dastak-1.png" class="h-80px" />
+							</a> -->
+							<!--end::Logo-->
+							<!--begin::Nav-->
+							<div class="stepper-nav">
+								<!--begin::Step 1-->
+								<div class="stepper-item current" data-kt-stepper-element="nav">
+									<!--begin::Line-->
+									<div class="stepper-line w-40px"></div>
+									<!--end::Line-->
+									<!--begin::Icon-->
+									<div class="stepper-icon w-40px h-40px">
+										<i class="stepper-check fas fa-check"></i>
+										<span class="stepper-number">1</span>
+									</div>
+									<!--end::Icon-->
+									<!--begin::Label-->
+									<div class="stepper-label">
+										<h3 class="stepper-title">نوع دستــک</h3>
+										<div class="stepper-desc fw-bold">انتخاب کن چه محصولی میفروشی</div>
+									</div>
+									<!--end::Label-->
+								</div>
+								<!--end::Step 1-->
+								<!--begin::Step 2-->
+								<div class="stepper-item" data-kt-stepper-element="nav">
+									<!--begin::Line-->
+									<div class="stepper-line w-40px"></div>
+									<!--end::Line-->
+									<!--begin::Icon-->
+									<div class="stepper-icon w-40px h-40px">
+										<i class="stepper-check fas fa-check"></i>
+										<span class="stepper-number">2</span>
+									</div>
+									<!--end::Icon-->
+									<!--begin::Label-->
+									<div class="stepper-label">
+										<h3 class="stepper-title">تنظیماتش</h3>
+										<div class="stepper-desc fw-bold">اسم و جزئیات دفتــر دستَکِت</div>
+									</div>
+									<!--end::Label-->
+								</div>
+								<!--end::Step 2-->
+								<!--begin::Step 3-->
+								<div class="stepper-item" data-kt-stepper-element="nav">
+									<!--begin::Line-->
+									<div class="stepper-line w-40px"></div>
+									<!--end::Line-->
+									<!--begin::Icon-->
+									<div class="stepper-icon w-40px h-40px">
+										<i class="stepper-check fas fa-check"></i>
+										<span class="stepper-number">3</span>
+									</div>
+									<!--end::Icon-->
+									<!--begin::Label-->
+									<div class="stepper-label">
+										<h3 class="stepper-title">تایید موبایل</h3>
+										<div class="stepper-desc fw-bold">شماره موبایل کسب و کاریتو اضافه کن</div>
+									</div>
+									<!--end::Label-->
+								</div>
+								<!--end::Step 3-->
+								<!--begin::Step 4-->
+								<div class="stepper-item" data-kt-stepper-element="nav">
+									<!--begin::Line-->
+									<div class="stepper-line w-40px"></div>
+									<!--end::Line-->
+									<!--begin::Icon-->
+									<div class="stepper-icon w-40px h-40px">
+										<i class="stepper-check fas fa-check"></i>
+										<span class="stepper-number">4</span>
+									</div>
+									<!--end::Icon-->
+									<!--begin::Label-->
+									<div class="stepper-label">
+										<h3 class="stepper-title">افتتاح دستــک</h3>
+										<div class="stepper-desc fw-bold">اسمتو بگو تا حسابت ساخته شه:)</div>
+									</div>
+									<!--end::Label-->
+								</div>
+								<!--end::Step 4-->
+							</div>
+							<!--end::Nav-->
+						</div>
+						<!--end::Header-->
+						<!--begin::Illustration-->
+						<!-- <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-150px min-h-lg-300px" style="background-image: url(assets/media/illustrations/sigma-1/16.png"></div> -->
+						<!--end::Illustration-->
+					</div>
+					<!--end::Wrapper-->
+				</div>
+				<!--begin::Aside-->
+				<!--begin::Body-->
+				<div class="d-flex flex-column flex-lg-row-fluid py-10">
+					<!--begin::Content-->
+					<div class="d-flex flex-center flex-column flex-column-fluid">
+						<!--begin::Wrapper-->
+						<div class="w-lg-700px p-10 p-lg-15 mx-auto">
+							<!--begin::Form-->
+							<form class="my-auto pb-5" novalidate="novalidate" id="kt_create_account_form" method="post" url="account" name="register">
+								<!--begin::Step 1-->
+								<div class="current" data-kt-stepper-element="content">
+									<!--begin::Wrapper-->
+									<div class="w-100">
+										<!--begin::Heading-->
+										<div class="pb-10 pb-lg-15">
+											<!--begin::Title-->
+											<h2 class="fw-bolder d-flex align-items-center text-dark"> ساخت دستــک جدید <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Billing is issued based on your selected account type"></i></h2>
+											<!--end::Title-->
+											<!--begin::Notice-->
+											<div class="text-muted fw-bold fs-6">فقط توی 20 ثانیه دستک خودت رو راه بنداز
+											<a href="#" class="link-primary fw-bolder">اگه بلد نیستی چجوری اینو ببین!</a></div>
+											<!--end::Notice-->
+										</div>
+										<!--end::Heading-->
+										<!--begin::Input group-->
+										<div class="fv-row">
+											<!--begin::Row-->
+											<div class="row">
+												<!--begin::Col-->
+												<div class="col-lg-6">
+													<!--begin::Option-->
+													<input type="radio" class="btn-check" onclick="set_account_type('physical')" value="physical" name="account_type" checked="checked" id="kt_create_account_form_account_type_corporate" />
+													<label class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center" for="kt_create_account_form_account_type_corporate">
+														<!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
+														<span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+															<path opacity="0.3" d="M20 22H4C3.4 22 3 21.6 3 21V2H21V21C21 21.6 20.6 22 20 22Z" fill="black"/>
+															<path d="M12 14C9.2 14 7 11.8 7 9V5C7 4.4 7.4 4 8 4C8.6 4 9 4.4 9 5V9C9 10.7 10.3 12 12 12C13.7 12 15 10.7 15 9V5C15 4.4 15.4 4 16 4C16.6 4 17 4.4 17 5V9C17 11.8 14.8 14 12 14Z" fill="black"/>
+															</svg></span>
+														<!--end::Svg Icon-->
+														<!--begin::Info-->
+														<span class="d-block fw-bold text-start">
+															<span class="text-dark fw-bolder d-block fs-4 mb-2">محصول من فیزیکی هست</span>
+															<span class="text-muted fw-bold fs-6">آنلاین شاپ پوشاک، عمده فروشی، ارسال بسته های پستی و...</span>
+														</span>
+														<!--end::Info-->
+													</label>
+													<!--end::Option-->
+												</div>
+												<!--end::Col-->
+												<!--begin::Col-->
+												<div class="col-lg-6">
+													<!--begin::Option-->
+													<input type="radio" class="btn-check account_type" onclick="set_account_type('digital')" value="digital" name="account_type" id="kt_create_account_form_account_type_personal" />
+													<label class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-10" for="kt_create_account_form_account_type_personal">
+														<!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+														<span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+															<path opacity="0.3" d="M19 18C20.7 18 22 16.7 22 15C22 13.3 20.7 12 19 12C18.9 12 18.9 12 18.8 12C18.9 11.7 19 11.3 19 11C19 9.3 17.7 8 16 8C15.4 8 14.8 8.2 14.3 8.5C13.4 7 11.8 6 10 6C7.2 6 5 8.2 5 11C5 11.3 5.00001 11.7 5.10001 12H5C3.3 12 2 13.3 2 15C2 16.7 3.3 18 5 18H19Z" fill="black"/>
+															</svg></span>
+														<!--end::Svg Icon-->
+														<!--begin::Info-->
+														<span class="d-block fw-bold text-start">
+															<span class="text-dark fw-bolder d-block fs-4 mb-2">محصول من دیجیتالی هست</span>
+															<span class="text-muted fw-bold fs-6">فروش فایل، آموزش، تبلیغات، سرویس عبور از تحریم و...</span>
+														</span>
+														<!--end::Info-->
+													</label>
+													<!--end::Option-->
+												</div>
+												<!--end::Col-->
+											</div>
+											<!--end::Row-->
+										</div>
+										<!--end::Input group-->
+									</div>
+									<!--end::Wrapper-->
+								</div>
+								<!--end::Step 1-->
+								<!--begin::Step 2-->
+								<div class="" data-kt-stepper-element="content">
+									<!--begin::Wrapper-->
+									<div class="w-100">
+										<!--begin::Heading-->
+										<div class="pb-10 pb-lg-15">
+											<!--begin::Title-->
+											<h2 class="fw-bolder text-dark">تنظیمات دستــک</h2>
+											<!--end::Title-->
+											<!--begin::Notice-->
+											<div class="text-muted fw-bold fs-6"></div>
+											<!--end::Notice-->
+										</div>
+										<!--end::Heading-->
+										<!--begin::Input group-->
+										<div class="mb-10 fv-row">
+											<!--begin::Label-->
+											<label class="d-flex align-items-center form-label mb-3">ماهانه حدودا چند تا فروش داری؟!
+											<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Provide your team size to help us setup your billing"></i></label>
+											<!--end::Label-->
+											<!--begin::Row-->
+											<div class="row mb-2" data-kt-buttons="true">
+												<!--begin::Col-->
+												<div class="col">
+													<!--begin::Option-->
+													<label class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+														<input type="radio" class="btn-check" onclick="set_sale_count(1)" id="sale_count" value="1" />
+														<span class="fw-bolder fs-3">کمتر از 10 تا</span>
+													</label>
+													<!--end::Option-->
+												</div>
+												<!--end::Col-->
+												<!--begin::Col-->
+												<div class="col">
+													<!--begin::Option-->
+													<label class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4 active">
+														<input type="radio" class="btn-check" id="sale_count" onclick="set_sale_count(2)" checked="checked" value="2" />
+														<span class="fw-bolder fs-3">بین 10 تا 50</span>
+													</label>
+													<!--end::Option-->
+												</div>
+												<!--end::Col-->
+												<!--begin::Col-->
+												<div class="col">
+													<!--begin::Option-->
+													<label class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+														<input type="radio" class="btn-check" onclick="set_sale_count(3)" id="sale_count" value="3" />
+														<span class="fw-bolder fs-3">بین 50 تا 100</span>
+													</label>
+													<!--end::Option-->
+												</div>
+												<!--end::Col-->
+												<!--begin::Col-->
+												<div class="col">
+													<!--begin::Option-->
+													<label class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4">
+														<input type="radio" class="btn-check" onclick="set_sale_count(4)" id="sale_count" value="4" />
+														<span class="fw-bolder fs-3">بیشتر از 100</span>
+													</label>
+													<!--end::Option-->
+												</div>
+												<!--end::Col-->
+											</div>
+											<!--end::Row-->
+											<!--begin::Hint-->
+											<div class="form-text">بگو حدودا چه تعداد فاکتور توی ماه داری که بهترین پلن رو بهت معرفی کنم</div>
+											<!--end::Hint-->
+										</div>
+										<!--end::Input group-->
+										<!--begin::Input group-->
+										<div class="mb-10 fv-row">
+											<!--begin::Label-->
+											<label class="form-label mb-3">اسم دفتر دستکت چی باشه؟! <span style="font-size: 12px;">(اسم فروشگاه)</span></label>
+											<!--end::Label-->
+											<!--begin::Input-->
+											<input type="text" class="form-control form-control-lg form-control-solid" id="name" placeholder="" value="" />
+											<!--end::Input-->
+										</div>
+										<!--end::Input group-->
+									</div>
+									<!--end::Wrapper-->
+								</div>
+								<!--end::Step 2-->
+								<!--begin::Step 3-->
+								<div class="" data-kt-stepper-element="content">
+									<!--begin::Wrapper-->
+									<div class="w-100">
+										<!--begin::Heading-->
+										<div class="pb-10 pb-lg-12">
+											<!--begin::Title-->
+											<h2 class="fw-bolder text-dark">تایید موبایل</h2>
+											<!--end::Title-->
+											<!--begin::Notice-->
+											
+											<!--end::Notice-->
+										</div>
+										<!--end::Heading-->
+										<!--begin::Input group-->
+										<div class="fv-row mb-5">
+											<!--begin::Label-->
+											<label class="form-label">موبایلتو وارد کن</label>
+											<!--end::Label-->
+											<!--begin::Input-->
+											<input id="mobile" class="form-control form-control-lg form-control-solid" placeholder="09135882813" />
+											<!--end::Input-->
+										</div>
+										<!--end::Input group-->
+
+										<!-- <div class="fv-row mb-10">											
+											<button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
+												<span class="indicator-label">ارسال کد تایید</span>
+												<span class="indicator-progress">لطفا صبر کنید...
+												<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+											</button>
+										</div> -->
+
+										<!-- <div class="d-flex flex-wrap flex-stack mb-5 col-lg-6" style="margin: 0 auto;">
+											<input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" inputmode="text">
+											<input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" inputmode="text">
+											<input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" inputmode="text">
+											<input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" inputmode="text">
+										</div> -->
+										<!-- <div class="d-flex flex-center">
+											<button type="button" id="kt_sing_in_two_steps_submit" class="btn btn-lg btn-primary fw-bolder">
+												<span class="indicator-label">تایید کد</span>
+												<span class="indicator-progress">Please wait...
+												<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+											</button>
+										</div> -->
+									</div>
+									<!--end::Wrapper-->
+								</div>
+								<!--end::Step 3-->
+								<!--begin::Step 4-->
+								<div class="" data-kt-stepper-element="content">
+									<!--begin::Wrapper-->
+									<div class="w-100">
+										<h2>خوش اومدی به دفتر دستک جدیدت ;)</h2>
+										<br>
+										<p class="alert alert-primary">
+											تموم شد و رفت:)
+										</p>
+									</div>
+									<!--end::Wrapper-->
+								</div>
+								<!--end::Step 4-->
+								<!--begin::Step 5-->
+								<div class="" data-kt-stepper-element="content">
+									<!--begin::Wrapper-->
+									<div class="w-100">
+										<!--begin::Heading-->
+										<div class="pb-8 pb-lg-10">
+											<!--begin::Title-->
+											<h2 class="fw-bolder text-dark">Your Are Done!</h2>
+											<!--end::Title-->
+											<!--begin::Notice-->
+											<div class="text-muted fw-bold fs-6">If you need more info, please
+											<a href="../../demo9/dist/authentication/sign-in/basic.html" class="link-primary fw-bolder">Sign In</a>.</div>
+											<!--end::Notice-->
+										</div>
+										<!--end::Heading-->
+										<!--begin::Body-->
+										<div class="mb-0">
+											<!--begin::Text-->
+											<div class="fs-6 text-gray-600 mb-5">Writing headlines for blog posts is as much an art as it is a science and probably warrants its own post, but for all advise is with what works for your great &amp; amazing audience.</div>
+											<!--end::Text-->
+											<!--begin::Alert-->
+											<!--begin::Notice-->
+											<div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
+												<!--begin::Icon-->
+												<!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+												<span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+														<rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+														<rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+													</svg>
+												</span>
+												<!--end::Svg Icon-->
+												<!--end::Icon-->
+												<!--begin::Wrapper-->
+												<div class="d-flex flex-stack flex-grow-1">
+													<!--begin::Content-->
+													<div class="fw-bold">
+														<h4 class="text-gray-900 fw-bolder">We need your attention!</h4>
+														<div class="fs-6 text-gray-700">To start using great tools, please, please
+														<a href="#" class="fw-bolder">Create Team Platform</a></div>
+													</div>
+													<!--end::Content-->
+												</div>
+												<!--end::Wrapper-->
+											</div>
+											<!--end::Notice-->
+											<!--end::Alert-->
+										</div>
+										<!--end::Body-->
+									</div>
+									<!--end::Wrapper-->
+								</div>
+								<!--end::Step 5-->
+								<!--begin::Actions-->
+								<div class="d-flex flex-stack pt-15">
+									<div class="mr-2">
+										<button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous">
+										<!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
+										
+										<span class="svg-icon svg-icon-4 ms-1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+												<path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="black" />
+												<rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180)" fill="black" />
+											</svg>
+										</span>
+										<!--end::Svg Icon-->قبلی</button>
+									</div>
+									<div>
+										<button type="button" class="btn btn-lg btn-primary" id="register_sub" data-kt-stepper-action="submit">
+											<span class="indicator-label">تکمیل ثبت نام
+											<!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+											<!-- <span class="svg-icon svg-icon-4 ms-2" style="rotate: 180deg;">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+													<rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="black" />
+													<path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="black" />
+												</svg>
+											</span> -->
+											<!--end::Svg Icon--></span>
+											<span class="indicator-progress"لطفا صبر کنید...
+											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+										</button>
+										<button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">ادامه
+										<!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+										<span class="svg-icon svg-icon-4 me-1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+												<rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="black" />
+												<path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="black" />
+											</svg>
+										</span>
+										<!--end::Svg Icon--></button>
+									</div>
+								</div>
+								<!--end::Actions-->
+							</form>
+							<!--end::Form-->
+						</div>
+						<!--end::Wrapper-->
+					</div>
+					<!--end::Content-->
+					<!--begin::Footer-->
+			
+					<!--end::Footer-->
+				</div>
+				<!--end::Body-->
+			</div>
+			<!--end::Authentication - Multi-steps-->
+		</div>
+		<!--end::Main-->
+		<script>var hostUrl = "assets/";</script>
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script src="assets/js/custom/modals/create-account.js"></script>
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>

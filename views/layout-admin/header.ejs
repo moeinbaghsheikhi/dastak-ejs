@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: auto;">
+<!--begin::Head-->
+
+<head>
+	<base href="">
+	<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel
+		by Keenthemes</title>
+	<meta name="description"
+		content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
+	<meta name="keywords"
+		content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title"
+		content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
+	<meta property="og:url" content="https://keenthemes.com/metronic" />
+	<meta property="og:site_name" content="Keenthemes | Metronic" />
+	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+	<link rel="shortcut icon" href="/assets/media/logos/favicon.ico" />
+	<!--begin::Fonts-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+	<!--end::Fonts-->
+	<!--begin::Page Vendor Stylesheets(used by this page)-->
+	<link href="/assets/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css" />
+
+
+
+	<link href="/assets/plugins/custom/prismjs/prismjs.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/assets/css/rtl.css">
+	<link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+	<script src="/assets/plugins/global/plugins.bundle.js"></script>
+	<script src="/assets/js/magic_request.js"></script>
+	<script>
+		if(!localStorage.getItem("login"))
+			window.location.replace("/login")
+		function deleteitem(tag) {
+			let url = (tag.getAttribute("url"))
+			MagicRequest("delete", url)
+		}
+		function edititem(tag) {
+			let url = (tag.getAttribute("url"))
+
+			MagicRequest("GET", url).then(response => response.text())
+				.then(result => {
+					var res = (JSON.parse(result))
+					document.querySelector("#update").setAttribute("url", url)
+
+					Object.keys(res.data).forEach(function (key, index) {
+						if (key != "_id") {
+							if (key == "image" || key == "file")
+								document.querySelector("#update #" + key).setAttribute("file", res.data[key])
+							else document.querySelector("#update #" + key).value = res.data[key] || ""
+						}
+					});
+				}).catch(error => console.log('error', error));
+				
+		}
+		function separate(Number) 
+		{
+			Number+= '';
+			Number= Number.replace(',', '');
+			x = Number.split('.');
+			y = x[0];
+			z= x.length > 1 ? '.' + x[1] : '';
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(y))
+			y= y.replace(rgx, '$1' + ',' + '$2');
+			return y+ z;
+		}
+	</script>
+	<style>
+		body {
+			overflow-x: hidden;
+		}
+
+		.drop-container {
+			position: relative;
+			display: flex;
+			gap: 10px;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 200px;
+			padding: 20px;
+			border-radius: 10px;
+			border: 2px dashed #555;
+			color: #444;
+			cursor: pointer;
+			transition: background .2s ease-in-out, border .2s ease-in-out;
+		}
+
+		.drop-container:hover {
+			background: #eee;
+			border-color: #111;
+		}
+
+		.drop-container:hover .drop-title {
+			color: #222;
+		}
+
+		.drop-title {
+			color: #444;
+			font-size: 20px;
+			font-weight: bold;
+			text-align: center;
+			transition: color .2s ease-in-out;
+		}
+
+		input[type=file]::file-selector-button {
+			margin-right: 20px;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 10px;
+			color: #fff;
+			cursor: pointer;
+			transition: background .2s ease-in-out;
+			color: #fff;
+			border-color: #009ef7;
+			background-color: #009ef7;
+		}
+
+		input[type=file]::file-selector-button:hover {
+			background: #0d45a5;
+		}
+		.select2-dropdown{
+			position: relative !important;
+		}
+	</style>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+
+<body id="kt_body" class=" header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled">
+	<!--begin::Main-->
+	<!--begin::Root-->
+	<div class="d-flex flex-column flex-root">
+		<!--begin::Header tablet and mobile-->
+		<div class="header-mobile py-3">
+			<!--begin::Container-->
+			<div class="container d-flex flex-stack">
+				<!--begin::Mobile logo-->
+				<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+					<a href="/home">
+						<img alt="Logo" src="/assets/media/logos/Logofullw.png" class="h-35px" />
+					</a>
+				</div>
+				<!--end::Mobile logo-->
+				<!--begin::Aside toggle-->
+				<button class="btn btn-icon btn-active-color-primary" id="kt_aside_toggle">
+					<!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
+					<span class="svg-icon svg-icon-2x me-n1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path
+								d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+								fill="black" />
+							<path opacity="0.5"
+								d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+								fill="black" />
+						</svg>
+					</span>
+					<!--end::Svg Icon-->
+				</button>
+				<!--end::Aside toggle-->
+			</div>
+			<!--end::Container-->
+		</div>
+		<!--end::Header tablet and mobile-->
+		<!--begin::Page-->
+		<div class="page d-flex flex-row flex-column-fluid">
+			<!--begin::Aside-->
+			<div id="kt_aside" class="aside" data-kt-drawer="true" data-kt-drawer-name="aside"
+				data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
+				data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle" onclick="document.getElementById('kt_aside_toggle').click()">
+				<!--begin::Logo-->
+				<div class="aside-logo flex-column-auto pt-10 pt-lg-20" id="kt_aside_logo">
+					<a href="/home">
+						<img alt="Logo" src="/assets/media/logos/Dastak-1.png" class="h-100px" />
+					</a>
+				</div>
+				<!--end::Logo-->
+				<!--begin::Nav-->
+				<div class="aside-menu flex-column-fluid pt-0 pb-5 py-lg-5" id="kt_aside_menu">
+					<!--begin::Aside menu-->
+					<div id="kt_aside_menu_wrapper" class="w-100 hover-scroll-overlay-y scroll-ps d-flex"
+						data-kt-scroll="true" data-kt-scroll-height="auto"
+						data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer"
+						data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu" data-kt-scroll-offset="0">
+						<div id="kt_aside_menu"
+							class="menu menu-column menu-title-gray-600 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-icon-gray-400 menu-arrow-gray-400 fw-bold fs-6"
+							data-kt-menu="true">
+							<div class="menu-item py-3 text-center">
+								<a class="menu-link  mb-3 <% if(page == "admin/home"){ %> active <% } %> menu-center" href="/admin/home"
+										title="داشبورد" data-bs-toggle="tooltip"
+										data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+										<span class="menu-icon me-0">
+											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+											<span class="svg-icon svg-icon-2x">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none">
+													<rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
+													<rect opacity="0.5" x="13" y="2" width="9" height="9" rx="2"
+														fill="black" />
+													<rect opacity="0.5" x="13" y="13" width="9" height="9" rx="2"
+														fill="black" />
+													<rect opacity="0.5" x="2" y="13" width="9" height="9" rx="2"
+														fill="black" />
+												</svg>
+											</span>
+											<!--end::Svg Icon-->
+										</span>
+								</a>
+								<a href="/admin/home" class="<% if(page == "admin/home"){ %> active <% } %> menu-title">خانه</a>
+							</div>
+							<div class="menu-item py-3 text-center">
+								<a class="menu-link mb-3 <% if(page == "admin/product"){ %> active <% } %> menu-center" href="/admin/product"
+										title="محصولات" data-bs-toggle="tooltip"
+										data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+										<span class="menu-icon">
+											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+											<span class="svg-icon svg-icon-2x">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none">
+													<path opacity="0.5"
+														d="M20 22H4C3.4 22 3 21.6 3 21V2H21V21C21 21.6 20.6 22 20 22Z"
+														fill="black" />
+													<path
+														d="M12 14C9.2 14 7 11.8 7 9V5C7 4.4 7.4 4 8 4C8.6 4 9 4.4 9 5V9C9 10.7 10.3 12 12 12C13.7 12 15 10.7 15 9V5C15 4.4 15.4 4 16 4C16.6 4 17 4.4 17 5V9C17 11.8 14.8 14 12 14Z"
+														fill="black" />
+												</svg>
+											</span>
+											<!--end::Svg Icon-->
+										</span>
+								</a>
+								<a href="/admin/product" class="<% if(page == "admin/product"){ %> active <% } %> menu-title">محصولات</a>
+							</div>
+							<div class="menu-item py-3 text-center">
+								<a class="menu-link mb-3 <% if(page == "admin/grouping"){ %> active <% } %> menu-center" href="/admin/grouping"
+										title="دسته بندی" data-bs-toggle="tooltip"
+										data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+										<span class="menu-icon">
+                                        <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen059.svg-->
+                                        <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg
+											xmlns="http://www.w3.org/2000/svg" width="16" height="15"
+											viewBox="0 0 16 15" fill="none">
+											<rect y="6" width="16" height="3" rx="1.5" fill="black" />
+											<rect opacity="0.3" y="12" width="8" height="3" rx="1.5" fill="black" />
+											<rect opacity="0.3" width="12" height="3" rx="1.5" fill="black" />
+										</svg></span>
+									<!--end::Svg Icon-->
+									</span>	
+								</a>
+								<a href="/admin/grouping" class="<% if(page == "admin/grouping"){ %> active <% } %> menu-title">دسته بندی</a>
+							</div>
+							<div class="menu-item py-3 text-center">
+								<a class="menu-link mb-3 <% if(page == "admin/factor"){ %> active <% } %> menu-center" href="/admin/factor"
+										title="ساخت فاکتور" data-bs-toggle="tooltip"
+										data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+										<span class="menu-icon">
+											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+											<span class="svg-icon svg-icon-muted svg-icon-2hx"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z"
+                                                    fill="black" />
+                                                <path
+                                                    d="M10.9256 11.1882C10.5351 10.7977 10.5351 10.1645 10.9256 9.77397L18.0669 2.6327C18.8479 1.85165 20.1143 1.85165 20.8953 2.6327L21.3665 3.10391C22.1476 3.88496 22.1476 5.15129 21.3665 5.93234L14.2252 13.0736C13.8347 13.4641 13.2016 13.4641 12.811 13.0736L10.9256 11.1882Z"
+                                                    fill="black" />
+                                                <path
+                                                    d="M8.82343 12.0064L8.08852 14.3348C7.8655 15.0414 8.46151 15.7366 9.19388 15.6242L11.8974 15.2092C12.4642 15.1222 12.6916 14.4278 12.2861 14.0223L9.98595 11.7221C9.61452 11.3507 8.98154 11.5055 8.82343 12.0064Z"
+                                                    fill="black" />
+                                            </svg></span>
+											<!--end::Svg Icon-->
+										</span>
+								</a>
+								<a href="/admin/factor" class="<% if(page == "admin/factor"){ %> active <% } %> menu-title">ساخت فاکتور</a>
+							</div>
+						</div>
+					</div>
+					<!--end::Aside menu-->
+				</div>
+				<!--end::Nav-->
+				<!--begin::Footer-->
+				<div class="aside-footer flex-column-auto pb-5 pb-lg-10 d-block d-lg-none" id="kt_aside_footer">
+					<!--begin::Menu-->
+					<div class="d-flex flex-center w-100 scroll-px" data-bs-toggle="tooltip" data-bs-placement="right"
+						data-bs-dismiss="click" title="بستن منو">
+						<button onclick="document.getElementById('kt_aside').classList.remove('drawer-on'); document.querySelector('.drawer-overlay').remove(); document.getElementById('kt_aside_toggle').classList.remove('active')" type="button" class="btn btn-custom">
+							<!--begin::Svg Icon | path: icons/duotune/arrows/arr076.svg-->
+							<img style="opacity: 0.4;" src="/assets/media/icons/duotune/arrows/arr064.svg"/>
+							<!--end::Svg Icon-->
+						</button>
+					</div>
+					<!--end::Menu-->
+				</div>
+				<!--end::Footer-->
+			</div>
+			<!--end::Aside-->
+			<!--begin::Wrapper-->
+			<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">

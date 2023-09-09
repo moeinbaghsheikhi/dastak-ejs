@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: auto;">
+<!--begin::Head-->
+
+<head>
+	<base href="">
+	<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel
+		by Keenthemes</title>
+	<meta name="description"
+		content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
+	<meta name="keywords"
+		content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title"
+		content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
+	<meta property="og:url" content="https://keenthemes.com/metronic" />
+	<meta property="og:site_name" content="Keenthemes | Metronic" />
+	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+	<link rel="shortcut icon" href="/assets/media/logos/favicon.ico" />
+	<!--begin::Fonts-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+	<!--end::Fonts-->
+	<!--begin::Page Vendor Stylesheets(used by this page)-->
+	<link href="/assets/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css" />
+
+
+
+	<link href="/assets/plugins/custom/prismjs/prismjs.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/assets/css/rtl.css">
+	<link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+	<script src="/assets/plugins/global/plugins.bundle.js"></script>
+	<script src="/assets/js/magic_request.js"></script>
+	<script>
+		function deleteitem(tag) {
+			let url = (tag.getAttribute("url"))
+			MagicRequest("delete", url).then((response) => location.reload())
+		}
+		function edititem(tag) {
+			let url = (tag.getAttribute("url"))
+
+			MagicRequest("GET", url).then(response => response.text())
+				.then(result => {
+					var res = (JSON.parse(result))
+					document.querySelector("#update").setAttribute("url", url)
+
+					Object.keys(res.data).forEach(function (key, index) {
+						if (key != "_id") {
+							if (key == "image" || key == "file")
+								document.querySelector("#update #" + key).setAttribute("file", res.data[key])
+							else document.querySelector("#update #" + key).value = res.data[key] || ""
+						}
+					});
+				}).catch(error => console.log('error', error));
+		}
+	</script>
+	<style>
+		body {
+			overflow-x: hidden;
+		}
+
+		.drop-container {
+			position: relative;
+			display: flex;
+			gap: 10px;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 200px;
+			padding: 20px;
+			border-radius: 10px;
+			border: 2px dashed #555;
+			color: #444;
+			cursor: pointer;
+			transition: background .2s ease-in-out, border .2s ease-in-out;
+		}
+
+		.drop-container:hover {
+			background: #eee;
+			border-color: #111;
+		}
+
+		.drop-container:hover .drop-title {
+			color: #222;
+		}
+
+		.drop-title {
+			color: #444;
+			font-size: 20px;
+			font-weight: bold;
+			text-align: center;
+			transition: color .2s ease-in-out;
+		}
+
+		input[type=file]::file-selector-button {
+			margin-right: 20px;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 10px;
+			color: #fff;
+			cursor: pointer;
+			/* transition: background .2s ease-in-out; */
+			color: #fff;
+			border-color: #009ef7;
+			background-color: #009ef7;
+		}
+
+		input[type=file]::file-selector-button:hover {
+			background: #0d45a5;
+		}
+		.select2-dropdown{
+			position: relative !important;
+		}
+	</style>
+</head>
+<!--end::Head-->
