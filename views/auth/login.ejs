@@ -100,7 +100,10 @@ License: For each use you must have a valid license purchased only from above li
 			$("#send_pass .indicator-progress").hide()
 			$("#send_pass").removeAttr("disabled")
             }else{
-                toastr.error("خطایی رخ داده است");
+				if(Array.isArray(result.message))
+					toastr.error(result.message[0]);
+				else{console.log(result)
+                toastr.error(result.message);}
 				$("#send_pass .indicator-label").show()
 			$("#send_pass .indicator-progress").hide()
 			$("#send_pass").removeAttr("disabled")
