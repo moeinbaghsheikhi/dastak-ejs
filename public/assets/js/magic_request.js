@@ -57,7 +57,7 @@ function imageUpload(url, form) {
         }).catch(error => console.log('error', error));
 }
 
-function MagicRequest(method, url, params = {}) {
+function MagicRequest(method, url, params = {}, reload = true) {
     if (method == "GET" || method == "get") {
         let result
         var requestOptions = {
@@ -95,8 +95,11 @@ function MagicRequest(method, url, params = {}) {
         .then(result => {
             result = JSON.parse(result)
             if(result.status==200 || result.status==201){
-                toastr.success("با موفقیت انجام شد");
-                setTimeout(location.reload(), 500)
+                if(reload) {
+                    setTimeout(location.reload(), 500)
+                    toastr.success("با موفقیت انجام شد");
+                }
+                return result
             }else{
                 console.log(result.message)
                 if(Array.isArray(result.message)) toastr.error(result.message[0]); else toastr.error(result.message);
