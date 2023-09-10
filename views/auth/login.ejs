@@ -47,7 +47,33 @@ License: For each use you must have a valid license purchased only from above li
 					console.log(data)
 				}
 
+
+    
+
 			$(document).ready(function(){
+				$('#mobile').focus()
+				$('#mobile').on('keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) { 
+    e.preventDefault();
+    // validateForm(e.target.form.attributes.name)
+    $("#go-to-login").click()
+	$('#password').focus()
+    // console.log()
+    return false;
+  }
+});
+
+$('#password').on('keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) { 
+    e.preventDefault();
+    // validateForm(e.target.form.attributes.name)
+    $("#login").click()
+    // console.log()
+    return false;
+  }
+});
 				toastr.options = {
   "closeButton": false,
   "debug": false,
@@ -66,10 +92,17 @@ License: For each use you must have a valid license purchased only from above li
   "hideMethod": "fadeOut"
 };
 				$("#login-step-2").click(function(){
-					$("#login-step-2").hide()
-					$("#login-step-1").show()
-					$("#password-item").show()
-					$("#mobile-item").hide()
+					let mobile = $("#mobile").val()
+					if(mobile == "" || !mobile)
+						return toastr.error("اول شماره موبایلت رو وارد کن!")
+					else if (mobile.length != 11)
+						return toastr.error("موبایل باید 11 رفم باشه!")
+					else{
+						$("#login-step-2").hide()
+						$("#login-step-1").show()
+						$("#password-item").show()
+						$("#mobile-item").hide()
+					}
 				})
 				$("#send_pass").click(function(){
 					$("#send_pass").attr("disabled", "disabled")
@@ -201,7 +234,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Title-->
 								<!--begin::Link-->
 								<div class="text-gray-400 fw-bold fs-4">هنوز وارد نشدی؟
-								<a href="/register" class="link-primary bold-item">ثبت نام در دستک</a></div>
+								<a href="/register" class="link-primary">ثبت نام در دستک</a></div>
 								<!--end::Link-->
 							</div>
 							<!--begin::Heading-->
