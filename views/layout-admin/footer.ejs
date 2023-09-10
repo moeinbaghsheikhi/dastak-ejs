@@ -1888,17 +1888,6 @@ data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_
 };
 let account_id = localStorage.getItem("account_id")
     document.getElementById("account_id").value = account_id
-
-    $('.form').on('keypress', function(e) {
-  var keyCode = e.keyCode || e.which;
-  if (keyCode === 13) { 
-    e.preventDefault();
-    // validateForm(e.target.form.attributes.name)
-    $("#submit").click()
-    // console.log()
-    return false;
-  }
-});
     })
 
 </script>

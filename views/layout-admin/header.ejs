@@ -47,14 +47,35 @@
 
 			MagicRequest("GET", url).then(response => response.text())
 				.then(result => {
-					var res = (JSON.parse(result))
+					let res = (JSON.parse(result))
 					document.querySelector("#update").setAttribute("url", url)
+					
+					let category_id = res.data?.category?.id
+					
+					if(category_id)
+					{
+						// console.log(res.data?.category?.id)
+						let categories = MagicRequest("get", "categories").then(response => response.text())
+                    .then(result => {
+                        result = JSON.parse(result).data
+						$("#update #categories_id_update").empty()
+
+                        $.each(result, function (index, value) {
+                            if (value.account.id == localStorage.getItem("account_id")) {
+                                if (index == category_id) $("#update #categories_id_update").append('<option value="' + value.id + '" selected>' + value.title + '</option> ')
+                                else $("#update #categories_id_update").append('<option value="' + value.id + '">' + value.title + '</option> ')
+                            }
+                        })
+                    }).catch(error => console.log('error', error));
+					}	
 
 					Object.keys(res.data).forEach(function (key, index) {
 						if (key != "id") {
-							if (key == "categories_id_update")
-								document.querySelector("#update #" + key).setAttribute("categories_id", res.data[key])
-							else document.querySelector("#update #" + key).value = res.data[key] || ""
+							// if (key == "categories_id_update")
+							// console.log(res.data[key])
+								// document.querySelector("#update #" + key).setAttribute("categories_id", res.data[key])
+							// else 
+							document.querySelector("#update #" + key).value = res.data[key] || ""
 						}
 					});
 				}).catch(error => console.log('error', error));
