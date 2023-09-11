@@ -109,3 +109,20 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+@media (max-width: 991.98px){
+  .header-mobile{
+    display: block;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  #kt_aside_toggle{
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 50%;
+    margin-top: -40px;
+  }
+}
