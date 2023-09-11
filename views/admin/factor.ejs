@@ -300,7 +300,7 @@
                     else if(value.status ==3) statusfactor = '<span class="badge badge-danger"> انصراف از پرداخت </span>'
                     else if(value.status ==4) statusfactor = '<span class="badge badge-warning"> منقضی شده </span>'
                     else if(value.status ==5) statusfactor = '<span class="badge badge-success"> پرداخت شده </span>'
-                    if (value.account.id == account_id) $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="'+ value.code +'" id="clipboard">dastak.ir/factors/'+ value.code +'</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> '+ off_percent +' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> '+ statusfactor +' </span> </div> </div> </td> <td class="text-end"> <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"> <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg--> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="black" /> <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="black" /> </svg> </span> <!--end::Svg Icon--> </button> </td> </tr> ')
+                    if (value.account.id == account_id) $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="'+ value.code +'" id="clipboard">dastakapp.ir/factors/'+ value.code +'</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> '+ off_percent +' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> '+ statusfactor +' </span> </div> </div> </td> <td class="text-end"> <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"> <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg--> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="black" /> <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="black" /> </svg> </span> <!--end::Svg Icon--> </button> </td> </tr> ')
                 })
             }).catch(error => console.log('error', error));
       
@@ -320,8 +320,8 @@
             // console.log(factor_list)
         }
         function clipboard(code) {
-            // navigator.clipboard.writeText("dastak.ir/factors/"+code);
-            toastr.success(code + ": لینک فاکتور در کلیپ بورد کپی شد");
+            // navigator.clipboard.writeText("dastakapp.ir/factors/"+code);
+            toastr.success("<a style='font-size: 12px' href='http://dastakapp.ir/factors/"+code+"'>"+code +"</a>"+ " : لینک فاکتور در کلیپ بورد کپی شد");
         }
 
         $(document).ready(function () {
@@ -363,7 +363,7 @@
                         let data = result.data
                         let factor_code = result.data.code
                         // Select the text field
-                        navigator.clipboard.writeText("dastak.ir/factors/"+factor_code);
+                        navigator.clipboard.writeText("dastakapp.ir/factors/"+factor_code);
 
                         $.each(factor_list, function(index, value){
                             let factor_item_data = {
