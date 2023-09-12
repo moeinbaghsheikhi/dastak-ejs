@@ -2,23 +2,23 @@ const axios = require('axios');
 const base_URL = process.env.API_URL
 
 class RequestService {
-	static async post(url, data = {}) {
-		return await this.axiosCall(this.config(service, method, 'post', data, apiCode));
+	static async post(url, data = {}, header= "") {
+		return await this.axiosCall(this.config(service, method, 'post', data, header));
 	}
 
-	static async put(url, data = {}) {
-		return await this.axiosCall(this.config(service, method, 'put', data, apiCode));
+	static async put(url, data = {}, header= "") {
+		return await this.axiosCall(this.config(service, method, 'put', data, header));
 	}
 
-	static async delete(url, data = {}) {
-		return await this.axiosCall(this.config(service, method, 'delete', data, apiCode));
+	static async delete(url, data = {}, header= "") {
+		return await this.axiosCall(this.config(service, method, 'delete', data, header));
 	}
 
-	static async get(url, data = {}) {
-		return await this.axiosCall(this.config(url, 'get', data));
+	static async get(url, data = {}, header= "") {
+		return await this.axiosCall(this.config(url, 'get', data, header));
 	}
 
-	static config(url, type, data) {
+	static config(url, type, data, header) {
 		data = type == 'get' ? { params: data } : { data };
 		let config = {
 			method: type,
@@ -26,6 +26,7 @@ class RequestService {
 			headers: {
 				Accept: 'application/json',
 				// 'x-api-key': apiCode,
+				Authorization: "Bearer "+ header
 			},
 			...data,
 		};

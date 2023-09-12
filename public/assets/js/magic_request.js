@@ -61,10 +61,10 @@ function MagicRequest(method, url, params = {}, reload = true) {
     var myHeaders = new Headers();
     if (method == "GET" || method == "get") {
         let result
-
+        console.log(localStorage.getItem("token"))
         if(localStorage.getItem("token"))
         {
-            myHeaders.append("Authorization", localStorage.getItem("token"));
+            myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
         }
 
         var requestOptions = {
@@ -82,7 +82,7 @@ function MagicRequest(method, url, params = {}, reload = true) {
        
         if(localStorage.getItem("token"))
         {
-            myHeaders.append("Authorization", localStorage.getItem("token"));
+            myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
         }
         var requestOptions = {
             method: 'DELETE',
@@ -101,7 +101,7 @@ function MagicRequest(method, url, params = {}, reload = true) {
     var raw = JSON.stringify(params);
     if(localStorage.getItem("token"))
     {
-        myHeaders.append("Authorization", localStorage.getItem("token"));
+        myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
     }
     var requestOptions = {
         method: method,

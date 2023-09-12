@@ -5,8 +5,8 @@ const request = require('../services/request.service')
 
 module.exports = {
 	async index(req, res, next) {
-		let categories = await request.get('categories')
-		return res.render('admin/grouping',{ data: categories.data, page: req.originalUrl.substr(1).toLowerCase() })
+		// let categories = await request.get('categories')
+		return res.render('admin/grouping',{ page: req.originalUrl.substr(1).toLowerCase() })
 	}
 };
 
