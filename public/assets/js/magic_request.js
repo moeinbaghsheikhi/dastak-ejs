@@ -58,39 +58,59 @@ function imageUpload(url, form) {
 }
 
 function MagicRequest(method, url, params = {}, reload = true) {
+    var myHeaders = new Headers();
     if (method == "GET" || method == "get") {
         let result
+
+        if(localStorage.getItem("token"))
+        {
+            myHeaders.append("Authorization", localStorage.getItem("token"));
+        }
+
         var requestOptions = {
             method: 'GET',
+            headers: myHeaders,
             redirect: 'follow',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
         };
+
+        console.log(requestOptions)
 
         return fetch(base_URL + url, requestOptions)
     }
     if (method == "DELETE" || method == "delete") {
+       
+        if(localStorage.getItem("token"))
+        {
+            myHeaders.append("Authorization", localStorage.getItem("token"));
+        }
         var requestOptions = {
             method: 'DELETE',
-            redirect: 'follow'
+            headers: myHeaders,
+            redirect: 'follow',
           };
-          console.log("test")
+          
           fetch(url+method, requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));          
     }
-    var myHeaders = new Headers();
+
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify(params);
-
+    if(localStorage.getItem("token"))
+    {
+        myHeaders.append("Authorization", localStorage.getItem("token"));
+    }
     var requestOptions = {
         method: method,
         headers: myHeaders,
         body: raw,
         redirect: 'follow',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
     };
+
     return fetch(base_URL + url, requestOptions).then(response => response.text())
         .then(result => {
             result = JSON.parse(result)

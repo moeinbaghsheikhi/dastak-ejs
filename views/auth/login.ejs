@@ -191,7 +191,7 @@ $('#password').on('keypress', function(e) {
 				localStorage.setItem("account_type", result.data.account_type)
 				localStorage.setItem("sale_count", result.data.sale_count)
 				localStorage.setItem("password", result.data.password)
-				localStorage.setItem("login", result.data.token)
+				localStorage.setItem("token", result.data.token)
 				$("#login .indicator-label").show()
 			$("#login .indicator-progress").hide()
 			$("#login").removeAttr("disabled")
