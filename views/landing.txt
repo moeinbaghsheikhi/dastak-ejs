@@ -1,0 +1,498 @@
+<!--begin::Pricing-->
+<div class="text-center" id="kt_pricing">
+<!--begin::Nav group-->
+<div class="nav-group landing-dark-bg d-inline-flex mb-15" data-kt-buttons="true" style="border: 1px dashed #2B4666;">
+    <a href="#" class="btn btn-color-gray-600 btn-active btn-active-success px-6 py-3 active" data-kt-plan="month">ماهانه</a>
+    <a href="#" class="btn btn-color-gray-600 btn-active btn-active-success px-6 py-3" data-kt-plan="annual">سالانه</a>
+</div>
+<!--end::Nav group-->
+<!--begin::Row-->
+<div class="row g-10">
+    <!--begin::Col-->
+    <div class="col-xl-4">
+        <div class="d-flex h-100 align-items-center">
+            <!--begin::Option-->
+            <div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10">
+                <!--begin::Heading-->
+                <div class="mb-7 text-center">
+                    <!--begin::Title-->
+                    <h1 class="text-dark mb-5 fw-boldest light-item">دَکّـِـه</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-gray-400 fw-bold mb-5">برای فروشنده های تازه کار</div>
+                    <!--end::Description-->
+                    <!--begin::Price-->
+                    <div class="text-center">
+                        <span class="mb-2 text-primary">!</span>
+                        <span class="fs-3x fw-bolder text-primary">مُفتی</span>
+                        <span class="fs-7 fw-bold opacity-50">/ مهمون دستک</span>
+                    </div>
+                    <!--end::Price-->
+                </div>
+                <!--end::Heading-->
+                <!--begin::Features-->
+                <div class="w-100 mb-10">
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">ساخت 5 فاکتور در روز</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">نگهداری بانک مشتریان</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">آمار فروش ماهانه</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">ارسال پیامک برای مشتری</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">ارسال پیامک گروهی (تبلیغات و کمپین)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">امکان پرداخت آنلاین فاکتور برای کاربر</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">دریافت اطلاعات درخواستی از کاربر (آدرس و...)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">گردونه شانس (تحریک کاربر به خرید بیشتر)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">امکان برداشت سریع از جیب (کیف پول)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">عضویت توی باشگاه فروشندگان دستــک</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <!--end::Features-->
+                <!--begin::Select-->
+                <a href="#" class="btn btn-primary">انتخاب</a>
+                <!--end::Select-->
+            </div>
+            <!--end::Option-->
+        </div>
+    </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+    <div class="col-xl-4">
+        <div class="d-flex h-100 align-items-center">
+            <!--begin::Option-->
+            <div class="w-100 d-flex flex-column flex-center rounded-3 bg-primary py-20 px-10">
+                <!--begin::Heading-->
+                <div class="mb-7 text-center">
+                    <!--begin::Title-->
+                    <h1 class="text-white mb-5 fw-boldest bold-item">دُکــون</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-white opacity-75 fw-bold mb-5">برای بیزنس من ها و کسب و کارای پرفروش:)</div>
+                    <!--end::Description-->
+                    <!--begin::Price-->
+                    <div class="text-center">
+                        <span class="mb-2 text-white">تومن</span>
+                        <span class="fs-3x fw-bolder text-white" data-kt-plan-price-month="399" data-kt-plan-price-annual="4,449">399</span>
+                        <span class="fs-7 fw-bold text-white opacity-75" data-kt-plan-price-month="/ هزار" data-kt-plan-price-annual="/ میلیون">/ هزار</span>
+                    </div>
+                    <!--end::Price-->
+                </div>
+                <!--end::Heading-->
+                <!--begin::Features-->
+                <div class="w-100 mb-10 dokon-section">
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">ساخت نامحدود فاکتور در روز</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">نگهداری بانک مشتریان</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">آمار فروش ماهانه</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">ارسال پیامک برای مشتری</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">ارسال پیامک گروهی (تبلیغات و کمپین)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">امکان پرداخت آنلاین فاکتور برای کاربر</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">دریافت اطلاعات درخواستی از کاربر (آدرس و...)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">گردونه شانس (تحریک کاربر به خرید بیشتر)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">امکان برداشت سریع از جیب (کیف پول)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">عضویت توی باشگاه فروشندگان دستــک</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    </div>
+                <!--end::Features-->
+                <!--begin::Select-->
+                <a href="#" class="btn btn-color-primary btn-active-light-primary btn-light">انتخاب</a>
+                <!--end::Select-->
+            </div>
+            <!--end::Option-->
+        </div>
+    </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+    <div class="col-xl-4">
+        <div class="d-flex h-100 align-items-center">
+            <!--begin::Option-->
+            <div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10">
+                <!--begin::Heading-->
+                <div class="mb-7 text-center">
+                    <!--begin::Title-->
+                    <h1 class="text-dark mb-5 fw-boldest light-item">زیر پِلـّـه</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-gray-400 fw-bold mb-5">برای کسب و کارها و آنلاین شاپ های کوچیک</div>
+                    <!--end::Description-->
+                    <!--begin::Price-->
+                    <div class="text-center">
+                        <span class="mb-2 text-primary">تومن</span>
+                        <span class="fs-3x fw-bolder text-primary" data-kt-plan-price-month="249" data-kt-plan-price-annual="2,669">249</span>
+                        <span class="fs-7 fw-bold opacity-50" data-kt-plan-price-month="/ هزار" data-kt-plan-price-annual="/ میلیون">/ هزار</span>
+                    </div>
+                    <!--end::Price-->
+                </div>
+                <!--end::Heading-->
+                <!--begin::Features-->
+                <div class="w-100 mb-10">
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">ساخت 50 فاکتور در روز</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">نگهداری بانک مشتریان</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 text-start pe-3">آمار فروش ماهانه</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">ارسال پیامک برای مشتری</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">ارسال پیامک گروهی (تبلیغات و کمپین)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">امکان پرداخت آنلاین فاکتور برای کاربر</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800 pe-3">دریافت اطلاعات درخواستی از کاربر (آدرس و...)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1 svg-icon-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">گردونه شانس (تحریک کاربر به خرید بیشتر)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">امکان برداشت سریع از جیب (کیف پول)</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+
+                    <div class="d-flex flex-stack mb-5">
+                        <span class="fw-bold fs-6 text-gray-800">عضویت توی باشگاه فروشندگان دستــک</span>
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <!--end::Features-->
+                <!--begin::Select-->
+                <a href="#" class="btn btn-primary">انتخاب</a>
+                <!--end::Select-->
+            </div>
+            <!--end::Option-->
+        </div>
+    </div>
+    <!--end::Col-->
+</div>
+<!--end::Row-->
+</div>
+<!--end::Pricing-->
+<!--این کد ها برای تعرفه در صفحه لندینگ هست که بعدا اضافع میشه-->
