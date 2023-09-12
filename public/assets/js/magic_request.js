@@ -27,8 +27,8 @@ function validateForm(form) {
     return MagicRequest(method, url, body)
 }
 
-const base_URL = "http://37.120.198.201:3000/"
-const upLoader = "http://37.120.198.201:3000/"
+const base_URL = "https://api.dastakapp.ir/"
+const upLoader = "https://api.dastakapp.ir/"
 
 
 function imageUpload(url, form) {
