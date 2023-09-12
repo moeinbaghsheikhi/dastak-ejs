@@ -40,21 +40,21 @@ License: For each use you must have a valid license purchased only from above li
 <!--end::Head-->
 <!--begin::Body-->
 
-<body id="kt_body" class="bg-body" dir="rtl">
+<body id="kt_body" class="bg-body" dir="rtl" style="max-height: 100%; overflow: hidden;"> 
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
         <div
             class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed">
             <!--begin::Content-->
-            <div class="d-flex flex-center flex-column flex-column-fluid pb-lg-20">
+            <div class="d-flex flex-center flex-column flex-column-fluid pb-lg-20" >
                 <!--begin::Logo-->
                 <!-- <a href="../../demo9/dist/index.html" class="mb-12">
 						<img alt="Logo" src="assets/media/logos/logo-1.svg" class="h-40px" />
 					</a> -->
                 <!--end::Logo-->
                 <!--begin::Wrapper-->
-                <div class="w-80 w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+                <div class="w-80 w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto"  style="margin-top: 40px;">
                     <!--begin::Form-->
                     <!-- <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#"> -->
                     <!--begin::Heading-->
@@ -74,7 +74,7 @@ License: For each use you must have a valid license purchased only from above li
                     <!--end::Heading-->
                     <div class="fv-row mb-10" id="mobile-item">
                         <!--begin::Table container-->
-                        <div class="table-responsive" style="direction: rtl;">
+                        <div class="table-responsive" style="direction: rtl; max-height: 300px; overflow-y: scroll; ;">
                             <!--begin::Table-->
                             <table class="table align-middle gs-0 gy-4">
                                 <!--begin::Table head-->
@@ -130,9 +130,15 @@ License: For each use you must have a valid license purchased only from above li
                                         </tr>
                                         <% counter++ }); %>
                                 </tbody>
+                          
                                 <!--end::Table body-->
                             </table>
-                            <%{ let ave=0; let offer=data.off_percent; data.factor_items.forEach(i=> {
+                                <!--end::Table-->
+                        </div>
+                        <!--end::Table container-->
+                    </div>
+
+                    <%{ let ave=0; let offer=data.off_percent; data.factor_items.forEach(i=> {
                                 ave += parseInt(i.product.price);
                                 });
                                 function separate(Number)
@@ -169,7 +175,7 @@ License: For each use you must have a valid license purchased only from above li
                                     </div>
                                 </div>
                                 <% } %>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5">
+                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5">
                                     <% { let ave=0; let offer=data.off_percent; data.factor_items.forEach(i=> {
                                         ave += parseInt(i.product.price);
                                         }); 
@@ -186,10 +192,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--end::Label-->
                                     <% } %>
                                 </div>
-                                <!--end::Table-->
-                        </div>
-                        <!--end::Table container-->
-                    </div>
+                                <br>
                     <div class="text-center d-block">
                         <!--begin::Submit button-->
                         <div>
