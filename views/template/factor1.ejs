@@ -175,7 +175,9 @@ License: For each use you must have a valid license purchased only from above li
                                     </div>
                                 </div>
                                 <% } %>
-                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5 position-relative" style="overflow: hidden; z-index: 1 !important;">
+                                    <div class="left-semi-circle"></div>
+                                    <div class="right-semi-circle"></div>
                                     <% { let ave=0; let offer=data.off_percent; data.factor_items.forEach(i=> {
                                         ave += parseInt(i.product.price);
                                         }); 
@@ -183,7 +185,7 @@ License: For each use you must have a valid license purchased only from above li
                                         %>
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <div class="fs-2 fw-bolder text-primary" data-kt-countup="true"data-kt-countup-value="<%=finalPrice %>" style="direction: ltr;"><0></div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span>
+                                        <div class="fs-2 fw-bolder text-primary" data-kt-countup="true"data-kt-countup-value="<%=finalPrice %>"><0></div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span>
                                     </div>
                                     <!--end::Number-->
 

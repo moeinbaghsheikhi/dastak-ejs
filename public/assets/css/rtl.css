@@ -126,3 +126,28 @@ input[type="number"] {
     margin-top: -40px;
   }
 }
+
+.left-semi-circle {
+  position: absolute;
+  top: 50%;
+  left: -20px; 
+  width: 35px; 
+  height: 35px; 
+  background-color: transparent;
+  border-left: 2px dashed #E4E6EF !important;
+  z-index: 20; 
+  border-radius: 100%;
+  transform: translateY(-50%)rotate(180deg); 
+}
+.right-semi-circle {
+  position: absolute;
+  top: 50%;
+  right: -20px; 
+  width: 35px; 
+  height: 35px; 
+  background-color: transparent;
+  border-right: 25px dashed #E4E6EF !important; 
+  border-radius: 100%;
+  transform: translateY(-50%)rotate(180deg); 
+}
+
