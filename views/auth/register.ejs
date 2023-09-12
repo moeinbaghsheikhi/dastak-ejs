@@ -84,6 +84,7 @@ License: For each use you must have a valid license purchased only from above li
 				localStorage.setItem("account_type", result.data.account_type)
 				localStorage.setItem("sale_count", result.data.sale_count)
 				localStorage.setItem("password", result.data.password)
+				localStorage.setItem("login", result.data.token)
                 setTimeout(window.location.replace("/admin"), 1500)
             }else{
 				if(result.message == "Mobile Already Exists")
