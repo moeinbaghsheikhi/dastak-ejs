@@ -36,6 +36,7 @@ License: For each use you must have a valid license purchased only from above li
     <link href="assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -58,7 +59,7 @@ License: For each use you must have a valid license purchased only from above li
                     <!--begin::Form-->
                     <!-- <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#"> -->
                     <!--begin::Heading-->
-                    <div class="text-center mb-10">
+                    <div class="text-center mb-10" id="title">
                         <!--begin::Title-->
                         <% { %>
                         <h1 class="mb-3 text-start"><%= data.account.name  %> 
@@ -74,7 +75,7 @@ License: For each use you must have a valid license purchased only from above li
                     <!--end::Heading-->
                     <div class="fv-row mb-10" id="mobile-item">
                         <!--begin::Table container-->
-                        <div class="table-responsive" style="direction: rtl; max-height: 300px; overflow-y: scroll; ;">
+                        <div class="table-responsive" id="showProduct" style="direction: rtl; max-height: 300px; overflow-y: scroll; ;">
                             <!--begin::Table-->
                             <table class="table align-middle gs-0 gy-4">
                                 <!--begin::Table head-->
@@ -139,73 +140,189 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
 
                     <%{ let ave=0; let offer=data.off_percent; data.factor_items.forEach(i=> {
-                                ave += parseInt(i.product.price);
-                                });
-                                function separate(Number)
-                                {
-                                Number+= '';
-                                Number= Number.replace(',', '');
-                                x = Number.split('.');
-                                y = x[0];
-                                z= x.length > 1 ? '.' + x[1] : '';
-                                var rgx = /(\d+)(\d{3})/;
-                                while (rgx.test(y))
-                                y= y.replace(rgx, '$1' + ',' + '$2');
-                                return y+ z;
-                                } %>
-                                <div class="d-flex align-items-center" style="margin-right: 10px;">
-                                    <div class="d-flex justify-content-start">
-                                        <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
-                                            <span class="badge badge-light">مجموع:<span class="badge badge-light-info">
-                                                    <%= separate(ave) %> تومان
-                                                </span></span>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex justify-content-end ms-auto">
-                                        <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                                            style="margin-left: 10px;">
-                                            <span class="badge badge-light">تخفیف:<span class="badge text-muted">
-                                                    <% if(offer==null){ %>
-                                                        ندارد
-                                                    <% } else{ %>
-                                                        <%=offer+"%" %>  
-                                                    <%}%>      
-                                                </span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <% } %>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5 position-relative" style="overflow: hidden; z-index: 1 !important;">
-                                    <!-- <div class="left-semi-circle"></div>
-                                    <div class="right-semi-circle"></div> -->
-                                    <% { let ave=0; let offer=data.off_percent; data.factor_items.forEach(i=> {
-                                        ave += parseInt(i.product.price);
-                                        }); 
-                                        let finalPrice = ave/100*(100-data.off_percent)
-                                        %>
-                                    <!--begin::Number-->
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <div class="fs-2 fw-bolder text-primary" data-kt-countup="true"data-kt-countup-value="<%=finalPrice %>"><0></div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span>
-                                    </div>
-                                    <!--end::Number-->
+                    ave += parseInt(i.product.price);
+                    });
+                    function separate(Number)
+                    {
+                    Number+= '';
+                    Number= Number.replace(',', '');
+                    x = Number.split('.');
+                    y = x[0];
+                    z= x.length > 1 ? '.' + x[1] : '';
+                    var rgx = /(\d+)(\d{3})/;
+                    while (rgx.test(y))
+                    y= y.replace(rgx, '$1' + ',' + '$2');
+                    return y+ z;
+                    } %>
+                    <div id="offerPrice" class="d-flex align-items-center" style="margin-right: 10px;">
+                        <div class="d-flex justify-content-start">
+                            <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                                <span class="badge badge-light">مجموع:<span class="badge text-info">
+                                        <%= separate(ave) %> تومان
+                                    </span></span>
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-end ms-auto">
+                            <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                                style="margin-left: 10px;">
+                                <span class="badge badge-light">تخفیف:<span class="badge text-muted">
+                                        <% if(offer==null){ %>
+                                            ندارد
+                                        <% } else{ %>
+                                            <%=offer+"%" %>  
+                                        <%}%>      
+                                    </span></span>
+                            </span>
+                        </div>
+                    </div>
+                    <% } %>
+                    <div id="pricefinal" class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5 position-relative" style="overflow: hidden; z-index: 1 !important;">
+                        <!-- <div class="left-semi-circle"></div>
+                        <div class="right-semi-circle"></div> -->
+                        <% { let ave=0; let offer=data.off_percent; data.factor_items.forEach(i=> {
+                            ave += parseInt(i.product.price);
+                            }); 
+                            let finalPrice = ave/100*(100-data.off_percent)
+                            %>
+                        <!--begin::Number-->
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="fs-2 fw-bolder text-primary" data-kt-countup="true"data-kt-countup-value="<%=finalPrice %>">0</div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span>
+                        </div>
+                        <!--end::Number-->
 
-                                    <!--begin::Label-->
-                                    <div class="fw-bold fs-6 text-center">قیمت نهایی</div>
-                                    <!--end::Label-->
-                                    <% } %>
-                                </div>
-                                <br>
+                        <!--begin::Label-->
+                        <div class="fw-bold fs-6 text-center">قیمت نهایی</div>
+                        <!--end::Label-->
+                        <% } %>
+                    </div>
+                    <br>
                     <div class="text-center d-block">
                         <!--begin::Submit button-->
                         <div>
-                            <button id="login" style="margin-right: -12px;" class="btn btn-lg btn-success w-100">
+                            <button id="submit" style="margin-right: -12px;" class="btn btn-lg btn-success w-100">
                                 <span class="indicator-label">پرداخت</span>
                                 <span class="indicator-progress">چند لحظه وایسا...</span>
                                 <!-- <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
                             </button>
                         </div>
                     </div>
+                    <div id="form" style="display: none;">
+                        <!--begin:Form-->
+                        <form class="form">
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7" dir="rtl">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-bold mb-2">نام و نام خانوادگی: </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" placeholder="نام و نام خانوادگی"/>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7" dir="rtl">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-bold mb-2">شماره تماس: </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" placeholder="شماره تماست"/>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7" dir="rtl">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-bold mb-2">کد پستی: </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" placeholder="کد پستی" />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7" dir="rtl">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-bold mb-2">ادرس: </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" placeholder="ادرستو اینجا بنویس" />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Actions-->
+                            <!--end::Actions-->
+                        </form>
+                        <div class="text-center">
+                            <button data-bs-dismiss="modal" class="btn btn-light me-3" id="close">انصراف</button>
+                            <button class="btn btn-primary" id="verify"">
+                                <span class=" indicator-label">ثبت مشخصات</span>
+                                <span class="indicator-progress">کمی صبر...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end:Form-->
+                    </div>
+                    <!--start::Actions-->
+                    <!--begin::Accordion-->
+                    <div class="accordion accordion-icon-toggle" id="kt_accordion_2" style="display: none;">
+                        <!--begin::Item-->
+                        <div class="mb-5">
+                            <!--begin::Header-->
+                            <div class="accordion-header py-3 d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
+                                <button style="margin-right: -12px;" class="btn btn-lg btn-info w-100">
+                                    <span class="indicator-label">کارت به کارت</span>
+                                    <span class="indicator-progress">چند لحظه وایسا...</span>
+                                    <!-- <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
+                                </button>
+                            </div>
+                            <!--end::Header-->
 
+                            <!--begin::Body-->
+                            <div id="kt_accordion_2_item_1" class="fs-6 collapse" data-bs-parent="#kt_accordion_2">
+                                <!--begin::Form-->
+                                <form class="form" action="#" method="post">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <!--begin::Dropzone-->
+                                        <div class="dropzone" id="dropcoll">
+                                            <!--begin::Message-->
+                                            <div class="dz-message needsclick">
+                                                <!--begin::Icon-->
+                                                <i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
+                                                <!--end::Icon-->
+
+                                                <!--begin::Info-->
+                                                <div class="ms-4">
+                                                    <h3 class="fs-5 fw-bolder text-gray-900 mb-1 text-center">عکس رسیدتو اینجا اپلود کن</h3>
+                                                    <span class="fs-7 fw-bold text-gray-400 text-center">مراقب باش حجم عکس بیشتر از 5 مگ نشه;)</span>
+                                                </div>
+                                                <!--end::Info-->
+                                            </div>
+                                        </div>
+                                        <!--end::Dropzone-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </form>
+                                <!--end::Form-->
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <!--end::Item-->
+
+                        <!--begin::Item-->
+                        <div class="mb-5">
+                        <!--begin::Header-->
+                            <button style="margin-right: -12px;" class="btn btn-lg btn-primary w-100">
+                                <span class="indicator-label">پرداخت آنلاین</span>
+                                <span class="indicator-progress">چند لحظه وایسا...</span>
+                                <!-- <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
+                            </button>
+                        <!--end::Header-->
+                        </div>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Accordion-->
+                    <!--end::Actions-->
                     <!--end::Actions-->
                 </div>
                 <!--end::Wrapper-->
@@ -226,12 +343,48 @@ License: For each use you must have a valid license purchased only from above li
         <!--end::Authentication - Sign-in-->
     </div>
     <!--end::Main-->
+    <script src="assets/js/jquery.js"></script>
+    <script>
+        $("#submit").click(()=>{
+            $("#pricefinal").hide(500);
+            $("#mobile-item").hide(500);
+            $("#offerPrice").remove();
+            $("#submit").hide(500);
+            $("#title").removeClass('mb-10');
+            $("#title").addClass('mb-0');
+            $("#form").show(1000);
+            $("#close").click(()=>{
+                location.reload();
+            })
+            $("#verify").click(()=>{
+                $("#form").hide(250);
+                $("#kt_accordion_2").show(1000);
+            })
+        })
+    </script>
     <script>var hostUrl = "assets/";</script>
     <!--begin::Javascript-->
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="assets/plugins/global/plugins.bundle.js"></script>
     <script src="assets/js/scripts.bundle.js"></script>
     <script src="assets/js/scripts.bundle.js"></script>
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script>
+        var myDropzone = new Dropzone("#dropcoll", {
+            url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
+            paramName: "file", // The name that will be used to transfer the file
+            maxFiles: 10,
+            maxFilesize: 10, // MB
+            addRemoveLinks: true,
+            accept: function(file, done) {
+                if (file.name == "wow.jpg") {
+                    done("Naha, you don't.");
+                } else {
+                    done();
+                }
+            }
+        });
+    </script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <!--end::Page Custom Javascript-->
