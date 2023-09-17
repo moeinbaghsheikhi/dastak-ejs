@@ -117,6 +117,124 @@
             </div>
             <!--end::Row-->
         </div>
+        <div class="col-10">
+            <div class="row">
+                <!--begin::Col-->
+                <div class="col-xl-12 col-12">
+                    <div class="rounded border p-10">
+                        <!--begin:Form-->
+                        <form class="form" >
+                            <!--begin::Heading-->
+                            <div class="mb-13 text-center">
+                                <!--begin::Title-->
+                                <h1 class="mb-3" id="titleFormCard">افزودن کارت بانکی</h1>
+                            </div>
+                            <!--end::Heading-->
+                            <!--begin::Input group-->
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                <!--begin::Label-->
+                                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                    <span id="titleCard" class="required">شماره کارت: </span>
+                                    <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip" id="iconCard"
+                                        title="اینجا باید شماره کارتت رو وارد کنی"></i>
+                                    <span id="titleCard-after" style="display: none;">شماره کارتت: </span>
+                                </label>
+                                <!--end::Label-->
+                                <input type="number" class="form-control form-control-solid" id="cardNumber"
+                                    style="direction: rtl;" placeholder="شماره کارتت رو وارد کن" required />
+                                <div class="btn btn-light-info w-100" id="showCardNumber" style="display: none;"></div>    
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label id="cardNameTitle" class="required fs-6 fw-bold mb-2">به نام: </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" id="cardName" class="form-control form-control-solid" placeholder="این کارتی که میخوای اضافه کنی به نامشو بگو" />
+                                <!--end::Input-->
+                                <div class="btn btn-light-info w-100" id="showCardName" style="display: none;"></div>    
+                            </div>
+                            <!--end::Input group-->
+                        </form>
+                        <br>
+                        <div class="text-center">
+                            <button class="btn btn-primary" id="submit">
+                            <span class=" indicator-label">افزودن</span>
+                                <span class="indicator-progress">یه کم صبر
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                            <button class="btn btn-info" id="edit" style="display: none;">
+                            <span class=" indicator-label">ویرایش</span>
+                                <span class="indicator-progress">یه کم صبر
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end:Form-->
+                    </div>                
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Row-->
+        </div>
     </div>
     <!--end::Wrapper-->
     <%- include('../layout-admin/footer') -%>
+    <script src="assets/js/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                };
+        })
+        function formatCreditCard(cardNumber) {
+            cardNumber = cardNumber.replace(/\s/g, '');
+            const formattedCard = cardNumber.match(/.{1,4}/g).join(' ');
+            return formattedCard;
+        }
+        $("#submit").click(()=>{
+            if($("#cardNumber").val().length != 16){
+                toastr.error("!شماره کارت نامعتبره");
+            }
+            else{
+                if($("#cardName").val() == null || $("#cardName").val() == ""){
+                    toastr.error("!لطفا نام صاحب کارتی که نوشتی رو وارد کن");
+                }
+                else if($("#cardName").val().length <= 5){
+                    toastr.error("!لطفا از نوشتن نام کامل مطمئن شو");
+                }
+                else{
+                    toastr.success("(;شماره کارت با موفقیت اضافه شد");
+                    setTimeout=(()=>{
+                        $("#titleFormCard").text("مشخصات کارت بانکی")
+                        $("#titleCard").hide()
+                        $("#iconCard").hide()
+                        $("#titleCard-after").fadeIn(500)
+                        $("#cardNumber").hide()
+                        $("#showCardNumber").text(formatCreditCard($("#cardNumber").val()))
+                        $("#showCardNumber").fadeIn(500)
+                        $("#cardNameTitle").removeClass("required")
+                        $("#cardName").hide()
+                        $("#showCardName").text($("#cardName").val())
+                        $("#showCardName").fadeIn(500)
+                        $("#submit").hide()
+                        $("#edit").fadeIn(500)
+                    }),500;
+                }
+            }
+        })
+    </script>
