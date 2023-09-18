@@ -1887,7 +1887,8 @@ data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_
   "hideMethod": "fadeOut"
 };
 let account_id = localStorage.getItem("account_id")
-    document.getElementById("account_id").value = account_id
+    $("#update #account_id").val(account_id)
+    $("#add #account_id").val(account_id)
     })
 
 </script>

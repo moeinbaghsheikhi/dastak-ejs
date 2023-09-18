@@ -51,10 +51,14 @@
                         <!--end::Table head-->
                         <!--begin::Table body-->
                         <tbody>
+                                
                         </tbody>
                         <!--end::Table body-->
                     </table>
                     <!--end::Table-->
+                    <div style="display: flex;" id="loading">
+                        <img src="/assets/media/Loading_2.gif"  style="margin: 0 auto;" width="40px" alt="">
+                    </div>
                 </div>
                 <!--end::Table container-->
             </div>
@@ -312,7 +316,10 @@
                 MagicRequest("get", "products").then(response => response.text())
                     .then(result => {
                         result = JSON.parse(result).data
-                        console.log(result)
+                        $("#loading").hide()
+                        if(!result){
+                            $("tbody").append("<tr><p class='alert alert-warning'>هنوز چیزی نساختی!</p></tr>")
+                        }
                         $.each(result, function (index, value) {
                             let category_name = '<span class="badge badge-danger mb-1 fs-6"> بدون دسته بندی </span>'
                             if (value?.category?.title) category_name = value.category.title;
