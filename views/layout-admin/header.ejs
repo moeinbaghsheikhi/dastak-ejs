@@ -32,7 +32,7 @@
 	<script src="/assets/plugins/global/plugins.bundle.js"></script>
 	<script src="/assets/js/magic_request.js"></script>
 	<script>
-		if(!localStorage.getItem("login"))
+		if(!localStorage.getItem("token"))
 			window.location.replace("/login")
 		function deleteitem(tag) {
 			let url = (tag.getAttribute("url"))

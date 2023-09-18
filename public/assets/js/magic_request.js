@@ -80,20 +80,28 @@ function MagicRequest(method, url, params = {}, reload = true) {
     }
     if (method == "DELETE" || method == "delete") {
        
-        if(localStorage.getItem("token"))
-        {
-            myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
-        }
+        // myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
         var requestOptions = {
             method: 'DELETE',
             headers: myHeaders,
             redirect: 'follow',
           };
           
-          fetch(url+method, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));          
+          return fetch(base_URL + url, requestOptions).then(response => response.text())
+          .then(result => {
+            result = JSON.parse(result)
+            if(result.status==200 || result.status==201){
+                if(reload) {
+                    setTimeout(()=> {location.reload()}, 1000)
+                    toastr.success("با موفقیت انجام شد");
+                }
+                return result
+            }else{
+                console.log(result.message)
+                if(Array.isArray(result.message)) toastr.error(result.message[0]); else toastr.error(result.message);
+                
+            }
+        }).catch(error => console.log('error', error));      
     }
 
     myHeaders.append("Content-Type", "application/json");
@@ -116,8 +124,8 @@ function MagicRequest(method, url, params = {}, reload = true) {
             result = JSON.parse(result)
             if(result.status==200 || result.status==201){
                 if(reload) {
-                    setTimeout(location.reload(), 500)
                     toastr.success("با موفقیت انجام شد");
+                    setTimeout(()=> {location.reload()}, 1000)
                 }
                 return result
             }else{
