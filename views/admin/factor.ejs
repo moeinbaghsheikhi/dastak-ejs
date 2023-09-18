@@ -54,6 +54,9 @@
                         <!--end::Table body-->
                     </table>
                     <!--end::Table-->
+                    <div style="display: flex;" id="loading">
+                        <img src="/assets/media/Loading_2.gif"  style="margin: 0 auto;" width="40px" alt="">
+                    </div>    
                 </div>
                 <!--end::Table container-->
             </div>
@@ -287,7 +290,8 @@
                         </form>
                         <br>
                         <div class="text-center">
-                            <button data-bs-dismiss="modal" class="btn btn-primary me-3">باشه;)</button>
+                            <button class="btn btn-info me-3" id="copyBtn"><i class="fas fa-solid fa-copy"></i>ذخیره در کلیبورد</button>
+                            <button data-bs-dismiss="modal" class="btn btn-light me-3">باشه;)</button>
                         </div>
                         <!--end:Form-->
                     </div>
@@ -407,7 +411,11 @@
 
         MagicRequest("get", "factors").then(response => response.text())
             .then(result => {
-                result = JSON.parse(result).data
+                result = JSON.parse(result).data;
+                $("#loading").hide()
+                if(!result){
+                    $("tbody-table").append("<tr><p class='alert alert-warning'>هنوز چیزی نساختی!</p></tr>")
+                }
                 // console.log(result)
                 $.each(result, function (index, value) {
                     let statusfactor;
@@ -419,7 +427,7 @@
                     else if (value.status == 3) statusfactor = '<span class="badge badge-danger"> انصراف از پرداخت </span>'
                     else if (value.status == 4) statusfactor = '<span class="badge badge-warning"> منقضی شده </span>'
                     else if (value.status == 5) statusfactor = '<span class="badge badge-success"> پرداخت شده </span>'
-                    if (value.account.id == account_id) $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="' + value.code + '" id="clipboard">dastakapp.ir/factors/' + value.code + '</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> ' + off_percent + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> ' + statusfactor + ' </span> </div> </div> </td> <td class="text-end"> <button type="button" code="'+ value.code +'" id="showmodal" data-bs-toggle="modal" data-bs-target="#show_modal" class="btn btn-dark p-3">مشاهده فاکتور</button> </td> </tr> ')
+                    if (value.account.id == account_id) $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="' + value.code + '" id="clipboard">dastakapp.ir/factors/' + value.code + '</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> ' + off_percent + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> ' + statusfactor + ' </span> </div> </div> </td> <td class="text-end"> <button type="button" code="'+ value.code +'" id="showmodal" data-bs-toggle="modal" data-bs-target="#show_modal" class="btn btn-dark p-3"><i class="fas fa-regular fa-eye"></i> مشاهده فاکتور </button> </td> </tr> ')
                 })
             }).catch(error => console.log('error', error));
 
@@ -441,9 +449,13 @@
                 $("#sumPrice").empty();
                 $("#offer-Price").empty();
                 $("#final-Price").empty();
+                $("#factorCondition").empty();
                 MagicRequest("get", "factors/"+code).then(response => response.text())
                 .then(result => {
                     result = JSON.parse(result).data;
+                    $("#copyBtn").click(()=>{
+                        clipboard(result.code)
+                    })
                     let sum = 0;
                     let statusfactor;
                     if (result.status == 1) statusfactor = '<span class="badge badge-info">ایجاد شده</span>'
