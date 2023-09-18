@@ -44,7 +44,7 @@
                                 <th class="ps-4 min-w-50px rounded-start">لینک فاکتور</th>
                                 <th class="ps-4 min-w-50px text-center">تخفیف</th>
                                 <th class="ps-4 min-w-50px text-center">وضعیت</th>
-                                <th class="min-w-50px rounded-end" style="padding: 10px;"></th>
+                                <th class="min-w-150px rounded-end" style="padding: 10px;"></th>
                             </tr>
                         </thead>
                         <!--end::Table head-->
@@ -139,7 +139,8 @@
                                     <tbody id="factor-tbody">
                                         <tr>
                                             <td>
-                                                <span style="opacity: 0.7;">از باکس بالا محصولات فاکتور رو انتخاب کن!</span>
+                                                <span style="opacity: 0.7;">از باکس بالا محصولات فاکتور رو انتخاب
+                                                    کن!</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -152,11 +153,14 @@
                             <div class="d-flex flex-column mb-8 fv-row">
                                 <!--begin::Label-->
                                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                    <span">درصد تخفیف  <span style="font-size: 11px;"> (1 تا 99)</span></span>
-                                    <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="درصد تخفیفی که میخوای روی فاکتوراعمال بشه رو بگو" aria-label="عنوانی برای محصولت باید اینجا بنویسی"></i>
+                                    <span">درصد تخفیف <span style="font-size: 11px;"> (1 تا 99)</span></span>
+                                        <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip" title=""
+                                            data-bs-original-title="درصد تخفیفی که میخوای روی فاکتوراعمال بشه رو بگو"
+                                            aria-label="عنوانی برای محصولت باید اینجا بنویسی"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input id="off_percent" style="text-align: right;" type="number" min="1" max="99" class="form-control form-control-solid"  required="">
+                                <input id="off_percent" style="text-align: right;" type="number" min="1" max="99"
+                                    class="form-control form-control-solid" required="">
                             </div>
                             <!--end::Input group-->
                             <!--end::Actions-->
@@ -179,6 +183,121 @@
             <!--end::Modal dialog-->
         </div>
         <!--end::Modal - New Target-->
+        <!--begin::Modal - showInfo-->
+        <div class="modal fade" id="show_modal" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px" dir="rtl">
+                <!--begin::Modal content-->
+                <div class="modal-content rounded">
+                    <!--begin::Modal header-->
+                    <div class="modal-header pb-0 border-0 justify-content-end">
+                        <!--begin::Close-->
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                        transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                        transform="rotate(45 7.41422 6)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--begin::Modal header-->
+                    <!--begin::Modal body-->
+                    <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                        <!--begin:Form-->
+                        <form class="form" name="show">
+                            <!--begin::Heading-->
+                            <div class="mb-13 text-center">
+                                <!--begin::Title-->
+                                <h1 class="mb-3">مشخصات فاکتور</h1>
+                                <!--end::Title-->
+                                <!--begin::Description-->
+                                <!-- <div class="text-muted fw-bold fs-5">If you need more info, please check
+                                    <a href="#" class="fw-bolder link-primary">Project Guidelines</a>.
+                                </div> -->
+                                <!--end::Description-->
+                            </div>
+                            <!--end::Heading-->
+                            <!--begin::Input group-->
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                <div class="card card-flush shadow-sm">
+                                    <div class="card-header">
+                                        <h1 class="card-title">کد فاکتور : <span class="card-title ms-2" id="factorCode"></span></h1>
+                                        <h1 class="card-title">وضعیت : <span class="card-title ms-2" id="factorCondition"></span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <!--begin::Table container-->
+                            <div class="table-responsive" style="direction: rtl;">
+                                <!--begin::Table-->
+                                <table class="table align-middle gs-0 gy-4" id="showProduct">
+                                    <!--begin::Table head-->
+                                    <thead class="bg-table">
+                                        <tr class="fw-bolder text-muted bg-light bg-table">
+                                            <th class="ps-4 min-w-50px rounded-start">نام محصول</th>
+                                            <th class="min-w-50px rounded-end text-center" style="padding: 10px;">قیمت
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody id="show-factor">
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <br>
+                            <!--end::Table container-->
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                <div id="offerPrice" class="d-flex align-items-center" style="margin-right: 10px;">
+                                    <div class="d-flex justify-content-start">
+                                        <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6" id="sumPrice">
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-end ms-auto">
+                                        <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6" id="offer-Price"
+                                            style="margin-left: 10px;">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="pricefinal"
+                                    class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5 position-relative"
+                                    style="overflow: hidden; z-index: 1 !important;">
+                                    <!--begin::Number-->
+                                    <div class="d-flex align-items-center justify-content-center" id="final-Price">
+                                    </div>
+                                    <!--end::Number-->
+
+                                    <!--begin::Label-->
+                                    <div class="fw-bold fs-6 text-center">قیمت نهایی</div>
+                                    <!--end::Label-->
+                                </div>
+                            </div>
+                            <!--end::Input group-->
+                            <!--end::Actions-->
+                        </form>
+                        <br>
+                        <div class="text-center">
+                            <button data-bs-dismiss="modal" class="btn btn-primary me-3">باشه;)</button>
+                        </div>
+                        <!--end:Form-->
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+        <!--end::Modal - showInfo-->
         <!-- edit modal -->
         <div class="modal fade" id="update_modal" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
@@ -275,16 +394,16 @@
     </div>
     <script>
         let account_id = localStorage.getItem("account_id")
-         let categories = MagicRequest("get", "products").then(response => response.text())
-                    .then(result => {
-                        result = JSON.parse(result).data
-                        $.each(result, function (index, value) {
-                            if (value.account.id == account_id) {
-                                // if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ') else
-                                $("#products").append('<option value="' + value.id + '">' + value.title + '</option> ')
-                            }
-                        })
-                    }).catch(error => console.log('error', error));
+        let categories = MagicRequest("get", "products").then(response => response.text())
+            .then(result => {
+                result = JSON.parse(result).data
+                $.each(result, function (index, value) {
+                    if (value.account.id == account_id) {
+                        // if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ') else
+                        $("#products").append('<option value="' + value.id + '">' + value.title + '</option> ')
+                    }
+                })
+            }).catch(error => console.log('error', error));
 
         MagicRequest("get", "factors").then(response => response.text())
             .then(result => {
@@ -293,62 +412,103 @@
                 $.each(result, function (index, value) {
                     let statusfactor;
                     let off_percent = "ندارد"
-                    if(value.off_percent) off_percent = '<span class="badge badge-light-info">%' + value.off_percent + '</span>'
+                    if (value.off_percent) off_percent = '<span class="badge badge-light-info">' + value.off_percent + '%</span>'
                     console.log(value.off_percent)
-                    if(value.status ==1) statusfactor = '<span class="badge badge-info">ایجاد شده</span>'
-                    else if(value.status ==2) statusfactor = '<span class="badge badge-primary"> در انتظار پرداخت </span>'
-                    else if(value.status ==3) statusfactor = '<span class="badge badge-danger"> انصراف از پرداخت </span>'
-                    else if(value.status ==4) statusfactor = '<span class="badge badge-warning"> منقضی شده </span>'
-                    else if(value.status ==5) statusfactor = '<span class="badge badge-success"> پرداخت شده </span>'
-                    if (value.account.id == account_id) $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="'+ value.code +'" id="clipboard">dastakapp.ir/factors/'+ value.code +'</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> '+ off_percent +' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> '+ statusfactor +' </span> </div> </div> </td> <td class="text-end"> <a href="/factor/'+ value.code +'" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"> <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg--> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="black" /> <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="black" /> </svg> </span> <!--end::Svg Icon--> </a> </td> </tr> ')
+                    if (value.status == 1) statusfactor = '<span class="badge badge-info">ایجاد شده</span>'
+                    else if (value.status == 2) statusfactor = '<span class="badge badge-primary"> در انتظار پرداخت </span>'
+                    else if (value.status == 3) statusfactor = '<span class="badge badge-danger"> انصراف از پرداخت </span>'
+                    else if (value.status == 4) statusfactor = '<span class="badge badge-warning"> منقضی شده </span>'
+                    else if (value.status == 5) statusfactor = '<span class="badge badge-success"> پرداخت شده </span>'
+                    if (value.account.id == account_id) $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="' + value.code + '" id="clipboard">dastakapp.ir/factors/' + value.code + '</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> ' + off_percent + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> ' + statusfactor + ' </span> </div> </div> </td> <td class="text-end"> <button type="button" code="'+ value.code +'" id="showmodal" data-bs-toggle="modal" data-bs-target="#show_modal" class="btn btn-dark p-3">مشاهده فاکتور</button> </td> </tr> ')
                 })
             }).catch(error => console.log('error', error));
-      
+
+            function separate(Number){
+                Number+= '';
+                Number= Number.replace(',', '');
+                x = Number.split('.');
+                y = x[0];
+                z= x.length > 1 ? '.' + x[1] : '';
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(y))
+                y= y.replace(rgx, '$1' + ',' + '$2');
+                return y+ z;
+                }
+            $(document).on("click","#showmodal",function(){
+                let code = (this.getAttribute("code"))
+                $("#factorCode").empty();
+                $("#show-factor").empty();
+                $("#sumPrice").empty();
+                $("#offer-Price").empty();
+                $("#final-Price").empty();
+                MagicRequest("get", "factors/"+code).then(response => response.text())
+                .then(result => {
+                    result = JSON.parse(result).data;
+                    let sum = 0;
+                    let statusfactor;
+                    if (result.status == 1) statusfactor = '<span class="badge badge-info">ایجاد شده</span>'
+                    else if (result.status == 2) statusfactor = '<span class="badge badge-primary"> در انتظار پرداخت </span>'
+                    else if (result.status == 3) statusfactor = '<span class="badge badge-danger"> انصراف از پرداخت </span>'
+                    else if (result.status == 4) statusfactor = '<span class="badge badge-warning"> منقضی شده </span>'
+                    else if (result.status == 5) statusfactor = '<span class="badge badge-success"> پرداخت شده </span>'
+                    $("#factorCode").append('<span class="badge badge-light-info fs-5">'+ result.code +'</span>')
+                    $("#factorCondition").append(statusfactor)
+                    $.each(result.factor_items, function (index, value) {
+                        sum += parseInt(value.product.price);
+                        $("#show-factor").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ value.product.title +'</span> </div> </div> </td> <td class="d-flex align-items-center justify-content-center"> <div class="d-flex align-items-center"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ separate(value.product.price) +'</span> </div> </div> </td> </tr>" ');
+                    })
+                    let finalPrice = sum/100*(100-result.off_percent)
+                    $("#sumPrice").append('<span class="badge badge-light">مجموع:<span class="badge text-info"> '+ separate(sum) +' تومان </span></span>')
+                    $("#offer-Price").append('<span class="badge badge-light">تخفیف:<span class="badge text-muted">'+ result.off_percent +'%</span> </span>')
+                    $("#final-Price").append('<div class="fs-2 fw-bolder text-primary">'+ separate(finalPrice) +'</div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span> ')
+
+                }).catch(error => console.log('error', error));
+            })
         let number = 1
         let factor_list = []
-        function deletepro(id){
-            $("#pro-"+id).remove()
+        function deletepro(id) {
+            $("#pro-" + id).remove()
             let new_arr = []
-            $.each(factor_list, function(index, value){
+            $.each(factor_list, function (index, value) {
                 // console.log(value.number)
                 // console.log(id)
                 // console.log("---------")
-                if(value.number != id)
+                if (value.number != id)
                     new_arr.push(value)
             })
             factor_list = new_arr
             // console.log(factor_list)
         }
         function clipboard(code) {
-            navigator.clipboard.writeText("dastakapp.ir/factors/"+code);
-            toastr.success("<a style='font-size: 12px' href='http://dastakapp.ir/factors/"+code+"'>"+code +"</a>"+ " : لینک فاکتور در کلیپ بورد کپی شد");
+            navigator.clipboard.writeText("dastakapp.ir/factors/" + code);
+            toastr.success("<a style='font-size: 12px' href='http://dastakapp.ir/factors/" + code + "'>" + code + "</a>" + " : لینک فاکتور در کلیپ بورد کپی شد");
         }
 
         $(document).ready(function () {
-            $(document).on("click", "#clipboard", function(){
+            $(document).on("click", "#clipboard", function () {
                 clipboard(this.getAttribute("code"))
             })
-            $("#btn-add").click(function(){
+            $("#btn-add").click(function () {
                 let product_id = $("#products").val()
 
-                if(!product_id)
+                if (!product_id)
                     toastr.error("!اول یکی از محصولاتت رو انتخاب کن")
-                else  MagicRequest("get", "products/"+product_id).then(response => response.text())
+                else MagicRequest("get", "products/" + product_id).then(response => response.text())
                     .then(result => {
                         result = JSON.parse(result).data
                         // console.log(result)
-                        if(factor_list.length == 0)
+                        if (factor_list.length == 0)
                             $("#factor-tbody").empty()
-                        
-                        $("#factor-tbody").append('<tr id="pro-'+number+'"><td> <div class="d-flex align-items-center" style="margin-right: 10px;"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+result.title+'</span> </div> </div> </td><td class="d-flex align-items-center"> <div class="d-flex align-items-center"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+separate(result.price)+'</span> </div> </div> </td> <td class="text-end"> <span class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" onclick="deletepro('+number+')"> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> </span> </td> </tr>"')
-                    factor_list.push({number,...result})
-                    number++
-                    console.log(factor_list)
-                    toastr.success("(:محصول به فاکتورت اضافه شد");
+
+                        $("#factor-tbody").append('<tr id="pro-' + number + '"><td> <div class="d-flex align-items-center" style="margin-right: 10px;"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">' + result.title + '</span> </div> </div> </td><td class="d-flex align-items-center"> <div class="d-flex align-items-center"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">' + separate(result.price) + '</span> </div> </div> </td> <td class="text-end"> <span class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" onclick="deletepro(' + number + ')"> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> </span> </td> </tr>"')
+                        factor_list.push({ number, ...result })
+                        number++
+                        console.log(factor_list)
+                        toastr.success("(:محصول به فاکتورت اضافه شد");
                     }).catch(error => console.log('error', error));
-            })    
-            
-            $("#submit").click(function(){
+            })
+
+            $("#submit").click(function () {
                 let off_percent = parseInt($("#off_percent").val()) || null
                 // console.log(off_percent)
 
@@ -357,25 +517,25 @@
                     "off_percent": off_percent,
                     "status": 1
                 }
-                if(factor_list.length >= 1)
-                MagicRequest("post", "factors", factor_data, false)
-                    .then(result => {
-                        let data = result.data
-                        let factor_code = result.data.code
-                        // Select the text field
-                        navigator.clipboard.writeText("dastakapp.ir/factors/"+factor_code);
+                if (factor_list.length >= 1)
+                    MagicRequest("post", "factors", factor_data, false)
+                        .then(result => {
+                            let data = result.data
+                            let factor_code = result.data.code
+                            // Select the text field
+                            navigator.clipboard.writeText("dastakapp.ir/factors/" + factor_code);
 
-                        $.each(factor_list, function(index, value){
-                            let factor_item_data = {
-                                "factor_id": data.id,
-                                "product_id": value.id
-                            }
-                            MagicRequest("post", "factors_item", factor_item_data, false)
-                        })
-                    toastr.success(factor_code + ": لینک فاکتور در کلیپ بورد کپی شد");
-                    setTimeout(function(){location.reload()}, 2500)
-                    }).catch(error => console.log('error', error));
-                else{
+                            $.each(factor_list, function (index, value) {
+                                let factor_item_data = {
+                                    "factor_id": data.id,
+                                    "product_id": value.id
+                                }
+                                MagicRequest("post", "factors_item", factor_item_data, false)
+                            })
+                            toastr.success(factor_code + ": لینک فاکتور در کلیپ بورد کپی شد");
+                            setTimeout(function () { location.reload() }, 2500)
+                        }).catch(error => console.log('error', error));
+                else {
                     toastr.error("!فاکتور شما هنوز خالیه")
                 }
             })
