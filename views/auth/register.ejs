@@ -36,28 +36,46 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="assets/js/magic_request.js"></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 		<script>
-			let base = "https://api.dastakapp.ir/"
+			$(document).ready(function(){
+        toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-bottom-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};})
+			let base = "https://api.dastakapp.ir/api/v1/"
 			let data = {
-					"name": "",
-					"account_type": "digital",
+					"full_name": "",
+					"account_type": 2,
 					"sale_count": 2,
 					"mobile": "",
 					"password": null
 				}
 
 				function set_account_type(value){
-					data.account_type = value
+					data.account_type = parseInt(value)
 					console.log(data)
 				}
 
 				function set_sale_count(value){
-					data.sale_count = value
+					data.sale_count = parseInt(value)
 					console.log(data)
 				}
 
 			$(document).ready(function(){
 				$("#register_sub").click(function(){
-					data.name = $("#name").val()
+					data.full_name = $("#name").val()
 					data.mobile = $("#mobile").val()
 
 					var myHeaders = new Headers();
@@ -72,25 +90,26 @@ License: For each use you must have a valid license purchased only from above li
         redirect: 'follow',
         'Access-Control-Allow-Origin': '*'
     };
-	 fetch(base + "account", requestOptions).then(response => response.text())
+	 fetch(base + "auth/register", requestOptions).then(response => response.text())
         .then(result => {
+			console.log(result)
             result = JSON.parse(result)
-            if(result.status==200 || result.status==201){
+            if(result.status==true || result.status=="true"){
                 toastr.success("با موفقیت ثبت نام کردی!");
-				localStorage.setItem("login", true)
-				localStorage.setItem("account_id", result.data.id)
-				localStorage.setItem("name", result.data.name)
-				localStorage.setItem("mobile", result.data.mobile)
-				localStorage.setItem("account_type", result.data.account_type)
-				localStorage.setItem("sale_count", result.data.sale_count)
-				localStorage.setItem("password", result.data.password)
-				localStorage.setItem("token", result.data.token)
-                setTimeout(window.location.replace("/admin"), 1500)
+				// localStorage.setItem("login", true)
+				// localStorage.setItem("account_id", result.data.id)
+				// localStorage.setItem("name", result.data.name)
+				// localStorage.setItem("mobile", result.data.mobile)
+				// localStorage.setItem("account_type", result.data.account_type)
+				// localStorage.setItem("sale_count", result.data.sale_count)
+				// localStorage.setItem("password", result.data.password)
+				localStorage.setItem("token", result.result.accessToken)
+                setTimeout(()=>{window.location.replace("/admin")}, 1500)
             }else{
-				if(result.message == "Mobile Already Exists")
+				if(result.alert.title == "Mobile number already exists")
 					toastr.error("این شماره موبایل قبلا ثبت نام کرده!");
 				else{console.log(result)
-                toastr.error(result.message[0]);}
+                toastr.error(result.alert.title);}
             }
         }).catch(error => console.log('error', error));
 				})
@@ -211,7 +230,7 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Wrapper-->
 						<div class="w-lg-700px p-10 p-lg-15 mx-auto">
 							<!--begin::Form-->
-							<form class="my-auto pb-5" novalidate="novalidate" id="kt_create_account_form" method="post" url="account" name="register">
+							<form class="my-auto pb-5" novalidate="novalidate" id="kt_create_account_form" method="post" url="auth/register" name="register">
 								<!--begin::Step 1-->
 								<div class="current" data-kt-stepper-element="content">
 									<!--begin::Wrapper-->
@@ -234,7 +253,7 @@ License: For each use you must have a valid license purchased only from above li
 												<!--begin::Col-->
 												<div class="col-lg-6">
 													<!--begin::Option-->
-													<input type="radio" class="btn-check" onclick="set_account_type('physical')" value="physical" name="account_type" checked="checked" id="kt_create_account_form_account_type_corporate" />
+													<input type="radio" class="btn-check" onclick="set_account_type('2')" value="2" name="account_type" checked="checked" id="kt_create_account_form_account_type_corporate" />
 													<label class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center" for="kt_create_account_form_account_type_corporate">
 														<!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
 														<span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -255,7 +274,7 @@ License: For each use you must have a valid license purchased only from above li
 												<!--begin::Col-->
 												<div class="col-lg-6">
 													<!--begin::Option-->
-													<input type="radio" class="btn-check account_type" onclick="set_account_type('digital')" value="digital" name="account_type" id="kt_create_account_form_account_type_personal" />
+													<input type="radio" class="btn-check account_type" onclick="set_account_type('1')" value="1" name="account_type" id="kt_create_account_form_account_type_personal" />
 													<label class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-10" for="kt_create_account_form_account_type_personal">
 														<!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
 														<span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

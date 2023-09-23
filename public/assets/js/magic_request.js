@@ -27,8 +27,8 @@ function validateForm(form) {
     return MagicRequest(method, url, body)
 }
 
-const base_URL = "https://api.dastakapp.ir/"
-const upLoader = "https://api.dastakapp.ir/"
+const base_URL = "https://api.dastakapp.ir/api/v1/"
+const upLoader = "https://api.dastakapp.ir/api/v1/"
 
 
 function imageUpload(url, form) {
@@ -57,6 +57,14 @@ function imageUpload(url, form) {
         }).catch(error => console.log('error', error));
 }
 
+function responseMsg(message){
+    switch(message){
+        case "Mobile number already exists":
+            return "قبلا عضو شدی! از قسمت ورود وارد شو"
+        default: return message
+    }
+}
+
 function MagicRequest(method, url, params = {}, reload = true) {
     var myHeaders = new Headers();
     if (method == "GET" || method == "get") {
@@ -80,7 +88,7 @@ function MagicRequest(method, url, params = {}, reload = true) {
     }
     if (method == "DELETE" || method == "delete") {
        
-        // myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
+        myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
         var requestOptions = {
             method: 'DELETE',
             headers: myHeaders,
@@ -97,8 +105,8 @@ function MagicRequest(method, url, params = {}, reload = true) {
                 }
                 return result
             }else{
-                console.log(result.message)
-                if(Array.isArray(result.message)) toastr.error(result.message[0]); else toastr.error(result.message);
+                console.log(result.alert.title)
+                if(Array.isArray(result.alert.title)) toastr.error(responseMsg(result.alert.title[0])); else toastr.error(responseMsg(result.alert.title));
                 
             }
         }).catch(error => console.log('error', error));      
@@ -129,8 +137,8 @@ function MagicRequest(method, url, params = {}, reload = true) {
                 }
                 return result
             }else{
-                console.log(result.message)
-                if(Array.isArray(result.message)) toastr.error(result.message[0]); else toastr.error(result.message);
+                console.log(result.alert.title)
+                if(Array.isArray(result.alert.title)) toastr.error(responseMsg(result.alert.title[0])); else toastr.error(responseMsg(result.alert.title));
                 
             }
         }).catch(error => console.log('error', error));
