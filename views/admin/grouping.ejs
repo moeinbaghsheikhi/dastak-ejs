@@ -65,18 +65,22 @@
     
 
 <script>
-     let data = MagicRequest("get", "categories").then(response => response.text())
+
+    $(document).ready(function(){
+        let data = MagicRequest("post", "categories/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
         .then(result => {
-            result = JSON.parse(result).data;
+            result = JSON.parse(result).result;
             $("#loading").hide();
-            if(!result){
+            if(!result.items){
                 $("tbody").append("<tr><p class='alert alert-warning'>هنوز چیزی نساختی!</p></tr>")
             }
-            $.each(result, function(index, value){
-                if(value.account.id == localStorage.getItem("account_id")) $("tbody").append('<tr><td> <div class="d-flex align-items-center" style="margin-right: 10px;"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+value.title+'</span> </div> </div> </td> <td class="text-end"> <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" url="categories/'+value.id+'" onclick="deleteitem(this)"> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> </button> </td> </tr>"')
+            $.each(result.items, function(index, value){
+                // if(value.account.id == localStorage.getItem("account_id")) 
+                console.log(value)
+                $("tbody").append('<tr><td> <div class="d-flex align-items-center" style="margin-right: 10px;"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+value.name+'</span> </div> </div> </td> <td class="text-end"> <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" url="categories/'+value.id+'" onclick="deleteitem(this)"> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> </button> </td> </tr>"')
             })
-        }).catch(error => console.log('error', error));
-    $(document).ready(function(){
+        })
+
         $('.form').on('keypress', function(e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 13) { 
@@ -119,8 +123,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
-                    <form class="form" name="add" method="post" url="categories">
-                        <input type="hidden" id="account_id">
+                    <form class="form" name="add" method="post" url="categories/">
                         <!--begin::Heading-->
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
@@ -139,7 +142,7 @@
                             <label class="required fs-6 fw-bold mb-2">نام دسته بندی: </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" id="title" />
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="name" />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->

@@ -22,8 +22,8 @@ function validateForm(form) {
 
 
     // console.log(url)
-    console.log(method)
-    console.log(body)
+    // console.log(method)
+    // console.log(body)
     return MagicRequest(method, url, body)
 }
 
@@ -61,13 +61,23 @@ function responseMsg(message){
     switch(message){
         case "Mobile number already exists":
             return "قبلا عضو شدی! از قسمت ورود وارد شو"
+        case "Error":
+            return "!اطلاعات رو با دقت پر کن"
+        case "Unauthorized":
+            window.location.replace("/login")
         default: return message
     }
 }
 
-function MagicRequest(method, url, params = {}, reload = true) {
+function MagicRequest(method, url, params = {}, reload = true, list= false) {
+    console.log("-----------")
+    console.log("method: "+method)
+    console.log("url: "+base_URL+url)
+    console.log("params: ")
+    console.log(params)
+    console.log("-----------")
     var myHeaders = new Headers();
-    if (method == "GET" || method == "get") {
+    if (method == "GET" || method == "get" || list) {
         let result
         console.log(localStorage.getItem("token"))
         if(localStorage.getItem("token"))
@@ -76,11 +86,13 @@ function MagicRequest(method, url, params = {}, reload = true) {
         }
 
         var requestOptions = {
-            method: 'GET',
+            method: method,
             headers: myHeaders,
-            redirect: 'follow',
-            'Access-Control-Allow-Origin': '*',
+            redirect: 'follow'
         };
+        if(list){
+            requestOptions.body = JSON.stringify(params);
+        }
 
         console.log(requestOptions)
 
@@ -98,7 +110,7 @@ function MagicRequest(method, url, params = {}, reload = true) {
           return fetch(base_URL + url, requestOptions).then(response => response.text())
           .then(result => {
             result = JSON.parse(result)
-            if(result.status==200 || result.status==201){
+            if(result.status==true || result.status=="true"){
                 if(reload) {
                     setTimeout(()=> {location.reload()}, 1000)
                     toastr.success("با موفقیت انجام شد");
@@ -123,14 +135,15 @@ function MagicRequest(method, url, params = {}, reload = true) {
         method: method,
         headers: myHeaders,
         body: raw,
-        redirect: 'follow',
-        'Access-Control-Allow-Origin': '*',
+        redirect: 'follow'
     };
 
     return fetch(base_URL + url, requestOptions).then(response => response.text())
         .then(result => {
             result = JSON.parse(result)
-            if(result.status==200 || result.status==201){
+            if(!list)
+           {
+            if(result.status==true || result.status=="true"){
                 if(reload) {
                     toastr.success("با موفقیت انجام شد");
                     setTimeout(()=> {location.reload()}, 1000)
@@ -141,5 +154,6 @@ function MagicRequest(method, url, params = {}, reload = true) {
                 if(Array.isArray(result.alert.title)) toastr.error(responseMsg(result.alert.title[0])); else toastr.error(responseMsg(result.alert.title));
                 
             }
+           }
         }).catch(error => console.log('error', error));
 }

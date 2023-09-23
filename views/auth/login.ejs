@@ -129,10 +129,10 @@ $('#password').on('keypress', function(e) {
         redirect: 'follow',
         'Access-Control-Allow-Origin': '*'
     };
-	 fetch(base + "account/otp", requestOptions).then(response => response.text())
+	 fetch(base + "auth/resend-password", requestOptions).then(response => response.text())
         .then(result => {
             result = JSON.parse(result)
-            if(result.status==200 || result.status==201){
+            if(result.status==true || result.status=="true"){
                 toastr.success("کد تایید برات پیامک شد:)");
 				$("#send_pass .indicator-label").show()
 			$("#send_pass .indicator-progress").hide()
@@ -179,19 +179,19 @@ $('#password').on('keypress', function(e) {
         redirect: 'follow',
         'Access-Control-Allow-Origin': '*'
     };
-	 fetch(base + "account/login", requestOptions).then(response => response.text())
+	 fetch(base + "auth/login", requestOptions).then(response => response.text())
         .then(result => {
             result = JSON.parse(result)
-            if(result.status==200 || result.status==201){
+            if(result.status==true || result.status=="true"){
                 toastr.success("با موفقیت وارد شدی!");
 				localStorage.setItem("login", true)
-				localStorage.setItem("account_id", result.data.id)
-				localStorage.setItem("name", result.data.name)
-				localStorage.setItem("mobile", result.data.mobile)
-				localStorage.setItem("account_type", result.data.account_type)
-				localStorage.setItem("sale_count", result.data.sale_count)
-				localStorage.setItem("password", result.data.password)
-				localStorage.setItem("token", result.data.token)
+				// localStorage.setItem("account_id", result.data.id)
+				// localStorage.setItem("name", result.data.name)
+				// localStorage.setItem("mobile", result.data.mobile)
+				// localStorage.setItem("account_type", result.data.account_type)
+				// localStorage.setItem("sale_count", result.data.sale_count)
+				// localStorage.setItem("password", result.data.password)
+				localStorage.setItem("token", result.result.accessToken)
 				$("#login .indicator-label").show()
 			$("#login .indicator-progress").hide()
 			$("#login").removeAttr("disabled")
@@ -200,10 +200,7 @@ $('#password').on('keypress', function(e) {
 				$("#login .indicator-label").show()
 			$("#login .indicator-progress").hide()
 			$("#login").removeAttr("disabled")
-				if(Array.isArray(result.message))
-					toastr.error(result.message[0]);
-				else{console.log(result)
-                toastr.error(result.message);}
+			toastr.error("حسابی با این مشصات پیدا نشد!")
             }
         }).catch(error => console.log('error', error));
 				})
