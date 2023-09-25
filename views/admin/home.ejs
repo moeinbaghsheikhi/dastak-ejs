@@ -120,58 +120,124 @@
         <div class="col-10">
             <div class="row">
                 <!--begin::Col-->
-                <div class="col-xl-12 col-12">
-                    <div class="rounded border p-10">
-                        <!--begin:Form-->
-                        <form class="form" >
-                            <!--begin::Heading-->
-                            <div class="mb-13 text-center">
-                                <!--begin::Title-->
-                                <h1 class="mb-3" id="titleFormCard">افزودن کارت بانکی</h1>
-                            </div>
-                            <!--end::Heading-->
-                            <!--begin::Input group-->
-                            <div class="d-flex flex-column mb-8 fv-row">
-                                <!--begin::Label-->
-                                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                    <span id="titleCard" class="required">شماره کارت: </span>
-                                    <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip" id="iconCard"
-                                        title="اینجا باید شماره کارتت رو وارد کنی"></i>
-                                    <span id="titleCard-after" style="display: none;">شماره کارتت: </span>
-                                </label>
-                                <!--end::Label-->
-                                <input type="number" class="form-control form-control-solid" id="cardNumber"
-                                    style="direction: rtl;" placeholder="شماره کارتت رو وارد کن" required />
-                                <div class="btn btn-light-info w-100" id="showCardNumber" style="display: none;"></div>    
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label id="cardNameTitle" class="required fs-6 fw-bold mb-2">به نام: </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" id="cardName" class="form-control form-control-solid" placeholder="این کارتی که میخوای اضافه کنی به نامشو بگو" />
-                                <!--end::Input-->
-                                <div class="btn btn-light-info w-100" id="showCardName" style="display: none;"></div>    
-                            </div>
-                            <!--end::Input group-->
-                        </form>
-                        <br>
-                        <div class="text-center">
-                            <button class="btn btn-primary" id="submit">
-                            <span class=" indicator-label">افزودن</span>
-                                <span class="indicator-progress">یه کم صبر
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
-                            <button class="btn btn-info" id="edit" style="display: none;">
-                            <span class=" indicator-label">ویرایش</span>
-                                <span class="indicator-progress">یه کم صبر
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
+                <div class="col-xl-12 col-12">                  
+                    <div class="card card-flush shadow-sm my-10">
+                        <div class="card-header justify-content-center">
+                            <h3 class="card-title justify-content-center fw-bolder" style="font-size: 22px;" id="titleFormCard">افزودن کارت بانکی</h3>
                         </div>
-                        <!--end:Form-->
-                    </div>                
+                        <div class="card-body py-5">
+                            <div class="d-flex w-100 justify-content-center" id="card">
+                                <div class="card-money" id="card-number" style="display: none;">
+                                    <div class="card-inner-money">
+                                        <div class="card-front-money">
+                                        <div class="card-bg-money"></div>
+                                        <div class="card-glow-money"></div>
+                                        <div class="card-contactless-money">
+                                            <h1>دستک کارت</h1>
+                                        </div>
+                                        <div class="card-chip-money"></div>
+                                        <div class="card-holder-money">موجودی : 0 تومان</div>
+                                        <div class="card-number-money" id="showCardNumber" dir="ltr"></div>
+                                        <div class="card-valid-money" id="showCardName"></div>
+                                        </div>
+                                    </div>
+                                </div>        
+                            </div>
+                            <form class="form" id="form-check" >
+                                <!--begin::Input group-->
+                                <div class="d-flex flex-column mb-8 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                        <span id="titleCard" class="required">شماره کارت: </span>
+                                        <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip" id="iconCard"
+                                            title="اینجا باید شماره کارتت رو وارد کنی"></i>
+                                    </label>
+                                    <!--end::Label-->
+                                    <input type="number" class="form-control form-control-solid" id="cardNumber"
+                                        style="direction: rtl;" placeholder="شماره کارتت رو وارد کن" required />
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label id="cardNameTitle" class="required fs-6 fw-bold mb-2">به نام: </label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" id="cardName" class="form-control form-control-solid" placeholder="این کارتی که میخوای اضافه کنی به نامشو بگو" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button class="btn btn-primary" id="submit">
+                                <span class=" indicator-label">افزودن</span>
+                                    <span class="indicator-progress">یه کم صبر
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                                <button class="btn btn-info" id="edit" style="display: none;">
+                                <span class=" indicator-label">ویرایش</span>
+                                    <span class="indicator-progress">یه کم صبر
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                                <button class="btn btn-success" id="checkout" style="display: none;" data-bs-toggle="modal" data-bs-target="#checkout-modal">
+                                <span class=" indicator-label">برداشت موجودی</span>
+                                    <span class="indicator-progress">یه کم صبر
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>    
+                        </div>                    
+                    </div>
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Row-->
+        </div>
+        <div class="col-10">
+            <div class="row">
+                <!--begin::Col-->
+                <div class="col-xl-12 col-12">
+                    <div class="card card-flush shadow-sm my-10">
+                        <div class="card-header">
+                            <h3 class="card-title">تراکنش ها</h3>
+                            <div class="card-toolbar">
+                                <button type="button" class="btn btn-sm btn-light">
+                                    رفتن به فاکتور ها
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body py-5">
+                            <div class="bg-light py-4 px-4 rounded mb-4">
+                                <div class="circle-with-text">
+                                    <div class="circle-icon bg-danger">
+                                        <i class="fas fa-minus-circle"></i>                                    
+                                    </div>
+                                    <div class="text-content">
+                                        <h3 class="mb-1">پرداخت مشتری</h3>
+                                        <p>فاکتور شما با موفقیت پرداخت شده</p>
+                                    </div>
+                                    <div class="price-end">
+                                        <span>150/000 <span>تومان</span></span>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="bg-light py-4 px-4 rounded mb-4">
+                                <div class="circle-with-text">
+                                    <div class="circle-icon bg-success">
+                                        <i class="fas fa-check-circle"></i> 
+                                    </div>
+                                    <div class="text-content">
+                                        <h3 class="mb-1">پرداخت مشتری</h3>
+                                        <p>فاکتور شما با موفقیت پرداخت شده</p>
+                                    </div>
+                                    <div class="price-end">
+                                        <span>150/000 <span>تومان</span></span>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!--end::Col-->
             </div>
@@ -179,6 +245,79 @@
         </div>
     </div>
     <!--end::Wrapper-->
+    <!--begin::Modal - checkout-->
+    <div class="modal fade" id="checkout-modal" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px" dir="rtl">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                    transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form class="form" method="post" url="products/" name="add" id="add">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">برداشت موجودی</h1>
+                            <!--end::Title-->
+                            <!--begin::Description-->
+                            <!-- <div class="text-muted fw-bold fs-5">If you need more info, please check
+                                <a href="#" class="fw-bolder link-primary">Project Guidelines</a>.
+                            </div> -->
+                            <!--end::Description-->
+                        </div>
+                        <!--end::Heading-->
+                        <button class="btn btn-light w-100 mb-4" type="button" id="checkout-price">برداشت کل موجودی</button>
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                <span class="required">مبلغ برای برداشت :</span>
+                                <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                    title="اینجا هر مبلغی میخوای از موجودیت بنویس"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input id="price-card" type="number" style="direction: rtl;" class="form-control form-control-solid"
+                                placeholder="مبلغ رو وارد کن" required />
+                        </div>
+                        <!--end::Input group-->
+                    </form>
+                    <div class="text-center">
+                        <button data-bs-dismiss="modal" class="btn btn-light me-3" id="close-modal">صرف نظر</button>
+                        <button class="btn btn-primary" id="submit-card">
+                            <span class=" indicator-label">تایید</span>
+                            <span class="indicator-progress">یه کم صبر
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - checkout-->
     <%- include('../layout-admin/footer') -%>
     <script src="assets/js/jquery.js"></script>
     <script>
@@ -219,22 +358,32 @@
                 }
                 else{
                     toastr.success("(;شماره کارت با موفقیت اضافه شد");
-                    setTimeout=(()=>{
-                        $("#titleFormCard").text("مشخصات کارت بانکی")
-                        $("#titleCard").hide()
-                        $("#iconCard").hide()
-                        $("#titleCard-after").fadeIn(500)
-                        $("#cardNumber").hide()
-                        $("#showCardNumber").text(formatCreditCard($("#cardNumber").val()))
-                        $("#showCardNumber").fadeIn(500)
-                        $("#cardNameTitle").removeClass("required")
-                        $("#cardName").hide()
-                        $("#showCardName").text($("#cardName").val())
-                        $("#showCardName").fadeIn(500)
-                        $("#submit").hide()
-                        $("#edit").fadeIn(500)
-                    }),500;
+                    setTimeout(function(){
+                        $("#form-check").hide();
+                        $("#card-number").fadeIn(500);
+                        $("#card").addClass('p-4');
+                        $("#submit").hide();
+                        $("#edit").fadeIn(500);
+                        $("#checkout").fadeIn(500);
+                        $("#titleFormCard").text('کارت بانکی ثبت شده');
+                        $("#showCardNumber").text(formatCreditCard($("#cardNumber").val()));
+                        $("#showCardName").text($("#cardName").val());
+                    },500);
+                    $("#checkout-price").click(()=>{
+                        $("#price-card").val('100000')
+                    })
+                    $("#submit-card").click(()=>{
+                        if($('#price-card').val() == "" || $('#price-card').val() == null){
+                            toastr.error("لطفا فیلد رو پر کن");
+                        }
+                        else{
+                            toastr.success("با موفقیت ثبت شد(طی 24 ساعت آینده پول به کارت شما واریز می شود از صبر شما سپاسگذاریم)");
+                            $("#checkout-modal #close-modal").click()
+                        }
+                    })
+
                 }
             }
         })
     </script>
+

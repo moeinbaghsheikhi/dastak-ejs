@@ -110,8 +110,8 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-@media (max-width: 991.98px){
-  .header-mobile{
+@media (max-width: 991.98px) {
+  .header-mobile {
     display: block;
     background-color: rgba(255, 255, 255, 0.2);
     position: fixed;
@@ -119,7 +119,7 @@ input[type="number"] {
     width: 100%;
   }
 
-  #kt_aside_toggle{
+  #kt_aside_toggle {
     margin: 0 auto;
     padding: 30px;
     border-radius: 50%;
@@ -130,25 +130,25 @@ input[type="number"] {
 .left-semi-circle {
   position: absolute;
   top: 50%;
-  left: -20px; 
-  width: 35px; 
-  height: 35px; 
+  left: -20px;
+  width: 35px;
+  height: 35px;
   background-color: transparent;
-  border-left: 2px dashed #E4E6EF !important;
-  z-index: 20; 
+  border-left: 2px dashed #e4e6ef !important;
+  z-index: 20;
   border-radius: 100%;
-  transform: translateY(-50%)rotate(180deg); 
+  transform: translateY(-50%) rotate(180deg);
 }
 .right-semi-circle {
   position: absolute;
   top: 50%;
-  right: -20px; 
-  width: 35px; 
-  height: 35px; 
+  right: -20px;
+  width: 35px;
+  height: 35px;
   background-color: transparent;
-  border-right: 25px dashed #E4E6EF !important; 
+  border-right: 25px dashed #e4e6ef !important;
   border-radius: 100%;
-  transform: translateY(-50%)rotate(180deg); 
+  transform: translateY(-50%) rotate(180deg);
 }
 .card-payment {
   width: 320px;
@@ -168,7 +168,8 @@ input[type="number"] {
   transform-style: preserve-3d;
   box-shadow: 0 0 25px 2px rgba(0, 0, 0, 0.2);
 }
-.card-front-payment, .card-back-payment {
+.card-front-payment,
+.card-back-payment {
   position: absolute;
   top: 0;
   width: 100%;
@@ -195,7 +196,21 @@ input[type="number"] {
   width: 180%;
   height: 120%;
   border-radius: 100%;
-  background-image: linear-gradient(to right top, #a3d4e7, #a7d5e6, #abd5e4, #aed6e3, #b2d6e2, #aed4e2, #abd3e1, #a7d1e1, #9bcee1, #8ecae1, #81c7e1, #73c3e1);
+  background-image: linear-gradient(
+    to right top,
+    #a3d4e7,
+    #a7d5e6,
+    #abd5e4,
+    #aed6e3,
+    #b2d6e2,
+    #aed4e2,
+    #abd3e1,
+    #a7d1e1,
+    #9bcee1,
+    #8ecae1,
+    #81c7e1,
+    #73c3e1
+  );
   filter: blur(10px);
   opacity: 0.15;
 }
@@ -205,7 +220,21 @@ input[type="number"] {
   top: 15%;
   width: 100%;
   height: 40px;
-  background-image: linear-gradient(to right top, #021318, #07191f, #0a1f26, #0b262e, #0c2c35, #0c2c35, #0c2c35, #0c2c35, #0b262e, #0a1f26, #07191f, #021318);
+  background-image: linear-gradient(
+    to right top,
+    #021318,
+    #07191f,
+    #0a1f26,
+    #0b262e,
+    #0c2c35,
+    #0c2c35,
+    #0c2c35,
+    #0c2c35,
+    #0b262e,
+    #0a1f26,
+    #07191f,
+    #021318
+  );
 }
 .card-bg-payment {
   position: absolute;
@@ -370,7 +399,7 @@ input[type="number"] {
   padding: 1.5rem 1.75rem;
   text-align: center;
   cursor: pointer;
-  border: 1px solid #009EF7;
+  border: 1px solid #009ef7;
   background-color: #333;
   border-radius: 0.95rem !important;
 }
@@ -378,4 +407,252 @@ input[type="number"] {
   margin: 0;
   display: flex;
   text-align: right;
+}
+.circle-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.circle-icon i {
+  color: #ffffff;
+  font-size: 25px;
+}
+.circle-with-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-content {
+  flex: 1;
+}
+
+.text-content h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.text-content p {
+  font-size: 10px;
+  margin: 0;
+}
+.card-money {
+  width: 320px;
+  height: 200px;
+  border-radius: 10px;
+  perspective: 1000px;
+}
+.card-inner-money {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: transform 600ms ease;
+  transform-style: preserve-3d;
+  box-shadow: 0 0 25px 2px rgba(0, 0, 0, 0.2);
+}
+.card-front-money, .card-back-money {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  background: linear-gradient(321.03deg, #01adef 0%, #0860bf 91.45%);
+}
+.card-front-money {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 300ms ease-in-out;
+}
+.card-back-money {
+  transform: rotateY(180deg);
+}
+.card-back-money::before {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  width: 180%;
+  height: 120%;
+  border-radius: 100%;
+  background-image: linear-gradient(to right top, #a3d4e7, #a7d5e6, #abd5e4, #aed6e3, #b2d6e2, #aed4e2, #abd3e1, #a7d1e1, #9bcee1, #8ecae1, #81c7e1, #73c3e1);
+  filter: blur(10px);
+  opacity: 0.15;
+}
+.card-back-money::after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  height: 40px;
+  background-image: linear-gradient(to right top, #021318, #07191f, #0a1f26, #0b262e, #0c2c35, #0c2c35, #0c2c35, #0c2c35, #0b262e, #0a1f26, #07191f, #021318);
+}
+.card-bg-money {
+  position: absolute;
+  top: -20px;
+  right: -120px;
+  width: 380px;
+  height: 250px;
+  background: linear-gradient(321.03deg, #01adef 0%, #0860bf 91.45%);
+  border-top-left-radius: 100%;
+}
+.card-bg-money::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -80px;
+  width: 380px;
+  height: 250px;
+  background: linear-gradient(321.03deg, #01adef 0%, #0860bf 91.45%);
+  border-top-left-radius: 100%;
+}
+.card-bg-money::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -120px;
+  width: 380px;
+  height: 250px;
+  background: linear-gradient(321.03deg, #01adef 0%, #0860bf 91.45%);
+  border-top-left-radius: 100%;
+}
+.card-glow-money {
+  position: absolute;
+  top: -140px;
+  left: -65px;
+  height: 200px;
+  width: 400px;
+  background: rgba(0, 183, 255, 0.4);
+  filter: blur(10px);
+  border-radius: 100%;
+  transform: skew(-15deg, -15deg);
+}
+.card-contactless-money {
+  position: absolute;
+  right: 15px;
+  top: 55px;
+  transform: scale(0.5);
+}
+.card-contactless-money h1 {
+  position: absolute;
+  color: #ffffff;
+  width: 250px;
+  font-size: 40px;
+  right: 15px;
+  top: 30px;
+}
+.card-chip-money {
+  position: absolute;
+  top: 65px;
+  left: 25px;
+  width: 45px;
+  height: 34px;
+  border-radius: 5px;
+  background-color: #ffda7b;
+  overflow: hidden;
+}
+.card-chip-money::before {
+  content: "";
+  position: absolute;
+  left: 49%;
+  top: -7%;
+  transform: translateX(-50%);
+  background: #ffda7b;
+  border: 1px solid #a27c1f;
+  width: 25%;
+  height: 110%;
+  border-radius: 100%;
+  z-index: 2;
+}
+.card-chip-money::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: -10%;
+  background: transparent;
+  border: 1px solid #a27c1f;
+  width: 120%;
+  height: 33%;
+}
+.card-holder-money {
+  position: absolute;
+  left: 25px;
+  bottom: 30px;
+  color: white;
+  font-size: 14px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+.card-number-money {
+  position: absolute;
+  left: 55px;
+  bottom: 65px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+.card-valid-money {
+  position: absolute;
+  right: 25px;
+  bottom: 30px;
+  color: white;
+  font-size: 14px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+.card-signature-money {
+  position: absolute;
+  top: 120px;
+  left: 15px;
+  width: 70%;
+  height: 30px;
+  background: #eeecec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #021318;
+  font-family: "Mr Dafoe", cursive;
+  font-size: 38px;
+  font-weight: 400;
+}
+.card-signature-money::before {
+  content: "Authorized Signature";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-family: "Overpass Mono", monospace;
+  font-size: 9px;
+  color: #eeecec;
+}
+.card-seccode-money {
+  position: absolute;
+  top: 125px;
+  left: 245px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 17px;
+  color: #021318;
+  background-color: #eeecec;
+  text-align: center;
+  font-size: 11px;
+}
+.logo-money {
+  position: absolute;
+  right: 25px;
+  top: 30px;
+}
+@media (max-width: 991.98px) {
+  .card-number-money {
+    left: 50px;
+  }
 }
