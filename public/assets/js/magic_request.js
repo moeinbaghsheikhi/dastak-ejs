@@ -10,13 +10,13 @@ function validateForm(form) {
     let body = {}
     for (i = 0; i < fields.length; i++)
         if (fields[i].type == "file") body[fields[i].id] = document.querySelector("form[name='" + form + "'] #" + fields[i].id).getAttribute("file")
-        else if(fields[i].id == "account_id" || fields[i].id == "price" || fields[i].id == "stock_count") body[fields[i].id] = parseInt(document.querySelector("form[name='" + form + "'] #" + fields[i].id).value)
+        else if(fields[i].id == "account_id" || fields[i].id == "price" || fields[i].id == "inventory") body[fields[i].id] = parseInt(document.querySelector("form[name='" + form + "'] #" + fields[i].id).value)
         else body[fields[i].id] = document.querySelector("form[name='" + form + "'] #" + fields[i].id).value
     for (i = 0; i < textareas.length; i++)
         body[textareas[i].id] = document.querySelector("form[name='" + form + "'] #" + textareas[i].id).value;
     for (i = 0; i < selects.length; i++)
-        if(selects[i].id == "categories_id" && selects[i].value == "") body[selects[i].id] = null;
-        else body[selects[i].id] = document.querySelector("form[name='" + form + "'] #" + selects[i].id).value;
+        if(selects[i].id == "categoryId" && selects[i].value == "") body[selects[i].id] = null;
+        else body["categoryId"] = parseInt(document.querySelector("form[name='" + form + "'] #" + selects[i].id).value);
 
 
 
@@ -49,7 +49,7 @@ function imageUpload(url, form) {
         .then(response => response.text())
         .then(result => {
             var res = (JSON.parse(result))
-            console.log(res.data.url)
+            // console.log(res.data.url)
             document.querySelector("form[name='" + form + "'] #image").setAttribute("file", res.data.url)
             document.getElementById("submit").disabled = false
             document.getElementById("kt_body").style.opacity = "1"
@@ -70,16 +70,16 @@ function responseMsg(message){
 }
 
 function MagicRequest(method, url, params = {}, reload = true, list= false) {
-    console.log("-----------")
-    console.log("method: "+method)
-    console.log("url: "+base_URL+url)
-    console.log("params: ")
-    console.log(params)
-    console.log("-----------")
+    // console.log("-----------")
+    // console.log("method: "+method)
+    // console.log("url: "+base_URL+url)
+    // console.log("params: ")
+    // console.log(params)
+    // console.log("-----------")
     var myHeaders = new Headers();
     if (method == "GET" || method == "get" || list) {
         let result
-        console.log(localStorage.getItem("token"))
+        // console.log(localStorage.getItem("token"))
         if(localStorage.getItem("token"))
         {
             myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
@@ -94,7 +94,7 @@ function MagicRequest(method, url, params = {}, reload = true, list= false) {
             requestOptions.body = JSON.stringify(params);
         }
 
-        console.log(requestOptions)
+        // console.log(requestOptions)
 
         return fetch(base_URL + url, requestOptions)
     }
@@ -150,7 +150,6 @@ function MagicRequest(method, url, params = {}, reload = true, list= false) {
                 }
                 return result
             }else{
-                console.log(result.alert.title)
                 if(Array.isArray(result.alert.title)) toastr.error(responseMsg(result.alert.title[0])); else toastr.error(responseMsg(result.alert.title));
                 
             }
