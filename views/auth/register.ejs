@@ -106,10 +106,7 @@ License: For each use you must have a valid license purchased only from above li
 				localStorage.setItem("token", result.result.accessToken)
                 setTimeout(()=>{window.location.replace("/admin")}, 1500)
             }else{
-				if(result.alert.title == "Mobile number already exists")
-					toastr.error("این شماره موبایل قبلا ثبت نام کرده!");
-				else{console.log(result)
-                toastr.error(result.alert.title);}
+					toastr.error(result.alert)
             }
         }).catch(error => console.log('error', error));
 				})

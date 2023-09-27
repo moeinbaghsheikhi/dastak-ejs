@@ -150,7 +150,9 @@ function MagicRequest(method, url, params = {}, reload = true, list= false) {
                 }
                 return result
             }else{
-                if(Array.isArray(result.alert.title)) toastr.error(responseMsg(result.alert.title[0])); else toastr.error(responseMsg(result.alert.title));
+                console.log(result.alert)
+                // if(Array.isArray(result.validationErrors)) toastr.error(responseMsg(result.alert.title[0])); else 
+                toastr.error(result.alert);
                 
             }
            }

@@ -165,7 +165,7 @@
                                             aria-label="عنوانی برای محصولت باید اینجا بنویسی"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input id="off_percent" style="text-align: right;" type="number" min="1" max="99"
+                                <input id="offPercent" style="text-align: right;" type="number" min="1" max="99"
                                     class="form-control form-control-solid" required="">
                             </div>
                             <!--end::Input group-->
@@ -402,8 +402,8 @@
     <script>
          MagicRequest("post", "products/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
             .then(result => {
-                result = JSON.parse(result).result.items
-                console.log(result)
+                result = JSON.parse(result)?.result?.items
+          
                 $.each(result, function (index, value) {
                         // if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ') else
                         $("#products").append('<option value="' + value.id + '">' + value.title + '</option> ')
@@ -411,9 +411,10 @@
                 })
             }).catch(error => console.log('error', error));
 
-        MagicRequest("get", "factors/").then(response => response.text())
+        MagicRequest("post", "factors/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
             .then(result => {
                 result = JSON.parse(result)?.result?.items;
+                console.log(result)
                 $("#loading").hide()
 
                 if(!result){
@@ -422,15 +423,19 @@
                 // console.log(result)
                 $.each(result, function (index, value) {
                     let statusfactor;
-                    let off_percent = "ندارد"
-                    if (value.off_percent) off_percent = '<span class="badge badge-light-info">' + value.off_percent + '%</span>'
-                    console.log(value.off_percent)
+                    let offPercent = "ندارد"
+                    if (value.offPercent) offPercent = '<span class="badge badge-light-info">' + value.offPercent + '%</span>'
+                    console.log(value.offPercent)
                     if (value.status == 1) statusfactor = '<span class="badge badge-info">ایجاد شده</span>'
                     else if (value.status == 2) statusfactor = '<span class="badge badge-primary"> در انتظار پرداخت </span>'
                     else if (value.status == 3) statusfactor = '<span class="badge badge-danger"> انصراف از پرداخت </span>'
                     else if (value.status == 4) statusfactor = '<span class="badge badge-warning"> منقضی شده </span>'
                     else if (value.status == 5) statusfactor = '<span class="badge badge-success"> پرداخت شده </span>'
-                    $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="' + value.code + '" id="clipboard">dastakapp.ir/factors/' + value.code + '</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> ' + off_percent + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> ' + statusfactor + ' </span> </div> </div> </td> <td class="text-end"> <button type="button" code="'+ value.code +'" id="showmodal" data-bs-toggle="modal" data-bs-target="#show_modal" class="btn btn-dark p-3"><i class="fas fa-regular fa-eye"></i> مشاهده فاکتور </button> </td> </tr> ')
+                    else if (value.status == 6) statusfactor = '<span class="badge badge-primary"> تایید شده </span>'
+                    else if (value.status == 7) statusfactor = '<span class="badge badge-success"> ارسال شده</span>'
+                    else if (value.status == 8) statusfactor = '<span class="badge badge-success"> دریافت شده </span>'
+
+                    $("#tbody-table").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"> <span class="mb-1 fs-6 badge badge-light" style="cursor: pointer;" code="' + value.code + '" id="clipboard">dastakapp.ir/factors/' + value.code + '</span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-hover-primary mb-1 fs-6"> ' + offPercent + ' </span> </div> </div> </td> <td> <div class="d-flex align-items-center justify-content-center" style="margin-right: 10px;"> <div class="d-flex justify-content-center flex-column"> <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"> ' + statusfactor + ' </span> </div> </div> </td> <td class="text-end"> <button type="button" code="'+ value.code +'" id="showmodal" data-bs-toggle="modal" data-bs-target="#show_modal" class="btn btn-dark p-3"><i class="fas fa-regular fa-eye"></i> مشاهده فاکتور </button> </td> </tr> ')
                 })
             }).catch(error => console.log('error', error));
 
@@ -466,15 +471,20 @@
                     else if (result.status == 3) statusfactor = '<span class="badge badge-danger"> انصراف از پرداخت </span>'
                     else if (result.status == 4) statusfactor = '<span class="badge badge-warning"> منقضی شده </span>'
                     else if (result.status == 5) statusfactor = '<span class="badge badge-success"> پرداخت شده </span>'
+                    else if (result.status == 6) statusfactor = '<span class="badge badge-primary"> تایید شده </span>'
+                    else if (result.status == 7) statusfactor = '<span class="badge badge-success"> ارسال شده</span>'
+                    else if (result.status == 8) statusfactor = '<span class="badge badge-success"> دریافت شده </span>'
+
                     $("#factorCode").append('<span class="badge badge-light-info fs-5">'+ result.code +'</span>')
                     $("#factorCondition").append(statusfactor)
-                    $.each(result.factor_items, function (index, value) {
-                        sum += parseInt(value.product.price);
-                        $("#show-factor").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ value.product.title +'</span> </div> </div> </td> <td class="d-flex align-items-center justify-content-center"> <div class="d-flex align-items-center"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ separate(value.product.price) +'</span> </div> </div> </td> </tr>" ');
+                    $.each(result.products, function (index, value) {
+                        sum += parseInt(value.price);
+                        // console.log(value)
+                        $("#show-factor").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ value.title +'</span> </div> </div> </td> <td class="d-flex align-items-center justify-content-center"> <div class="d-flex align-items-center"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ separate(value.price) +'</span> </div> </div> </td> </tr>" ');
                     })
-                    let finalPrice = sum/100*(100-result.off_percent)
+                    let finalPrice = sum/100*(100-result.offPercent)
                     $("#sumPrice").append('<span class="badge badge-light">مجموع:<span class="badge text-info"> '+ separate(sum) +' تومان </span></span>')
-                    $("#offer-Price").append('<span class="badge badge-light">تخفیف:<span class="badge text-muted">'+ result.off_percent +'%</span> </span>')
+                    $("#offer-Price").append('<span class="badge badge-light">تخفیف:<span class="badge text-muted">'+ result.offPercent +'%</span> </span>')
                     $("#final-Price").append('<div class="fs-2 fw-bolder text-primary">'+ separate(finalPrice) +'</div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span> ')
 
                 }).catch(error => console.log('error', error));
@@ -524,29 +534,27 @@
             })
 
             $("#submit").click(function () {
-                let off_percent = parseInt($("#off_percent").val()) || null
-                // console.log(off_percent)
+                let offPercent = parseInt($("#offPercent").val()) || null
+                // console.log(offPercent)
+
+                let product_list = []
+                $.each(factor_list, function (index, value) {
+                    product_list.push(value.id)
+                })
 
                 let factor_data = {
-                    "account_id": parseInt(account_id),
-                    "off_percent": off_percent,
-                    "status": 1
+                    "products": product_list,
+                    "OffPercent": offPercent
                 }
+
                 if (factor_list.length >= 1)
-                    MagicRequest("post", "factors", factor_data, false)
+                    MagicRequest("post", "factors/", factor_data, false)
                         .then(result => {
-                            let data = result.data
-                            let factor_code = result.data.code
+                            let data = result?.result
+                            let factor_code = result?.result?.code
                             // Select the text field
                             navigator.clipboard.writeText("dastakapp.ir/factors/" + factor_code);
 
-                            $.each(factor_list, function (index, value) {
-                                let factor_item_data = {
-                                    "factor_id": data.id,
-                                    "product_id": value.id
-                                }
-                                MagicRequest("post", "factors_item", factor_item_data, false)
-                            })
                             toastr.success(factor_code + ": لینک فاکتور در کلیپ بورد کپی شد");
                             setTimeout(function () { location.reload() }, 2500)
                         }).catch(error => console.log('error', error));
