@@ -39,7 +39,7 @@ class RequestService {
     
 		await axios(config)
 			.then((response) => {
-				result.data = response.data.data;
+				result.data = response.data.result;
 				result.status = response.status;
 			})
 			.catch((error) => {

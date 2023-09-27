@@ -461,9 +461,7 @@
                 MagicRequest("get", "factors/"+code).then(response => response.text())
                 .then(result => {
                     result = JSON.parse(result)?.result;
-                    $("#copyBtn").click(()=>{
-                        clipboard(result.code)
-                    })
+                    $("#copyBtn").attr("factor_code_copy", result.code)
                     let sum = 0;
                     let statusfactor;
                     if (result.status == 1) statusfactor = '<span class="badge badge-info">ایجاد شده</span>'
@@ -505,8 +503,8 @@
             // console.log(factor_list)
         }
         function clipboard(code) {
-            navigator.clipboard.writeText("dastakapp.ir/factors/" + code);
-            toastr.success("<a style='font-size: 12px' href='http://dastakapp.ir/factors/" + code + "'>" + code + "</a>" + " : لینک فاکتور در کلیپ بورد کپی شد");
+            navigator.clipboard.writeText("dastakapp.ir/factor/" + code);
+            toastr.success("<a style='font-size: 12px' href='http://dastakapp.ir/factor/" + code + "'>" + code + "</a>" + " : لینک فاکتور در کلیپ بورد کپی شد");
         }
 
         $(document).ready(function () {
@@ -533,6 +531,10 @@
                     }).catch(error => console.log('error', error));
             })
 
+            $("#copyBtn").click(()=>{
+                    clipboard($("#copyBtn").attr("factor_code_copy"))
+                    })
+
             $("#submit").click(function () {
                 let offPercent = parseInt($("#offPercent").val()) || null
                 // console.log(offPercent)
@@ -553,7 +555,7 @@
                             let data = result?.result
                             let factor_code = result?.result?.code
                             // Select the text field
-                            navigator.clipboard.writeText("dastakapp.ir/factors/" + factor_code);
+                            navigator.clipboard.writeText("dastakapp.ir/factor/" + factor_code);
 
                             toastr.success(factor_code + ": لینک فاکتور در کلیپ بورد کپی شد");
                             setTimeout(function () { location.reload() }, 2500)

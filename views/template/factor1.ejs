@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="../../">
-    <title>ورود به دستــک</title>
+    <title>فاکتور خرید</title>
     <meta name="description"
         content="دستک یک سامانه کاربردی برای فروشنده های اینترنتیه! اگه از شماره کارت دادن توی دایرکت و پیوی خسته شدی دستک واست یه پیشنهاد جذاااب داره!" />
     <meta name="keywords" content="دستک ، فاکتورساز ، فاکتورساز آنلاین" />
@@ -98,7 +98,7 @@ License: For each use you must have a valid license purchased only from above li
                                         return y+ z;
                                         }
                                         let counter =1;
-                                        data.factor_items.forEach(item=> {%>
+                                        data.products.forEach(item=> {%>
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center" style="margin-right: 10px;">
@@ -113,7 +113,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="d-flex align-items-center justify-content-center">
                                                     <div class="d-flex justify-content-start flex-column">
                                                         <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
-                                                            <%= item.product.title %>
+                                                            <%= item.title %>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -123,7 +123,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="d-flex justify-content-start flex-column">
                                                         <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
                                                             style="margin-left: 10px;">
-                                                            <%= separate(item.product.price) %>
+                                                            <%= separate(item.price) %>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -139,8 +139,8 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Table container-->
                     </div>
 
-                    <%{ let ave=0; let offer=data.offPercent; data.factor_items.forEach(i=> {
-                    ave += parseInt(i.product.price);
+                    <%{ let ave=0; let offer=data.offPercent; data.products.forEach(i=> {
+                    ave += parseInt(i.price);
                     });
                     function separate(Number)
                     {
@@ -179,8 +179,8 @@ License: For each use you must have a valid license purchased only from above li
                     <div id="pricefinal" class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5 position-relative" style="overflow: hidden; z-index: 1 !important;">
                         <!-- <div class="left-semi-circle"></div>
                         <div class="right-semi-circle"></div> -->
-                        <% { let ave=0; let offer=data.offPercent; data.factor_items.forEach(i=> {
-                            ave += parseInt(i.product.price);
+                        <% { let ave=0; let offer=data.offPercent; data.products.forEach(i=> {
+                            ave += parseInt(i.price);
                             }); 
                             let finalPrice = ave/100*(100-data.offPercent)
                             %>
