@@ -178,8 +178,8 @@
                                     <span class="indicator-progress">یه کم صبر
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
-                                <button class="btn btn-info" id="edit" style="display: none;">
-                                <span class=" indicator-label">ویرایش</span>
+                                <button class="btn btn-info" id="change" style="display: none;" data-bs-toggle="modal" data-bs-target="#change-card">
+                                <span class=" indicator-label">تغییر شماره کارت</span>
                                     <span class="indicator-progress">یه کم صبر
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
@@ -320,6 +320,80 @@
         <!--end::Modal dialog-->
     </div>
     <!--end::Modal - checkout-->
+    <!--begin::Modal - change card-->
+    <div class="modal fade" id="change-card" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px" dir="rtl">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                    transform="rotate(45 7.41422 6)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form class="form" method="post" name="add" id="add">
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                <span class="required">شماره کارت: </span>
+                                <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                    title="اینجا باید شماره کارتت رو وارد کنی"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="number" class="form-control form-control-solid" id="cardNumber-change"
+                                style="direction: rtl;" placeholder="شماره کارتت رو وارد کن" required />
+                        </div>
+                        <div id="message-change" class="alert" style="display: none;"></div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fs-6 fw-bold mb-2">به نام: </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" id="cardName-change" class="form-control form-control-solid" placeholder="این کارتی که میخوای اضافه کنی به نامشو بگو" />
+                            <!--end::Input-->
+                        </div>
+                        <div id="message-name-change" class="alert" style="display: none;"></div>
+                        <!--end::Input group-->
+                    </form>
+
+                    <div class="text-center">
+                        <button data-bs-dismiss="modal" class="btn btn-light me-3" id="close-modal">صرف نظر</button>
+                        <button class="btn btn-primary" id="change-card-btn">
+                            <span class=" indicator-label">تایید</span>
+                            <span class="indicator-progress">یه کم صبر
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - change card-->
+    
     <%- include('../layout-admin/footer') -%>
     <script src="assets/js/jquery.js"></script>
     <script>
@@ -458,7 +532,10 @@
             ]
             const matchingBank = banks.find(bank => bank.code === cardPrefix);
             const userInputField = $('#cardNumber'); 
-            const messageElement = $('#message'); 
+            const messageElement = $('#message');
+            const userInputFieldChange = $('#cardNumber-change'); 
+            const messageElementChange = $('#message-change'); 
+ 
             if (!matchingBank) {
                 messageElement.show(100)
                 userInputField.addClass('is-invalid');
@@ -469,6 +546,18 @@
 
                 messageElement.removeClass('alert-success').addClass('alert-danger');
                 messageElement.text('شماره کارت نامعتبر است!');
+
+                //for change
+                messageElementChange.show(100)
+                userInputFieldChange.addClass('is-invalid');
+                userInputFieldChange.removeClass('is-valid');
+
+                userInputFieldChange.addClass('border-danger');
+                userInputFieldChange.removeClass('border-success');
+
+                messageElementChange.removeClass('alert-success').addClass('alert-danger');
+                messageElementChange.text('شماره کارت نامعتبر است!');
+
                 result = false
             } else {
                 messageElement.show(100)
@@ -481,8 +570,34 @@
 
                 messageElement.removeClass('alert-danger').addClass('alert-success');
                 messageElement.text(`شماره کارت متعلق به بانک ${matchingBank.bank_name} است.`);
+                
+                if(userInputFieldChange.val().length >0){
+                    messageElement.hide()
+                    userInputField.removeClass('is-valid');
+
+                    userInputField.removeClass('border-success');
+
+                    messageElement.removeClass('alert-success')
+
+                    messageElementChange.show(100)
+                    userInputFieldChange.addClass('is-valid');
+                    userInputFieldChange.removeClass('is-invalid');
+
+                    userInputFieldChange.addClass('border-success');
+                    userInputFieldChange.removeClass('border-danger');
+
+
+                    messageElementChange.removeClass('alert-danger').addClass('alert-success');
+                    messageElementChange.text(`شماره کارت متعلق به بانک ${matchingBank.bank_name} است.`);
+                    result = true
+                }
                 result = true
             }
+        }
+        function validateName(name) {
+            const persianPattern = /^[\u0600-\u06FF\s]+$/;
+
+            return persianPattern.test(name);
         }
         $('#cardNumber').on('input', function() {
             const inputValue = $(this).val();
@@ -511,12 +626,6 @@
 
             }
         });
-        function validateName(name) {
-            const persianPattern = /^[\u0600-\u06FF\s]+$/;
-
-            return persianPattern.test(name);
-        }
-
         $('#cardName').on('input', function() {
             const inputValue = $(this).val();
 
@@ -532,7 +641,73 @@
                 $('#message-name').hide(100)
             }
         });
+        $('#cardNumber-change').on('input', function() {
+            const inputValue = $(this).val();
+            console.log(inputValue.length)
 
+            if (inputValue.length >= 6 && inputValue.length < 17) {
+                validateAndLog(inputValue);
+            }
+            else if(inputValue.length === 0){
+                $('#message-change').hide(100)
+                $('#cardNumber-change').removeClass('is-invalid');
+                $('#cardNumber-change').removeClass('border-danger');
+                result = false
+            }
+            else if(inputValue.length <= 6 || inputValue.length >=16){
+                $('#message-change').show(100)
+                $('#cardNumber-change').addClass('is-invalid');
+                $('#cardNumber-change').removeClass('is-valid');
+
+                $('#cardNumber-change').addClass('border-danger');
+                $('#cardNumber-change').removeClass('border-success');
+
+                $('#message-change').removeClass('alert-success').addClass('alert-danger');
+                $('#message-change').text('شماره کارت نامعتبر است!');
+                result = false
+
+            }
+        });
+        $('#cardName-change').on('input', function() {
+            const inputValue = $(this).val();
+
+            if (!validateName(inputValue)) {
+                $('#message-name-change').show(100)
+                $('#message-name-change').addClass('alert-danger');
+                $('#message-name-change').text('نام باید فقط شامل حروف فارسی و فاصله باشد.');
+            } 
+            else {
+                $('#message-name-change').hide(100)
+            }
+            if(inputValue.length === null || inputValue.length === 0){
+                $('#message-name-change').hide(100)
+            }
+        });
+        $('#change-card-btn').click(()=>{
+            if($("#cardNumber-change").val().length != 16){
+                toastr.error("!شماره کارت نامعتبره");
+            }
+            else if(result === false){
+                toastr.error("کارتت معتبر نیست");
+            }
+
+            else{
+                if($("#cardName-change").val().length <= 5){
+                    toastr.error("!لطفا از نوشتن نام کامل مطمئن شو");
+                }
+                else if($("#cardName-change").val().length <= 5){
+                    toastr.error("!لطفا از نوشتن نام کامل مطمئن شو");
+                }
+                else if(!validateName($("#cardName-change").val())){
+                    toastr.error("!نامی که نوشتی فارسی نیست");
+                }
+                else{
+                    toastr.success("(;شماره کارت با موفقیت تغییر یافت شد");
+                    $("#change-card #close-modal").click()
+
+                }
+            }
+        })
         $("#submit").click(()=>{
             if($("#cardNumber").val().length != 16){
                 toastr.error("!شماره کارت نامعتبره");
@@ -558,7 +733,7 @@
                         $("#card-number").fadeIn(500);
                         $("#card").addClass('p-4');
                         $("#submit").hide();
-                        $("#edit").fadeIn(500);
+                        $("#change").fadeIn(500);
                         $("#checkout").fadeIn(500);
                         $("#titleFormCard").text('کارت بانکی ثبت شده');
                         $("#showCardNumber").text(formatCreditCard($("#cardNumber").val()));
