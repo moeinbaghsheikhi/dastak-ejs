@@ -204,9 +204,9 @@
                         <div class="card-header">
                             <h3 class="card-title">تراکنش ها</h3>
                             <div class="card-toolbar">
-                                <button type="button" class="btn btn-sm btn-light">
-                                    رفتن به فاکتور ها
-                                </button>
+                                <a href="/admin/payment" class="btn btn-sm btn-light">
+                                    رفتن به تراکنش ها 
+                                </a>
                             </div>
                         </div>
                         <div class="card-body py-5">
@@ -547,16 +547,25 @@
                 messageElement.removeClass('alert-success').addClass('alert-danger');
                 messageElement.text('شماره کارت نامعتبر است!');
 
+                if(userInputFieldChange.val().length >0){
                 //for change
-                messageElementChange.show(100)
-                userInputFieldChange.addClass('is-invalid');
-                userInputFieldChange.removeClass('is-valid');
+                    messageElement.hide()
+                    userInputField.removeClass('is-invalid');
 
-                userInputFieldChange.addClass('border-danger');
-                userInputFieldChange.removeClass('border-success');
+                    userInputField.removeClass('border-danger');
 
-                messageElementChange.removeClass('alert-success').addClass('alert-danger');
-                messageElementChange.text('شماره کارت نامعتبر است!');
+                    messageElement.removeClass('alert-danger');
+
+                    messageElementChange.show(100)
+                    userInputFieldChange.addClass('is-invalid');
+                    userInputFieldChange.removeClass('is-valid');
+
+                    userInputFieldChange.addClass('border-danger');
+                    userInputFieldChange.removeClass('border-success');
+
+                    messageElementChange.removeClass('alert-success').addClass('alert-danger');
+                    messageElementChange.text('شماره کارت نامعتبر است!');
+                }
 
                 result = false
             } else {
