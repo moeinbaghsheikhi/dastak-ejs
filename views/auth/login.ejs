@@ -93,7 +93,26 @@ $('#password').on('keypress', function(e) {
 };
 				$("#login-step-2").click(function(){
 					let mobile = $("#mobile").val()
-					if(mobile == "" || !mobile)
+
+					var myHeaders = new Headers();
+					myHeaders.append("Content-Type", "application/json");
+
+					var raw = JSON.stringify({mobile: mobile});
+
+					var requestOptions = {
+						method: "post",
+						headers: myHeaders,
+						body: raw,
+						redirect: 'follow',
+						'Access-Control-Allow-Origin': '*'
+					};
+					console.log(requestOptions)
+					fetch(base + "auth/check-mobile", requestOptions).then(response => response.text())
+						.then(result => {
+							result = JSON.parse(result)
+							console.log(result)
+						if(result.status){
+							if(mobile == "" || !mobile)
 						return toastr.error("اول شماره موبایلت رو وارد کن!")
 					else if (mobile.length != 11)
 						return toastr.error("موبایل باید 11 رفم باشه!")
@@ -103,6 +122,12 @@ $('#password').on('keypress', function(e) {
 						$("#password-item").show()
 						$("#mobile-item").hide()
 					}
+						}else{
+							return toastr.error("همچین شماره موبایلی وجود نداره!")
+						}
+					
+						}).catch(error => console.log('error', error));
+					
 				})
 				$("#send_pass").click(function(){
 					$("#send_pass").attr("disabled", "disabled")
@@ -200,7 +225,7 @@ $('#password').on('keypress', function(e) {
 				$("#login .indicator-label").show()
 			$("#login .indicator-progress").hide()
 			$("#login").removeAttr("disabled")
-			toastr.error("حسابی با این مشصات پیدا نشد!")
+			toastr.error("رمز عبورت درست نیست!")
             }
         }).catch(error => console.log('error', error));
 				})
