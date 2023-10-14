@@ -96,7 +96,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                         <!--begin:Form-->
-                        <form class="form" method="post" url="products/" name="add" id="add">
+                        <form class="form" method="post" url="products" name="add" id="add">
                             <!--begin::Heading-->
                             <div class="mb-13 text-center">
                                 <!--begin::Title-->
@@ -213,7 +213,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                         <!--begin:Form-->
-                        <form class="form" method="put" url="products/" name="update" id="update">
+                        <form class="form" method="put" url="products" name="update" id="update">
                             <!--begin::Heading-->
                             <div class="mb-13 text-center">
                                 <!--begin::Title-->
@@ -354,7 +354,7 @@
                 MagicRequest("post", "products/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
                     .then(result => {
                         result = JSON.parse(result)?.result?.items
-                        console.log(result)
+                     
                         $("#loading").hide()
                         if(!result|| result.length == 0){
                             $("#list-empty").append("<p class='alert alert-dismissible bg-light-primary d-flex flex-column flex-sm-row w-100 p-5 mb-10'>هنوز چیزی نساختی! از طریق دکمه افزودن محصول اولین محصول فروشگاهتو بساز:)</p>")
