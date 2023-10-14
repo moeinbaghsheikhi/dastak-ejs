@@ -125,7 +125,10 @@
                         <div class="card-header justify-content-center">
                             <h3 class="card-title justify-content-center fw-bolder" style="font-size: 22px;" id="titleFormCard">افزودن کارت بانکی</h3>
                         </div>
-                        <div class="card-body py-5">
+                        <div style="display: flex;" id="loading">
+                            <img src="/assets/media/Loading_2.gif"  style="margin: 0 auto;" width="40px" alt="">
+                        </div>
+                        <div class="card-body py-5" id="bank-body" style="display: none;">
                             <div class="d-flex w-100 justify-content-center" id="card">
                                 <div class="card-money" id="card-number" style="display: none;">
                                     <div class="card-inner-money">
@@ -395,8 +398,9 @@
     <!--end::Modal - change card-->
     
     <%- include('../layout-admin/footer') -%>
-    <script src="assets/js/jquery.js"></script>
+    <!-- <script src="assets/js/jquery.js"></script> -->
     <script>
+        let base = "https://api.dastakapp.ir/api/v1/"
         $(document).ready(function(){
             toastr.options = {
                 "closeButton": false,
@@ -415,6 +419,46 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
                 };
+                var myHeaders = new Headers();
+					myHeaders.append("Content-Type", "application/json");
+                    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
+
+					var requestOptions = {
+						method: "get",
+						headers: myHeaders,
+						redirect: 'follow',
+						'Access-Control-Allow-Origin': '*'
+					};
+                    
+					fetch(base + "bank", requestOptions).then(response => response.text())
+						.then(result => {
+							result = JSON.parse(result)
+							console.log(result)
+                            if(result.status)
+                                {
+                                    // toastr.success("(;شماره کارت با موفقیت اضافه شد");
+                                    // setTimeout(function(){
+                                        $("#form-check").hide();
+                                        $("#card-number").fadeIn(500);
+                                        $("#card").addClass('p-4');
+                                        $("#submit").hide();
+                                        $("#change").fadeIn(500);
+                                        $("#checkout").fadeIn(500);
+                                        $("#titleFormCard").text('کارت بانکی ثبت شده');
+                                        $("#showCardNumber").text(formatCreditCard(result.result.cardNumber));
+                                        $("#showCardName").text(result.result.cardName);
+                                    // },500);
+                                    $("#checkout-price").click(()=>{
+                                        $("#price-card").val(result.result.amount)
+                                    })
+                                    $("#loading").hide()
+                                    $("#bank-body").show()
+                                }
+                                else{
+                                    $("#loading").hide()
+                                    $("#bank-body").show()
+                                }
+                    }).catch(error => console.log('error', error));
         })
         function formatCreditCard(cardNumber) {
             cardNumber = cardNumber.replace(/\s/g, '');
@@ -736,22 +780,48 @@
                     toastr.error("!نامی که نوشتی فارسی نیست");
                 }
                 else{
-                    toastr.success("(;شماره کارت با موفقیت اضافه شد");
-                    setTimeout(function(){
-                        $("#form-check").hide();
-                        $("#card-number").fadeIn(500);
-                        $("#card").addClass('p-4');
-                        $("#submit").hide();
-                        $("#change").fadeIn(500);
-                        $("#checkout").fadeIn(500);
-                        $("#titleFormCard").text('کارت بانکی ثبت شده');
-                        $("#showCardNumber").text(formatCreditCard($("#cardNumber").val()));
-                        $("#showCardName").text($("#cardName").val());
-                    },500);
-                    $("#checkout-price").click(()=>{
-                        $("#price-card").val('100000')
-                    })
-                    $("#submit-card").click(()=>{
+                    var myHeaders = new Headers();
+					myHeaders.append("Content-Type", "application/json");
+
+					var raw = JSON.stringify({cardName: $("#cardName").val(), cardNumber: $("#cardNumber").val()});
+
+                    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
+					var requestOptions = {
+						method: "post",
+						headers: myHeaders,
+						body: raw,
+						redirect: 'follow',
+						'Access-Control-Allow-Origin': '*'
+					};
+					console.log(requestOptions)
+					fetch(base + "bank", requestOptions).then(response => response.text())
+						.then(result => {
+							result = JSON.parse(result)
+							console.log(result)
+                            if(result.status)
+                                {
+                                    toastr.success("(;شماره کارت با موفقیت اضافه شد");
+                                    setTimeout(function(){
+                                        $("#form-check").hide();
+                                        $("#card-number").fadeIn(500);
+                                        $("#card").addClass('p-4');
+                                        $("#submit").hide();
+                                        $("#change").fadeIn(500);
+                                        $("#checkout").fadeIn(500);
+                                        $("#titleFormCard").text('کارت بانکی ثبت شده');
+                                        $("#showCardNumber").text(formatCreditCard($("#cardNumber").val()));
+                                        $("#showCardName").text($("#cardName").val());
+                                    },500);
+                                    $("#checkout-price").click(()=>{
+                                        $("#price-card").val('0')
+                                    })
+                                }else toastr.error(result.alert)
+                    }).catch(error => console.log('error', error));
+                }
+            }
+        })
+
+        $("#submit-card").click(()=>{
                         if($('#price-card').val() == "" || $('#price-card').val() == null){
                             toastr.error("لطفا فیلد رو پر کن");
                         }
@@ -760,10 +830,6 @@
                             $("#checkout-modal #close-modal").click()
                         }
                     })
-
-                }
-            }
-        })
         
     </script>
 

@@ -115,6 +115,7 @@
                                     <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                         title="انتخاب محصول برای افزودن به فاکتور"></i>
                                 </label>
+                                
                                 <!--end::Label-->
                                 <div class="d-flex flex-row">
                                     <select class="form-select form-select-solid" id="products" data-control="select2"
@@ -122,7 +123,8 @@
                                         data-dropdown-parent="#add_modal" tabindex="-1">
                                         <option></option>
                                     </select>
-                                    <input type="number" class="form-control form-control-solid text-center" id="numberOfProduct"
+                                    
+                                    <input type="number" value="1" class="form-control form-control-solid text-center" id="count"
                                     style="direction: rtl; width: 22%; margin-right: 5px;" placeholder="تعداد" required />
     
                                     <button id="btn-add" type="button" class="btn btn-light-primary btn-sm"
@@ -139,6 +141,7 @@
                                     <thead class="bg-table">
                                         <tr class="fw-bolder text-muted bg-light bg-table">
                                             <th class="ps-4 min-w-50px rounded-start">نام محصول</th>
+                                            <th class="ps-4 min-w-50px">تعداد</th>
                                             <th class="ps-4 min-w-50px">قیمت</th>
                                             <th class="min-w-50px rounded-end" style="padding: 10px;"></th>
                                         </tr>
@@ -526,8 +529,10 @@
                         // console.log(result)
                         if (factor_list.length == 0)
                             $("#factor-tbody").empty()
+                        count = parseInt($("#count").val())
+                        result.count = count
 
-                        $("#factor-tbody").append('<tr id="pro-' + number + '"><td> <div class="d-flex align-items-center" style="margin-right: 10px;"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">' + result.title + '</span> </div> </div> </td><td class="d-flex align-items-center"> <div class="d-flex align-items-center"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">' + separate(result.price) + '</span> </div> </div> </td> <td class="text-end"> <span class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" onclick="deletepro(' + number + ')"> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> </span> </td> </tr>"')
+                        $("#factor-tbody").append('<tr id="pro-' + number + '"><td> <div class="d-flex align-items-center" style="margin-right: 10px;"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">' + result.title + '</span> </div> </div> </td> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> '+count+'</div> </td> <td class="d-flex align-items-center"> <div class="d-flex align-items-center"><div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">' + separate(result.price * count) + '</span> </div> </div> </td> <td class="text-end"> <span class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" onclick="deletepro(' + number + ')"> <span class="svg-icon svg-icon-3"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" /> <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" /> <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" /> </svg> </span> </span> </td> </tr>"')
                         factor_list.push({ number, ...result })
                         number++
                         console.log(factor_list)
@@ -545,7 +550,7 @@
 
                 let product_list = []
                 $.each(factor_list, function (index, value) {
-                    product_list.push(value.id)
+                    product_list.push({id: value.id, count: value.count})
                 })
 
                 let factor_data = {
@@ -554,7 +559,7 @@
                 }
 
                 if (factor_list.length >= 1)
-                    MagicRequest("post", "factors/", factor_data, false)
+                    MagicRequest("post", "factors", factor_data, false)
                         .then(result => {
                             let data = result?.result
                             let factor_code = result?.result?.code
