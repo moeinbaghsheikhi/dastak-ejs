@@ -149,9 +149,10 @@
                                         title="اینجا باید قیمت اصلی رو وارد کنی"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input id="price" type="number" class="form-control form-control-solid"
+                                <input id="price" type="text" class="form-control form-control-solid"
                                     style="direction: rtl;" placeholder="قیمت رو وارد کن" required />
                             </div>
+                            <div id="priceAlert" class="alert alert-success" style="display: none;"></div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="d-flex flex-column mb-8 fv-row">
@@ -299,6 +300,45 @@
             </div>
             <!--end::Modal dialog-->
         </div>
+        <script src="assets/js/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/mahmoud-eskandari/NumToPersian/dist/num2persian-min.js"></script>
+        <script>
+            function formatInput(inputElement) {
+                const inputValue = inputElement.value;
+                const numericValue = inputValue.replace(/[^0-9]/g, '');
+                
+                const parts = [];
+                for (let i = numericValue.length; i > 0; i -= 3) {
+                    parts.unshift(numericValue.slice(Math.max(i - 3, 0), i));
+                }
+
+                const formattedValue = parts.join(',');
+
+                inputElement.value = formattedValue;
+            }
+            function removeCommasAndParse(numberString) {
+                const numericValue = parseFloat(numberString.replace(/,/g, ''));
+                return isNaN(numericValue) ? 0 : numericValue;
+            }
+
+
+            $('#price').on('input', function() {
+
+                const inputValue = $(this).val();
+                
+                formatInput(this);
+                let main = removeCommasAndParse(inputValue)
+                console.log(main)
+
+                let persianPrice = Num2persian(main);
+
+                $('#priceAlert').text(` ${persianPrice} تومان`);
+                $('#priceAlert').show();
+
+
+            });
+
+        </script>
         <script>
             let categories = MagicRequest("post", "categories/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
                     .then(result => {
@@ -326,7 +366,6 @@
                         })
                     }).catch(error => console.log('error', error));
   
-
         </script>
     </div>
     <%- include('../layout-admin/footer') -%>

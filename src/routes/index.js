@@ -6,6 +6,7 @@ const product = require('../controllers/product.controller');
 const grouping = require('../controllers/grouping.controller');
 const factor = require('../controllers/factor.controller');
 const template = require('../controllers/template.controller');
+const payment = require('../controllers/payment.controller');
 // const routineorder = require('../controllers/routine-order.controller');
 
 router.get('/', home.landing)
@@ -16,6 +17,7 @@ router.get('/admin/home', home.index)
 router.get('/admin/product', product.index)
 router.get('/admin/grouping', grouping.index)
 router.get('/admin/factor', factor.index)
+router.get('/admin/payment', payment.index)
 router.get('/factor/:code', template.factor1)
 // router.get('/routine', routineorder.index)
 

@@ -1,0 +1,73 @@
+<%- include('../layout-admin/header') -%>
+<!--begin::Header-->
+<div id="kt_header" class="header py-6 py-lg-0" dir="rtl" data-kt-sticky="true" data-kt-sticky-name="header"
+    data-kt-sticky-offset="{lg: '300px'}">
+    <!--begin::Container-->
+    <div class="header-container container-xxl">
+        <!--begin::Page title-->
+        <div
+            class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-20 py-3 py-lg-0 ms-3">
+            <!--begin::Heading-->
+            <h1 class="d-flex flex-column text-dark fw-bolder my-1">
+                <span class="text-white fs-1">تراکنش ها</span>
+                <small class="text-gray-600 fs-6 fw-normal pt-2">اینجا میتونی تراکنش هایی که داشتی ببینی :)</small>
+            </h1>
+            <!--end::Heading-->
+        </div>
+        <!--end::Page title=-->
+    </div>
+    <!--end::Container-->
+    <div class="header-offset"></div>
+</div>
+<!--end::Header-->
+<div class="col-10 mx-auto">
+    <div class="row">
+        <!--begin::Col-->
+        <div class="col-xl-12 col-12" style="direction: rtl;">
+            <div class="card card-flush shadow-sm my-10">
+                <div class="card-header">
+                    <h3 class="card-title">تراکنش ها</h3>
+                    <div class="card-toolbar">
+                        <button type="button" class="btn btn-sm btn-light">
+                            رفتن به فاکتور ها
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body py-5">
+                    <div class="bg-light py-4 px-4 rounded mb-4">
+                        <div class="circle-with-text">
+                            <div class="circle-icon bg-danger">
+                                <i class="fas fa-minus-circle"></i>                                    
+                            </div>
+                            <div class="text-content">
+                                <h3 class="mb-1">پرداخت مشتری</h3>
+                                <p>فاکتور شما با موفقیت پرداخت شده</p>
+                            </div>
+                            <div class="price-end">
+                                <span>150/000 <span>تومان</span></span>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="bg-light py-4 px-4 rounded mb-4">
+                        <div class="circle-with-text">
+                            <div class="circle-icon bg-success">
+                                <i class="fas fa-check-circle"></i> 
+                            </div>
+                            <div class="text-content">
+                                <h3 class="mb-1">پرداخت مشتری</h3>
+                                <p>فاکتور شما با موفقیت پرداخت شده</p>
+                            </div>
+                            <div class="price-end">
+                                <span>150/000 <span>تومان</span></span>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Col-->
+    </div>
+    <!--end::Row-->
+</div>
+<!--end::Row-->
+<%- include('../layout-admin/footer') -%>

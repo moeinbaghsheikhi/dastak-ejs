@@ -122,8 +122,11 @@
                                         data-dropdown-parent="#add_modal" tabindex="-1">
                                         <option></option>
                                     </select>
+                                    <input type="number" class="form-control form-control-solid text-center" id="numberOfProduct"
+                                    style="direction: rtl; width: 22%; margin-right: 5px;" placeholder="تعداد" required />
+    
                                     <button id="btn-add" type="button" class="btn btn-light-primary btn-sm"
-                                        style="width: 40%; margin-right: 10px;">افزودن</button>
+                                        style="width: 18%; margin-right: 5px;">افزودن</button>
                                 </div>
                             </div>
                             <!--end::Input group-->
@@ -399,6 +402,7 @@
             <!--end::Modal dialog-->
         </div>
     </div>
+    <script src="assets/js/jquery.js"></script>
     <script>
          MagicRequest("post", "products/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
             .then(result => {
@@ -564,6 +568,16 @@
                     toastr.error("!فاکتور شما هنوز خالیه")
                 }
             })
+            $(document).ready(function() {
+                $('#offPercent').on('input', function() {
+                    if (parseInt($(this).val(), 10) > 99) {
+                        toastr.error("!بیشتر از 99 درصد نمیتونی وارد کنی");
+
+                        $(this).val('1');
+                    }
+                });
+            });
+
         })
 
     </script>
