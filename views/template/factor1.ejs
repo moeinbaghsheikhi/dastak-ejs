@@ -365,6 +365,7 @@ License: For each use you must have a valid license purchased only from above li
         const citiess = cities;
         const provinceSelect = document.getElementById("province");
         const citiesSelect = document.getElementById("city");
+        let code = $("#factor_code").val()
 
         if(!provinceSelect) {
             $("#pay-btn").show()
@@ -407,11 +408,32 @@ License: For each use you must have a valid license purchased only from above li
         }
         
         $(document).ready(function(){
+        $("#pay-btn").click(()=> {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            
+            var raw = JSON.stringify({ code: code });
+
+            var requestOptions = {
+                method: "post",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow',
+                'Access-Control-Allow-Origin': '*'
+            };
+            // console.log(requestOptions)
+            fetch(base + "payment", requestOptions).then(response => response.text())
+                .then(result => {
+                    result = JSON.parse(result)
+                    console.log(result)
+                   
+                }).catch(error => console.log('error', error));
+        })
+
         let validate = true
         $("#verify").click(()=>{
             $(".indicator-label-verify").hide()
             $(".indicator-progress").show()
-            let code = $("#factor_code").val()
             let name = $("#name").val()
             let mobile = $("#mobile").val()
             let province = $("#province").val()
@@ -493,32 +515,32 @@ License: For each use you must have a valid license purchased only from above li
             }else $(".indicator-label-verify").show()
         })
 
-        $("#pay-btn").click(()=>{
-            var myHeaders = new Headers();
-					myHeaders.append("Content-Type", "application/json");
-                    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
-                    console.log(code)
-					var raw = JSON.stringify({code: code});
+        // $("#pay-btn").click(()=>{
+        //     var myHeaders = new Headers();
+		// 			myHeaders.append("Content-Type", "application/json");
 
-					var requestOptions = {
-						method: "post",
-						headers: myHeaders,
-						body: raw,
-						redirect: 'follow',
-						'Access-Control-Allow-Origin': '*'
-					};
-					// console.log(requestOptions)
-					fetch(base + "factor-detail", requestOptions).then(response => response.text())
-						.then(result => {
-							result = JSON.parse(result)
-							console.log(result)
-                            if(result.status){
-                                $(".indicator-label-pay").show()
-                                $("#verify").hide()
-                                toastr.success("اطلاعات پستی شما اضافه شد")
-                            }else toastr.error("مشکلی به وجود آمده")
-                        }).catch(error => console.log('error', error));
-        })
+        //             console.log(code)
+		// 			var raw = JSON.stringify({code: code});
+
+		// 			var requestOptions = {
+		// 				method: "post",
+		// 				headers: myHeaders,
+		// 				body: raw,
+		// 				redirect: 'follow',
+		// 				'Access-Control-Allow-Origin': '*'
+		// 			};
+		// 			// console.log(requestOptions)
+		// 			fetch(base + "factor-detail", requestOptions).then(response => response.text())
+		// 				.then(result => {
+		// 					result = JSON.parse(result)
+		// 					console.log(result)
+        //                     if(result.status){
+        //                         $(".indicator-label-pay").show()
+        //                         $("#verify").hide()
+        //                         toastr.success("اطلاعات پستی شما اضافه شد")
+        //                     }else toastr.error("مشکلی به وجود آمده")
+        //                 }).catch(error => console.log('error', error));
+        // })
 
         $("#submit").click(()=>{
             $("#pricefinal").slideUp();
