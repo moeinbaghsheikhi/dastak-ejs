@@ -174,8 +174,39 @@
 <!--end::Head-->
 <!--begin::Body-->
 
-<body id="kt_body" class=" header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled">
+<body id="kt_body" class=" header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-disabled" dir="rtl">
 	<!--begin::Main-->
+	<div class="modal fade" tabindex="-1" id="kt_modal_1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" style="text-align: center;">خروج از حساب</h3>
+	
+					<!--begin::Close-->
+					<div class="btn btn-icon btn-sm btn-active-light-primary ms-2 text-center" data-bs-dismiss="modal" aria-label="Close">
+						<!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/arrows/arr061.svg-->
+<span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+	<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+	</svg>
+	
+	</span>
+	<!--end::Svg Icon-->
+					</div>
+					<!--end::Close-->
+				</div>
+	
+				<div class="modal-body text-center">
+					<p>مطمئنی میخوای از حساب کاربریت خارج بشی؟!</p>
+				</div>
+	
+				<div class="modal-footer" style="margin: 0 auto;">
+					<button type="button" class="btn btn-light" data-bs-dismiss="modal">نه بابا:)</button>
+					<button type="button" onclick="logout()" class="btn btn-primary">آره، خارج شو</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!--begin::Root-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -290,7 +321,7 @@
 							</div>
 
 							<div class="menu-item py-3 text-center">
-								<a class="menu-link mb-3 menu-center" onclick="logout()"
+								<a class="menu-link mb-3 menu-center" data-bs-toggle="modal" data-bs-target="#kt_modal_1"
 										title="خروج" data-bs-toggle="tooltip"
 										data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
 										<span class="menu-icon">
