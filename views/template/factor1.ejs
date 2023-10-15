@@ -37,6 +37,13 @@ License: For each use you must have a valid license purchased only from above li
     <link href="assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/rtl.css">
     <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+        #form span#factor-detail-data{
+            float: left;
+            
+        }
+    </style>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -72,6 +79,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Title-->
                         <% } %>
                     </div>
+                    <input type="hidden" id="factor_code" value="<%= data.code %>">
                     <!--end::Heading-->
                     <div class="fv-row mb-10" id="mobile-item">
                         <!--begin::Table container-->
@@ -133,7 +141,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="d-flex justify-content-start flex-column">
                                                         <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
                                                             style="margin-left: 33px;">
-                                                            <%= separate(item.price*item.count) %>
+                                                            <%= separate(item.price) %>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -225,7 +233,12 @@ License: For each use you must have a valid license purchased only from above li
                                 <label class="required fs-6 fw-bold mb-2">نام و نام خانوادگی: </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="نام و نام خانوادگی"/>
+
+                                <% if(!data.detail){ %>
+                                <input type="text" class="form-control form-control-solid" id="name" placeholder="نام و نام خانوادگی"/>
+                                <% }else{ %>
+                                    <span id="factor-detail-data"><%= data.detail.fullName %></span>
+                                <% } %>
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -235,7 +248,11 @@ License: For each use you must have a valid license purchased only from above li
                                 <label class="required fs-6 fw-bold mb-2">شماره تماس: </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="شماره تماست"/>
+                                <% if(!data.detail){ %>
+                                <input type="text" class="form-control form-control-solid" id="mobile" placeholder="شماره تماست"/>
+                                <% }else{ %>
+                                    <span id="factor-detail-data"><%= data.detail.mobile %></span>
+                                <% } %>
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -244,9 +261,13 @@ License: For each use you must have a valid license purchased only from above li
                                 <label class="required fs-6 fw-bold mb-2">استان</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
+                                <% if(!data.detail){ %>
                                 <select class="form-select form-select-solid" data-control="select2" onchange="setCity()" id="province">
                                     <option value="">لطفاً یک استان انتخاب کنید</option>
                                 </select>
+                                <% }else{ %>
+                                    <span id="factor-detail-data"><%= data.detail.province %></span>
+                                <% } %>
                                 <!--end::Input-->
                             </div>
                             <!--begin::Input group-->
@@ -256,18 +277,30 @@ License: For each use you must have a valid license purchased only from above li
                                 <label class="required fs-6 fw-bold mb-2">شهر</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
+
+                                <% if(!data.detail){ %>
                                 <select class="form-select form-select-solid" data-control="select2" id="city">
                                     <option value="">ابتدا یک استان انتخاب کنید</option>
                                 </select>
+                                <% }else{ %>
+                                    <span id="factor-detail-data"><%= data.detail.city %></span>
+                                <% } %>
+                         
                                 <!--end::Input-->
                             </div>
 
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class="fs-6 fw-bold mb-2">کد پستی: </label>
+                                <label class="fs-6 fw-bold mb-2">کد پستی: <span style="font-size: 10px;">(اختیاری)</span></label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="کد پستی" />
+
+                                <% if(!data.detail){ %>
+                                <input type="text" class="form-control form-control-solid" id="postalcode" placeholder="کد پستی" />
+                                <% }else{ %>
+                                    <span id="factor-detail-data"><%= data.detail.postalcode ? data.detail.postalcode : "خالی" %></span>
+                                <% } %>
+
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -277,50 +310,32 @@ License: For each use you must have a valid license purchased only from above li
                                 <label class="required fs-6 fw-bold mb-2">ادرس: </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="ادرستو اینجا بنویس" />
+                                <% if(!data.detail){ %>
+                                <textarea type="text" class="form-control form-control-solid" id="address"> </textarea>
+                                <% }else{ %>
+                                    <span id="factor-detail-data"><%= data.detail.address %></span>
+                                <% } %>
                                 <!--end::Input-->
                             </div>
 
                         </form>
                         <div class="text-center">
+
                             <button data-bs-dismiss="modal" class="btn btn-light me-3" id="close">انصراف</button>
                             <button class="btn btn-primary" id="verify"">
-                                <span class=" indicator-label">ثبت مشخصات</span>
+                            <span class="indicator-label-verify">ثبت مشخصات</span>
                                 <span class="indicator-progress">کمی صبر...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
+
+                            <button  style="display: none;" class="btn btn-primary indicator-label-pay" id="pay-btn">
+                                <span>پرداخت آنلاین</span>
+                                </button>
+                                
                         </div>
                         <!--end:Form-->
                     </div>
-                    <!--start::Actions-->
-                    <!--begin::Accordion-->
-                    <div class="accordion accordion-icon-toggle" id="kt_accordion_2" style="display: none;">
-                        <!--begin::Item-->
-                        <div class="mb-5">
-                            <!--begin::Header-->
-                            <div class="accordion-header py-3 d-flex">
-                                <button class="btn btn-lg btn-light-dark w-50" style="padding: 10px;" id="btnCard" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
-                                    <span class="indicator-label">کارت به کارت</span>
-                                    <i class="fas fa-regular fa-credit-card fs-4 ms-4"></i>
-                                </button>
-                                <button class="btn btn-lg btn-light-dark w-50 ms-5" style="padding: 10px;">
-                                    <span class="indicator-label">پرداخت آنلاین</span>
-                                    <i class="fas fa-solid fa-globe fs-4 ms-4"></i>
-                                    <span class="indicator-progress">چند لحظه وایسا...</span>
-                                    <!-- <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
-                                </button>
-                            </div>
-                            <!--end::Header-->
 
-                            <!--begin::Body-->
-                     
-                            <!--end::Body-->
-                        </div>
-                        <!--end::Item-->
-                    </div>
-                    <!--end::Accordion-->
-                    <!--end::Actions-->
-                    <!--end::Actions-->
                 </div>
                 <!--end::Wrapper-->
             </div>
@@ -345,31 +360,165 @@ License: For each use you must have a valid license purchased only from above li
     <script src="assets/js/cities.js"></script>
     <script>
         // دسترسی به اطلاعات استان‌ها از فایل province.js
+        const base = "https://api.dastakapp.ir/api/v1/"
         const provinces = province;
         const citiess = cities;
         const provinceSelect = document.getElementById("province");
         const citiesSelect = document.getElementById("city");
 
-        provinces.forEach(province => {
-            const option = document.createElement("option");
-            option.value = province.slug;
-            option.textContent = province.name;
-            option.value = province.id
-            provinceSelect.appendChild(option);
-        });
-        
-        function setCity(){
-            $("#city").empty()
-            let province_id = ($("#province").val())
-            citiess.forEach(city => {
-                if(city.province_id == province_id){
-                    const option = document.createElement("option");
-                    option.value = city.slug;
-                    option.textContent = city.name;
-                    citiesSelect.appendChild(option);
-                }
+        if(!provinceSelect) {
+            $("#pay-btn").show()
+            $("#verify").hide()
+        }
+         else {
+            $("#pay-btn").hide()
+            $("#verify").show()
+        }
+
+        if(provinceSelect){
+            provinces.forEach(province => {
+                const option = document.createElement("option");
+                option.textContent = province.name;
+                option.value = province.id
+                provinceSelect.appendChild(option);
             });
         }
+        
+        function setCity(){
+            if(provinceSelect){
+                $("#city").empty()
+                let province_id = ($("#province").val())
+             
+                console.log(province_id)
+                const option = document.createElement("option");
+                option.value = "";
+                option.textContent = "شهر رو انتخاب کن";
+                citiesSelect.appendChild(option);
+
+                citiess.forEach(city => {
+                    if(city.province_id == province_id){
+                        const option = document.createElement("option");
+                        option.value = city.slug;
+                        option.textContent = city.name;
+                        citiesSelect.appendChild(option);
+                    }
+                });
+            }
+        }
+        
+        $(document).ready(function(){
+        let validate = true
+        $("#verify").click(()=>{
+            $(".indicator-label-verify").hide()
+            $(".indicator-progress").show()
+            let code = $("#factor_code").val()
+            let name = $("#name").val()
+            let mobile = $("#mobile").val()
+            let province = $("#province").val()
+            let city = $("#city").val()
+            let postalcode = $("#postalcode").val()
+            let address = $("#address").val()
+
+            provinces.forEach(item => {
+                    if(province == item.id) province = item.name
+                })
+
+            if(name =="" || !name || name.length <= 3){
+                validate = false
+                $("#name").addClass("is-invalid border-danger")
+            }else {
+                $("#name").removeClass("is-invalid border-danger") 
+                $("#name").addClass("is-valid border-success") 
+                validate = true
+            }
+            if(mobile =="" || !mobile || mobile.length != 11){
+                validate = false
+                $("#mobile").addClass("is-invalid border-danger")
+            }else {
+                $("#mobile").removeClass("is-invalid border-danger") 
+                $("#mobile").addClass("is-valid border-success") 
+                validate = true
+            }
+
+            if($("#province").val() =="" || !$("#province").val() && $("#city").val() =="" || !$("#city").val()){
+                validate = false
+                toastr.error("شهر و استان رو به درستی انتخاب کن");
+            }else validate = true
+
+            if(postalcode !="" && postalcode.length != 10){
+                validate = false
+                $("#postalcode").addClass("is-invalid border-danger")
+            }else {
+                $("#postalcode").removeClass("is-invalid border-danger") 
+                $("#postalcode").addClass("is-valid border-success") 
+                validate = true
+            }
+            if(address =="" || !address || address.length <= 10){
+                validate = false
+                $("#address").addClass("is-invalid border-danger")
+            }else {
+                $("#address").removeClass("is-invalid border-danger") 
+                $("#address").addClass("is-valid border-success") 
+                validate = true
+            }
+
+            $(".indicator-progress").hide()
+            if(validate){{
+                var myHeaders = new Headers();
+					myHeaders.append("Content-Type", "application/json");
+                    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
+                    
+					var raw = JSON.stringify({code: code, fullName: name, mobile: mobile, province: province, city: city, postalcode: postalcode, address:address});
+
+					var requestOptions = {
+						method: "post",
+						headers: myHeaders,
+						body: raw,
+						redirect: 'follow',
+						'Access-Control-Allow-Origin': '*'
+					};
+					// console.log(requestOptions)
+					fetch(base + "factor-detail", requestOptions).then(response => response.text())
+						.then(result => {
+							result = JSON.parse(result)
+							console.log(result)
+                            if(result.status){
+                                $("#pay-btn").fadeIn()
+                                $("#verify").fadeOut()
+                                toastr.success("اطلاعات پستی شما اضافه شد")
+                            }else {toastr.error("مشکلی به وجود آمده")
+                            $("#verify").show()}
+                        }).catch(error => console.log('error', error));
+            }
+            }else $(".indicator-label-verify").show()
+        })
+
+        $("#pay-btn").click(()=>{
+            var myHeaders = new Headers();
+					myHeaders.append("Content-Type", "application/json");
+                    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
+                    console.log(code)
+					var raw = JSON.stringify({code: code});
+
+					var requestOptions = {
+						method: "post",
+						headers: myHeaders,
+						body: raw,
+						redirect: 'follow',
+						'Access-Control-Allow-Origin': '*'
+					};
+					// console.log(requestOptions)
+					fetch(base + "factor-detail", requestOptions).then(response => response.text())
+						.then(result => {
+							result = JSON.parse(result)
+							console.log(result)
+                            if(result.status){
+                                $(".indicator-label-pay").show()
+                                $("#verify").hide()
+                                toastr.success("اطلاعات پستی شما اضافه شد")
+                            }else toastr.error("مشکلی به وجود آمده")
+                        }).catch(error => console.log('error', error));
+        })
 
         $("#submit").click(()=>{
             $("#pricefinal").slideUp();
@@ -382,13 +531,56 @@ License: For each use you must have a valid license purchased only from above li
             $("#close").click(()=>{
                 location.reload();
             })
-            $("#verify").click(()=>{
-                console.log("test")
-                // $("#form").hide(250);
-                // $("#kt_accordion_2").fadeIn(1000);
-            })
         })
-        $(document).ready(function(){
+
+        $("#name").keyup(()=>{
+            let name = $("#name").val()
+            if(!validate){
+                if(name =="" || !name || name.length <= 3){
+                validate = false
+                $("#name").addClass("is-invalid border-danger")
+                console.log("false")
+            }else {
+                $("#name").removeClass("is-invalid border-danger") 
+                $("#name").addClass("is-valid border-success") 
+                console.log("true")
+            }
+            }
+        })
+
+        $("#mobile").keyup(()=>{
+            let mobile = $("#mobile").val()
+            if(mobile =="" || !mobile || mobile.length != 11){
+                validate = false
+                $("#mobile").addClass("is-invalid border-danger")
+            }else {
+                $("#mobile").removeClass("is-invalid border-danger") 
+                $("#mobile").addClass("is-valid border-success") 
+            }
+        })
+
+        $("#postalcode").keyup(()=>{
+            let postalcode = $("#postalcode").val()
+            if(postalcode !="" && postalcode.length != 10){
+                validate = false
+                $("#postalcode").addClass("is-invalid border-danger")
+            }else {
+                $("#postalcode").removeClass("is-invalid border-danger") 
+                $("#postalcode").addClass("is-valid border-success") 
+            }
+        })
+
+        $("#address").keyup(()=>{
+            let address = $("#address").val()
+           if(address =="" || !address || address.length <= 10){
+                validate = false
+                $("#address").addClass("is-invalid border-danger")
+            }else {
+                $("#address").removeClass("is-invalid border-danger") 
+                $("#address").addClass("is-valid border-success") 
+            }
+        })
+
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -407,6 +599,7 @@ License: For each use you must have a valid license purchased only from above li
             "hideMethod": "fadeOut"
             };
         })
+
 
     </script>
     <script>var hostUrl = "assets/";</script>
