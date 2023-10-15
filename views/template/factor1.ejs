@@ -372,10 +372,10 @@ License: For each use you must have a valid license purchased only from above li
         }
 
         $("#submit").click(()=>{
-            $("#pricefinal").slideUp();
-            $("#mobile-item").slideUp();
+            $("#pricefinal").slideUp(1000);
+            $("#mobile-item").slideUp(1000);
             $("#offerPrice").remove();
-            $("#submit").slideUp();
+            $("#submit").slideUp(1000);
             $("#title").removeClass('mb-10');
             $("#title").addClass('mb-0');
             $("#form").slideDown(2500);
