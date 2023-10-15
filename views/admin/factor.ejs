@@ -255,8 +255,8 @@
                                     <thead class="bg-table">
                                         <tr class="fw-bolder text-muted bg-light bg-table">
                                             <th class="ps-4 min-w-50px rounded-start">نام محصول</th>
-                                            <th class="min-w-50px rounded-end text-center" style="padding: 10px;">قیمت
-                                            </th>
+                                            <th class="min-w-50px">تعداد</th>
+                                            <th class="min-w-50px rounded-end text-center" style="padding: 10px;">قیمت</th>
                                         </tr>
                                     </thead>
                                     <!--end::Table head-->
@@ -483,9 +483,10 @@
                     $("#factorCode").append('<span class="badge badge-light-info fs-5">'+ result.code +'</span>')
                     $("#factorCondition").append(statusfactor)
                     $.each(result.products, function (index, value) {
-                        sum += parseInt(value.price);
                         // console.log(value)
-                        $("#show-factor").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ value.title +'</span> </div> </div> </td> <td class="d-flex align-items-center justify-content-center"> <div class="d-flex align-items-center"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ separate(value.price) +'</span> </div> </div> </td> </tr>" ');
+                        sum += parseInt(value.price * value.count);
+                        // console.log(value)
+                        $("#show-factor").append(' <tr> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ value.title +'</span> </div> </div> </td> <td> <div class="d-flex align-items-center" style="margin-right: 10px;"> '+value.count+'</div> </td> <td class="d-flex align-items-center justify-content-center"> <div class="d-flex align-items-center"> <div class="d-flex justify-content-start flex-column"><span class="text-hover-primary mb-1 fs-6">'+ separate(value.price * value.count) +'</span> </div> </div> </td> </tr>" ');
                     })
                     let finalPrice = sum/100*(100-result.offPercent)
                     $("#sumPrice").append('<span class="badge badge-light">مجموع:<span class="badge text-info"> '+ separate(sum) +' تومان </span></span>')

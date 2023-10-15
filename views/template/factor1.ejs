@@ -83,6 +83,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <tr class="fw-bolder text-muted bg-light bg-table">
                                         <th class="ps-4 min-w-50px rounded-start">#</th>
                                         <th class="min-w-20px text-center">نام محصول</th>
+                                        <th class="min-w-50px text-center">تعداد</th>
                                         <th class="min-w-20px rounded-end text-end pe-7">قیمت</th>
                                     </tr>
                                 </thead>
@@ -118,12 +119,21 @@ License: For each use you must have a valid license purchased only from above li
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td>
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <div class="d-flex justify-content-start flex-column">
+                                                        <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                                                            <%= item.count %>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td class="text-end">
                                                 <div class="d-flex align-items-center justify-content-end">
                                                     <div class="d-flex justify-content-start flex-column">
                                                         <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                                                            style="margin-left: 10px;">
-                                                            <%= separate(item.price) %>
+                                                            style="margin-left: 33px;">
+                                                            <%= separate(item.price*item.count) %>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -140,7 +150,7 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
 
                     <%{ let ave=0; let offer=data.offPercent; data.products.forEach(i=> {
-                    ave += parseInt(i.price);
+                    ave += parseInt(i.price*i.count);
                     });
                     function separate(Number)
                     {
@@ -180,7 +190,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!-- <div class="left-semi-circle"></div>
                         <div class="right-semi-circle"></div> -->
                         <% { let ave=0; let offer=data.offPercent; data.products.forEach(i=> {
-                            ave += parseInt(i.price);
+                            ave += parseInt(i.price*i.count);
                             }); 
                             let finalPrice = ave/100*(100-data.offPercent)
                             %>
