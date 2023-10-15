@@ -181,7 +181,7 @@
                                     <span class="indicator-progress">یه کم صبر
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
-                                <button class="btn btn-info" id="change" style="display: none;" data-bs-toggle="modal" data-bs-target="#change-card">
+                                <button class="btn btn-info me-4" id="change" style="display: none;" data-bs-toggle="modal" data-bs-target="#change-card">
                                 <span class=" indicator-label">تغییر شماره کارت</span>
                                     <span class="indicator-progress">یه کم صبر
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -301,9 +301,10 @@
                                     title="اینجا هر مبلغی میخوای از موجودیت بنویس"></i>
                             </label>
                             <!--end::Label-->
-                            <input id="price-card" type="number" style="direction: rtl;" class="form-control form-control-solid"
+                            <input id="price-card" type="text" style="direction: rtl;" class="form-control form-control-solid"
                                 placeholder="مبلغ رو وارد کن" required />
                         </div>
+                        <div id="priceAlert" class="alert alert-success" style="display: none;"></div>
                         <!--end::Input group-->
                     </form>
                     <div class="text-center">
@@ -399,6 +400,43 @@
     
     <%- include('../layout-admin/footer') -%>
     <!-- <script src="assets/js/jquery.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/mahmoud-eskandari/NumToPersian/dist/num2persian-min.js"></script>
+    <script>
+        function formatInput(inputElement) {
+            const inputValue = inputElement.value;
+            const numericValue = inputValue.replace(/[^0-9]/g, '');
+            
+            const parts = [];
+            for (let i = numericValue.length; i > 0; i -= 3) {
+                parts.unshift(numericValue.slice(Math.max(i - 3, 0), i));
+            }
+
+            const formattedValue = parts.join(',');
+
+            inputElement.value = formattedValue;
+        }
+        function removeCommasAndParse(numberString) {
+            const numericValue = parseFloat(numberString.replace(/,/g, ''));
+            return isNaN(numericValue) ? 0 : numericValue;
+        }
+        $('#price-card').on('input', function() {
+
+            const inputValue = $(this).val();
+
+            formatInput(this);
+            let main = removeCommasAndParse(inputValue)
+            console.log(main)
+
+            let persianPrice = Num2persian(main);
+
+            $('#priceAlert').text(` ${persianPrice} تومان`);
+            $('#priceAlert').show();
+
+
+        });
+
+
+    </script>
     <script>
         let base = "https://api.dastakapp.ir/api/v1/"
         $(document).ready(function(){
