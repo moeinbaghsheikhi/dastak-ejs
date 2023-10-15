@@ -1,3 +1,8 @@
+function removeCommasAndParse(numberString) {
+    const numericValue = parseFloat(numberString.replace(/,/g, ''));
+    return isNaN(numericValue) ? 0 : numericValue;
+}
+
 function validateForm(form) {
     let formError = false
     let fields = document.forms[form].getElementsByTagName("input")
@@ -10,7 +15,8 @@ function validateForm(form) {
     let body = {}
     for (i = 0; i < fields.length; i++)
         if (fields[i].type == "file") body[fields[i].id] = document.querySelector("form[name='" + form + "'] #" + fields[i].id).getAttribute("file")
-        else if(fields[i].id == "account_id" || fields[i].id == "price" || fields[i].id == "inventory") body[fields[i].id] = parseInt(document.querySelector("form[name='" + form + "'] #" + fields[i].id).value)
+        else if(fields[i].id == "account_id" || fields[i].id == "inventory") body[fields[i].id] = parseInt(document.querySelector("form[name='" + form + "'] #" + fields[i].id).value)
+        else if(fields[i].id == "price") body[fields[i].id] = removeCommasAndParse(document.querySelector("form[name='" + form + "'] #" + fields[i].id).value)
         else body[fields[i].id] = document.querySelector("form[name='" + form + "'] #" + fields[i].id).value
     for (i = 0; i < textareas.length; i++)
         body[textareas[i].id] = document.querySelector("form[name='" + form + "'] #" + textareas[i].id).value;
