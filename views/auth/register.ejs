@@ -80,6 +80,8 @@ License: For each use you must have a valid license purchased only from above li
 				$("#register_sub").click(function(){
 					data.full_name = $("#name").val()
 					data.mobile = $("#mobile").val()
+					data.referral = $("#referral").val()
+					if(data.referral == "" || !data.referral) data.referral = null
 
 					var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -434,17 +436,34 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Step 3-->
 								<!--begin::Step 4-->
 								<div class="" data-kt-stepper-element="content">
-									<!--begin::Wrapper-->
 									<div class="w-100">
-										<h2>خوش اومدی به دفتر دستک جدیدت ;)</h2>
-										<br>
-										<p class="alert alert-primary">
-											تموم شد و رفت:)
-										</p>
+										<div class="mb-10 row">
+											<h2 class="mb-10">خوش اومدی به دفتر دستک جدیدت ;)</h2>
+											
+											<p class="alert alert-primary">
+												تموم شد و رفت:)
+											</p>
+										</div>
+
+										<!--begin::Input group-->
+										<div class="mb-10 row">
+											<!--begin::Label-->
+											<label class="form-label mb-3">شماره موبایل مُعرف (اگه داری)</label>
+											<!--end::Label-->
+											<!--begin::Input-->
+											<input type="text" class="form-control form-control-lg form-control-solid" id="referral" placeholder="" value="" />
+											<!--end::Input-->
+										</div>
+										<!--end::Input group-->
 									</div>
+									<!--begin::Wrapper-->
+								
 									<!--end::Wrapper-->
+
+								
 								</div>
 								<!--end::Step 4-->
+							
 								<!--begin::Step 5-->
 								<div class="" data-kt-stepper-element="content">
 									<!--begin::Wrapper-->

@@ -212,12 +212,10 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="card-body py-5">
-                            <div class="bg-light py-4 px-4 rounded mb-4">
+                        <div class="card-body transaction-body py-5">
+                            <!-- <div class="bg-light py-4 px-4 rounded mb-4">
                                 <div class="circle-with-text">
-                                    <div class="circle-icon bg-danger">
-                                        <i class="fas fa-minus-circle"></i>                                    
-                                    </div>
+                                    <div class="circle-icon bg-danger"><i class="fas fa-minus-circle"></i></div>
                                     <div class="text-content">
                                         <h3 class="mb-1">پرداخت مشتری</h3>
                                         <p>فاکتور شما با موفقیت پرداخت شده</p>
@@ -229,9 +227,7 @@
                             </div>
                             <div class="bg-light py-4 px-4 rounded mb-4">
                                 <div class="circle-with-text">
-                                    <div class="circle-icon bg-success">
-                                        <i class="fas fa-check-circle"></i> 
-                                    </div>
+                                    <div class="circle-icon bg-success"><i class="fas fa-check-circle"></i></div>
                                     <div class="text-content">
                                         <h3 class="mb-1">پرداخت مشتری</h3>
                                         <p>فاکتور شما با موفقیت پرداخت شده</p>
@@ -240,7 +236,7 @@
                                         <span>150/000 <span>تومان</span></span>
                                     </div>
                                 </div>  
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -439,6 +435,20 @@
     </script>
     <script>
         let base = "https://api.dastakapp.ir/api/v1/"
+        MagicRequest("post", "transactions",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
+            .then(result => {
+                result = JSON.parse(result)?.result
+          
+                $.each(result, function (index, value) {
+                        console.log(value)
+                        let type 
+                        if(value.type == 1 || value.type ==2) type = '<div class="circle-icon bg-success"><i class="fas fa-check-circle"></i></div>'
+                        else '<div class="circle-icon bg-danger"><i class="fas fa-minus-circle"></i></div>' 
+                        // if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ') else
+                        $(".transaction-body").append('<div class="bg-light py-4 px-4 rounded mb-4"><div class="circle-with-text">'+type+'<div class="text-content"><h3 class="mb-1">'+value.title+'</h3><p>'+value.message+'</p></div><div class="price-end"><span>'+separate(value.amount)+' <span>تومان</span></span></div></div></div>')
+           
+                })
+            }).catch(error => console.log('error', error));
         $(document).ready(function(){
             toastr.options = {
                 "closeButton": false,
@@ -485,6 +495,7 @@
                                         $("#titleFormCard").text('کارت بانکی ثبت شده');
                                         $("#showCardNumber").text(formatCreditCard(result.result.cardNumber));
                                         $("#showCardName").text(result.result.cardName);
+                                        $(".card-holder-money").text("موجودی : " + separate(result.result.amount) + " تومان")
                                     // },500);
                                     $("#checkout-price").click(()=>{
                                         $("#price-card").val(result.result.amount)

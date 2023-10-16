@@ -407,7 +407,7 @@
     </div>
     <script src="assets/js/jquery.js"></script>
     <script>
-         MagicRequest("post", "products/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
+            MagicRequest("post", "products/get-by-filter",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
             .then(result => {
                 result = JSON.parse(result)?.result?.items
           

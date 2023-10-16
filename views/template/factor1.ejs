@@ -62,14 +62,42 @@ License: For each use you must have a valid license purchased only from above li
 					</a> -->
                 <!--end::Logo-->
                 <!--begin::Wrapper-->
-                <div class="w-80 w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto"  style="margin-top: 40px;" dir="rtl">
+                <div class="factor-body-2" style="display: none;">
+                    <div class="circle-icon bg-success mb-10" style="margin: 0 auto; width: 90px; height: 90px;">
+                        <i class="fas fa-check-circle" style="font-size: 55px;"></i> 
+                    </div>
+
+                    <h2 class="text-center mb-12">تراکنش شما با موفقیت انجام شد</h2>
+
+                    <div class="payment-detail text-center">
+
+                    </div>
+<br>
+                    <div>
+                        <button class="btn btn-success"  style="margin: 0 auto; display: flex;">از اعتمادت ممنونیم:)</button>
+                    </div>
+                </div>
+
+                <div class="factor-body-3" style="display: none;">
+                    <div class="circle-icon bg-danger mb-10" style="margin: 0 auto; width: 90px; height: 90px;">
+                        <i class="fas fa-minus-circle" style="font-size: 55px;"></i> 
+                    </div>
+
+                    <h2 class="text-center mb-5"> تراکنش معتبر نیست</h2>
+
+                    <div class="payment-detail text-center">
+                        <p>ببخشید! این صفحه هیچ اعتباری نداره. اگر خطایی رخ داده به فروشنده بگو</p>
+                    </div>
+                </div>
+
+                <div class="w-80 w-lg-500px bg-body factor-body-1 rounded shadow-sm p-10 p-lg-15 mx-auto"  style="margin-top: 40px;" dir="rtl">
                     <!--begin::Form-->
                     <!-- <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#"> -->
                     <!--begin::Heading-->
                     <div class="text-center mb-10" id="title">
                         <!--begin::Title-->
                         <% { %>
-                        <h1 class="mb-3 text-start"><%= data.account.name  %> 
+                        <h1 class="mb-3 text-start"><%= data?.account?.name  %> 
                         <% if(data.status==1) {%><span class="badge badge-info float-end">ایجاد شده</span><% } %>
                         <% if(data.status==2) {%><span class="badge badge-primary float-end">در انتظار پرداخت</span><% } %>
                         <% if(data.status==3) {%><span class="badge badge-danger float-end">انصراف از پرداخت</span><% } %>
@@ -214,6 +242,7 @@ License: For each use you must have a valid license purchased only from above li
                         <% } %>
                     </div>
                     <br>
+                    <% if(data.status==1 || data.status==2) {%>
                     <div class="text-center d-block">
                         <!--begin::Submit button-->
                         <div>
@@ -223,6 +252,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <!-- <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span> -->
                             </button>
                         </div>
+                        <% } %>
                     </div>
                     <div id="form" style="display: none;">
                         <!--begin:Form-->
@@ -366,6 +396,43 @@ License: For each use you must have a valid license purchased only from above li
         const provinceSelect = document.getElementById("province");
         const citiesSelect = document.getElementById("city");
         let code = $("#factor_code").val()
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if(urlParams.get('trackId'))
+        {
+            let trackId = urlParams.get('trackId')
+            let success = urlParams.get('success')
+            let status = urlParams.get('status')
+            let orderId = urlParams.get('orderId')
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            
+            var raw = JSON.stringify({ trackId: trackId, success:parseInt(success), status:parseInt(status), code:orderId });
+
+            var requestOptions = {
+                method: "post",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow',
+                'Access-Control-Allow-Origin': '*'
+            };
+            // console.log(requestOptions)
+            fetch(base + "payment/check", requestOptions).then(response => response.text())
+                .then(result => {
+                    result = JSON.parse(result)
+                    $(".factor-body-1").empty()
+                    if(result.status){
+                        $(".factor-body-2").show()
+                        $(".factor-body-1").append($(".factor-body-2"))
+                        $(".payment-detail").append("<p>کد تراکنش: " + trackId + "</p>"+"<p>کد رهگیری فاکتور: " + orderId + "</p>")
+                    }else{
+                        $(".factor-body-3").show()
+                        $(".factor-body-1").append($(".factor-body-3"))
+                    }
+                    console.log(result)
+                }).catch(error => console.log('error', error));
+        }
 
         if(!provinceSelect) {
             $("#pay-btn").show()
@@ -409,6 +476,8 @@ License: For each use you must have a valid license purchased only from above li
         
         $(document).ready(function(){
         $("#pay-btn").click(()=> {
+            toastr.info("...در حال انتقال به درگاه پرداخت")
+            $("#pay-btn").attr("disabled", "disabled")
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             
@@ -425,8 +494,10 @@ License: For each use you must have a valid license purchased only from above li
             fetch(base + "payment", requestOptions).then(response => response.text())
                 .then(result => {
                     result = JSON.parse(result)
-                    console.log(result)
-                   
+                    if(result.result.url)
+                    { window.location=result.result.url
+                    $("#pay-btn").removeAttr("disabled")
+                    }else toastr.error("مشکلی در اتصال به سرویس پرداخت پیش آمد")
                 }).catch(error => console.log('error', error));
         })
 
@@ -484,7 +555,7 @@ License: For each use you must have a valid license purchased only from above li
                 validate = true
             }
 
-            $(".indicator-progress").hide()
+            
             if(validate){{
                 var myHeaders = new Headers();
 					myHeaders.append("Content-Type", "application/json");
@@ -503,16 +574,19 @@ License: For each use you must have a valid license purchased only from above li
 					fetch(base + "factor-detail", requestOptions).then(response => response.text())
 						.then(result => {
 							result = JSON.parse(result)
-							console.log(result)
+                  
                             if(result.status){
                                 $("#pay-btn").fadeIn()
                                 $("#verify").fadeOut()
+                                $(".indicator-progress").hide()
                                 toastr.success("اطلاعات پستی شما اضافه شد")
                             }else {toastr.error("مشکلی به وجود آمده")
                             $("#verify").show()}
                         }).catch(error => console.log('error', error));
             }
-            }else $(".indicator-label-verify").show()
+            }else {
+                $(".indicator-label-verify").show()
+            $(".indicator-progress").hide()}
         })
 
         // $("#pay-btn").click(()=>{
