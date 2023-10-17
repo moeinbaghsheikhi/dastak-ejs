@@ -19,6 +19,7 @@ router.get('/admin/grouping', grouping.index)
 router.get('/admin/factor', factor.index)
 router.get('/admin/payment', payment.index)
 router.get('/factor/:code', template.factor1)
+router.get('/admin/factor/:code', template.admin)
 // router.get('/routine', routineorder.index)
 
 // USER routes

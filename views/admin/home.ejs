@@ -176,12 +176,18 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
+                                <button class="btn btn-light" id="back-card" style="display: none;">
+                                    <span class=" indicator-label">بازگشت</span>
+                                        <span class="indicator-progress">یه کم صبر
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+
                                 <button class="btn btn-primary" id="submit">
                                 <span class=" indicator-label">افزودن</span>
                                     <span class="indicator-progress">یه کم صبر
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
-                                <button class="btn btn-info me-4" id="change" style="display: none;" data-bs-toggle="modal" data-bs-target="#change-card">
+                                <button class="btn btn-info me-4" id="change" style="display: none;">
                                 <span class=" indicator-label">تغییر شماره کارت</span>
                                     <span class="indicator-progress">یه کم صبر
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -442,8 +448,8 @@
                 $.each(result, function (index, value) {
                         console.log(value)
                         let type 
-                        if(value.type == 1 || value.type ==2) type = '<div class="circle-icon bg-success"><i class="fas fa-check-circle"></i></div>'
-                        else '<div class="circle-icon bg-danger"><i class="fas fa-minus-circle"></i></div>' 
+                        if(value.type == 1) type = '<div class="circle-icon bg-success"><i class="fas fa-check-circle"></i></div>'
+                        else type = '<div class="circle-icon bg-danger"><i class="fas fa-minus-circle"></i></div>' 
                         // if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ') else
                         $(".transaction-body").append('<div class="bg-light py-4 px-4 rounded mb-4"><div class="circle-with-text">'+type+'<div class="text-content"><h3 class="mb-1">'+value.title+'</h3><p>'+value.message+'</p></div><div class="price-end"><span>'+separate(value.amount)+' <span>تومان</span></span></div></div></div>')
            
@@ -810,6 +816,24 @@
                 }
             }
         })
+        $("#change").click(()=>{
+            $("#card-number").hide();
+            $("#form-check").show();
+            $("#checkout").hide();
+            $("#change").hide()
+            $("#back-card").show()
+            $("#submit").show()
+        })
+
+        $("#back-card").click(()=>{
+            $("#card-number").show();
+            $("#form-check").hide();
+            $("#checkout").show();
+            $("#change").show()
+            $("#back-card").hide()
+            $("#submit").hide()
+        })
+
         $("#submit").click(()=>{
             if($("#cardNumber").val().length != 16){
                 toastr.error("!شماره کارت نامعتبره");
@@ -851,6 +875,7 @@
                                 {
                                     toastr.success("(;شماره کارت با موفقیت اضافه شد");
                                     setTimeout(function(){
+                                        $("#back-card").hide()
                                         $("#form-check").hide();
                                         $("#card-number").fadeIn(500);
                                         $("#card").addClass('p-4');
@@ -875,8 +900,34 @@
                             toastr.error("لطفا فیلد رو پر کن");
                         }
                         else{
-                            toastr.success("با موفقیت ثبت شد(طی 24 ساعت آینده پول به کارت شما واریز می شود از صبر شما سپاسگذاریم)");
-                            $("#checkout-modal #close-modal").click()
+                            let amount = removeCommasAndParse($("#price-card").val())
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", "Bearer "+localStorage.getItem("token"));
+            
+            var raw = JSON.stringify({ amount: amount });
+
+            var requestOptions = {
+                method: "post",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow',
+                'Access-Control-Allow-Origin': '*'
+            };
+            // console.log(requestOptions)
+            fetch(base + "check-out", requestOptions).then(response => response.text())
+                .then(result => {
+                    result = JSON.parse(result)
+
+                    if(result.status){
+                        toastr.success("با موفقیت ثبت شد(طی 24 ساعت آینده پول به کارت شما واریز می شود از صبر شما سپاسگذاریم)");
+                         $("#checkout-modal #close-modal").click()
+                    }else{
+                        toastr.error(result.alert);
+                    }
+                    console.log(result)
+                }).catch(error => console.log('error', error));
+                    
                         }
                     })
         

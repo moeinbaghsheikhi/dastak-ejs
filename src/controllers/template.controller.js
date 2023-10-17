@@ -10,5 +10,13 @@ module.exports = {
 		if(factor.status == 404) res.render('404')
 		return res.render('template/factor1',{ data: factor.data, page: req.originalUrl.substr(1).toLowerCase() })
 		
+	},
+
+	async admin(req, res, next) {
+		let factor = await request.get('factors/'+req.params.code)
+		// console.log(factor.data)
+		if(factor.status == 404) res.render('404')
+		return res.render('admin/factor_detail',{ data: factor.data, page: req.originalUrl.substr(1).toLowerCase() })
+		
 	}
 };

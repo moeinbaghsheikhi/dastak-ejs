@@ -1,0 +1,179 @@
+<%- include('../layout-admin/header') -%>
+<div class="row">
+    <!--begin::Tables Widget-->
+    <div class="card col-11 mb-5 mb-xl-8 mt-10" style="margin: 0 auto;">
+        <!--begin::Body-->
+        <div class="card-body py-3">
+               <!--begin:Form-->
+    <form class="form" name="show">
+        <br>
+        <!--begin::Heading-->
+        <div class="mb-13 text-center">
+            <!--begin::Title-->
+            <h1 class="mb-3">مشخصات فاکتور</h1>
+            <!--end::Title-->
+            <!--begin::Description-->
+            <!-- <div class="text-muted fw-bold fs-5">If you need more info, please check
+                <a href="#" class="fw-bolder link-primary">Project Guidelines</a>.
+            </div> -->
+            <!--end::Description-->
+        </div>
+        <!--end::Heading-->
+        <!--begin::Input group-->
+        <div class="d-flex flex-column mb-8 fv-row">
+            <div class="card card-flush shadow-sm">
+                <div class="card-header">
+                    <h1 class="card-title">کد فاکتور : <span class="card-title ms-2" id="factorCode">
+                        <span class="card-title ms-2" id="factorCode"><span class="badge badge-light-info fs-5"><%= data?.code  %></span></span> </span></h1>
+                    <span class="card-title ms-2" id="factorCondition">
+                        <% { %>
+                           
+                            <% if(data.status==1) {%><span class="badge badge-info float-end">ایجاد شده</span><% } %>
+                            <% if(data.status==2) {%><span class="badge badge-primary float-end">در انتظار پرداخت</span><% } %>
+                            <% if(data.status==3) {%><span class="badge badge-danger float-end">انصراف از پرداخت</span><% } %>
+                            <% if(data.status==4) {%><span class="badge badge-warning float-end">منقضی شده</span><% } %>
+                            <% if(data.status==5) {%><span class="badge badge-success float-end">پرداخت شده</span><% } %>
+                            </h1>
+                            <!--end::Title-->
+                            <% } %>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="factor_code" value="<%= data.code %>">
+        <!--end::Input group-->
+        <!--begin::Input group-->
+        <!--begin::Table container-->
+        <div class="table-responsive" style="direction: rtl;">
+            <!--begin::Table-->
+            <table class="table align-middle gs-0 gy-4" id="showProduct">
+                <!--begin::Table head-->
+                <thead class="bg-table">
+                    <tr class="fw-bolder text-muted bg-light bg-table w-100">
+                        <th class="ps-4 min-w-50px rounded-start">#</th>
+                        <th class="min-w-50px text-center">نام محصول</th>
+                        <th class="min-w-50px text-center">تعداد</th>
+                        <th class="min-w-50px rounded-end text-center" style="margin-right: -10px;">قیمت</th>
+                    </tr>
+                </thead>
+                <!--end::Table head-->
+                <!--begin::Table body-->
+                <tbody id="show-factor">
+                    <% // function for template 000,000
+                    function separate(Number) { Number+='' ; Number=Number.replace(',', '' );
+                    x=Number.split('.'); y=x[0]; z=x.length> 1 ? '.' + x[1] : '';
+                    var rgx = /(\d+)(\d{3})/;
+                    while (rgx.test(y))
+                    y= y.replace(rgx, '$1' + ',' + '$2');
+                    return y+ z;
+                    }
+                    let counter =1;
+                    data.products.forEach(item=> {%>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center" style="margin-right: 10px;">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                                        <span class="badge badge-circle badge-light"><%= counter %></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                                        <%= item.title %>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                                        <%= item.count %>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-end">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                                        style="margin-left: 33px;">
+                                        <%= separate(item.price) %>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <% counter++ }); %>
+                </tbody>
+                <!--end::Table body-->
+            </table>
+            <!--end::Table-->
+        </div>
+        <br>
+          <%{ let ave=0; let offer=data.offPercent; data.products.forEach(i=> {
+                    ave += parseInt(i.price*i.count);
+                    });
+                    function separate(Number)
+                    {
+                    Number+= '';
+                    Number= Number.replace(',', '');
+                    x = Number.split('.');
+                    y = x[0];
+                    z= x.length > 1 ? '.' + x[1] : '';
+                    var rgx = /(\d+)(\d{3})/;
+                    while (rgx.test(y))
+                    y= y.replace(rgx, '$1' + ',' + '$2');
+                    return y+ z;
+                    } %>
+        <!--end::Table container-->
+        <div class="d-flex flex-column mb-8 fv-row">
+            <div id="offerPrice" class="d-flex align-items-center" style="margin-right: 10px;">
+                <div class="d-flex justify-content-start">
+                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6" id="sumPrice">
+                    </span>
+                </div>
+                <div class="d-flex justify-content-end ms-auto">
+                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6" id="offer-Price"
+                        style="margin-left: 10px;">
+                    </span>
+                </div>
+            </div>
+            <div id="pricefinal"
+                class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5 position-relative"
+                style="overflow: hidden; z-index: 1 !important;">
+                <!--begin::Number-->
+                <div class="d-flex align-items-center justify-content-center" id="final-Price">
+                </div>
+                <!--end::Number-->
+
+                <!--begin::Label-->
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="fs-2 fw-bolder text-primary counted" data-kt-countup="true" data-kt-countup-value="500000"><%= separate(ave) %></div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span>
+                </div>
+                <div class="fw-bold fs-6 text-center">قیمت نهایی</div>
+                <!--end::Label-->
+            </div>
+        </div>
+        <% } %>
+        <!--end::Input group-->
+        <!--end::Actions-->
+    </form>
+    <br>
+    <div class="text-center">
+        <button class="btn btn-info me-3" id="copyBtn"><i class="fas fa-solid fa-copy"></i>ذخیره در کلیبورد</button>
+        <button data-bs-dismiss="modal" class="btn btn-light me-3">باشه;)</button>
+    </div>
+    <!--end:Form-->
+        </div>
+        <br><br>
+        <!--begin::Body-->
+    </div>
+  
+</div>
+ 
+    <%- include('../layout-admin/footer') -%>
