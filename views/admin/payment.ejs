@@ -43,7 +43,9 @@
             MagicRequest("post", "transactions",{"pageNumber" : 1,"pageSize" : 200}, false, true).then(response => response.text())
             .then(result => {
                 result = JSON.parse(result)?.result
-          
+                if(!result|| result.length == 0){
+                    $(".transaction-body").append("<p class='alert alert-dismissible bg-light-primary d-flex flex-column flex-sm-row w-100 p-5 mb-10'>هنوز تراکنشی ثبت نشده:)</p>")
+                }
                 $.each(result, function (index, value) {
                         console.log(value)
                         let type 

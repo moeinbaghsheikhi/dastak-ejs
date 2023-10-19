@@ -95,7 +95,8 @@ $('#password').on('keypress', function(e) {
   "hideMethod": "fadeOut"
 };
 				$("#login-step-2").click(function(){
-					let mobile = $("#mobile").val()
+					if($("#mobile").val()){
+						let mobile = $("#mobile").val()
 
 					var myHeaders = new Headers();
 					myHeaders.append("Content-Type", "application/json");
@@ -126,11 +127,11 @@ $('#password').on('keypress', function(e) {
 						$("#mobile-item").hide()
 					}
 						}else{
-							return toastr.error("همچین شماره موبایلی وجود نداره!")
+							return toastr.error("قبل از ورود باید ثبت نام کنی:)")
 						}
 					
 						}).catch(error => console.log('error', error));
-					
+					}else toastr.error("شماره موبایل نمیتونه خالی باشه")
 				})
 				$("#send_pass").click(function(){
 					$("#send_pass").attr("disabled", "disabled")
@@ -141,8 +142,8 @@ $('#password').on('keypress', function(e) {
 					if(mobile == "" || !mobile) {
 						toastr.error("اول شماره موبایلت رو وارد کن!")
 						$("#send_pass .indicator-label").show()
-			$("#send_pass .indicator-progress").hide()
-			$("#send_pass").removeAttr("disabled")
+						$("#send_pass .indicator-progress").hide()
+						$("#send_pass").removeAttr("disabled")
 				}
 					else{
 						var myHeaders = new Headers();

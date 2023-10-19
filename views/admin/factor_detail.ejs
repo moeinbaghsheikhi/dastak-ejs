@@ -40,6 +40,44 @@
                 </div>
             </div>
         </div>
+
+        <% if(data?.detail){ %>
+        <div class="d-flex flex-column mb-8 fv-row">
+            <div class="card card-flush shadow-sm p-3">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="mt-5">
+                            <h5>نام و نام خوانوادگی:</h5>
+                            <%= data?.detail.fullName %>
+                        </div>
+                        <div class="mt-5">
+                            <h5>شماره موبایل:</h5>
+                            <%= data?.detail.mobile %>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="mt-5">
+                            <h5>استان:</h5>
+                            <%= data?.detail.province %>
+                        </div>
+                        <div class="mt-5">
+                            <h5>شهر:</h5>
+                            <%= data?.detail.city %>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mt-5">
+                            <h5>آدرس: </h5>
+                            <%= data?.detail.address %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
         <input type="hidden" id="factor_code" value="<%= data.code %>">
         <!--end::Input group-->
         <!--begin::Input group-->
@@ -129,7 +167,8 @@
                     while (rgx.test(y))
                     y= y.replace(rgx, '$1' + ',' + '$2');
                     return y+ z;
-                    } %>
+                    }
+                    let sum = (ave / 100) * (100-offer); %>
         <!--end::Table container-->
         <div class="d-flex flex-column mb-8 fv-row">
             <div id="offerPrice" class="d-flex align-items-center" style="margin-right: 10px;">
@@ -143,6 +182,15 @@
                     </span>
                 </div>
             </div>
+            <div id="offerPrice" class="d-flex align-items-center" style="margin-right: 10px;">
+                <div class="d-flex justify-content-start">
+                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6" id="sumPrice"><span class="badge badge-light">مجموع:<span class="badge text-info"> 76,000 تومان </span></span></span>
+                </div>
+                <div class="d-flex justify-content-end ms-auto">
+                    <span class="text-dark fw-bolder text-hover-primary mb-1 fs-6" id="offer-Price" style="margin-left: 10px;"><span class="badge badge-light">تخفیف:<span class="badge text-muted"><%= data.offPercent %>%</span> </span></span>
+                </div>
+            </div>
+            <% if(data.description != ""){ %> <div id="description-factor"><br><p class="alert">توضیجات فاکتور: <%= data.description %></p></div> <% } %>
             <div id="pricefinal"
                 class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mt-5 position-relative"
                 style="overflow: hidden; z-index: 1 !important;">
@@ -153,20 +201,29 @@
 
                 <!--begin::Label-->
                 <div class="d-flex align-items-center justify-content-center">
-                    <div class="fs-2 fw-bolder text-primary counted" data-kt-countup="true" data-kt-countup-value="500000"><%= separate(ave) %></div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span>
+                    <div class="fs-2 fw-bolder text-primary counted" data-kt-countup="true" data-kt-countup-value="0"><%= separate(sum) %></div> <span class="text-primary ms-2 fs-2 fw-bolder">تومان</span>
                 </div>
                 <div class="fw-bold fs-6 text-center">قیمت نهایی</div>
                 <!--end::Label-->
             </div>
-        </div>
-        <% } %>
         <!--end::Input group-->
         <!--end::Actions-->
     </form>
+    
+    <% if(data.status == 5){ %>
+        <div>
+            <br>
+            <p class="alert alert-success">مشتری هزینه فاکتور رو پرداخت کرده:) الان وقتشه مرسوله رو واسش ارسال کنی و کد رهگیری بستشو این پایین بزنی تا براش پیامک بشه!</p>
+            <input type="number" id="tracking-code" class="form-control form-control-solid">
+            <button type="button" class="btn btn-success mt-5 d-block d-md-inline w-100" id="send-tracking-code">ارسال کد رهگیری</button>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
     <br>
     <div class="text-center">
-        <button class="btn btn-info me-3" id="copyBtn"><i class="fas fa-solid fa-copy"></i>ذخیره در کلیبورد</button>
-        <button data-bs-dismiss="modal" class="btn btn-light me-3">باشه;)</button>
+        <button class="btn btn-info me-3" id="copyBtn" factor_code_copy="<%= data.code %>"><i class="fas fa-solid fa-copy"></i>ذخیره در کلیبورد</button>
+        <a href="/admin/factor" class="btn btn-light me-3">بازگشت</a>
     </div>
     <!--end:Form-->
         </div>
@@ -175,5 +232,53 @@
     </div>
   
 </div>
+
+<script>
+         const base = "https://api.dastakapp.ir/api/v1/"
+            function clipboard(code) {
+            navigator.clipboard.writeText("dastakapp.ir/factor/" + code);
+            toastr.success("<a style='font-size: 12px' href='http://dastakapp.ir/factor/" + code + "'>" + code + "</a>" + " : لینک فاکتور در کلیپ بورد کپی شد");
+        }
+       $("#copyBtn").click(()=>{
+                    clipboard($("#copyBtn").attr("factor_code_copy"))
+                    })
+
+                $(document).ready(()=>{
+                    $("#send-tracking-code").click(()=>{
+                        let factor_code = $("#copyBtn").attr("factor_code_copy")
+                        let tracking_code = $("#tracking-code").val()
+                        if(!tracking_code || tracking_code == "" || tracking_code.length != 24){
+                            toastr.error("لطفا کد رهگیری رو وارد کن")
+                        } else{
+                            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            
+            var raw = JSON.stringify({ code: factor_code, trackingCode:tracking_code });
+
+            var requestOptions = {
+                method: "post",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow',
+                'Access-Control-Allow-Origin': '*'
+            };
+            // console.log(requestOptions)
+            fetch(base + "factor-detail/add-tracking-code", requestOptions).then(response => response.text())
+                .then(result => {
+                    result = JSON.parse(result)
+                    
+                    if(result.status){
+                        toastr.success("کد رهگیری برای مشتری پیامک شد:)")
+                        // 
+                        setTimeout(()=>{location.reload()}, 1500)
+                    }else{
+                        toastr.error("یه مشکل وجود داره!")
+                    }
+                    console.log(result)
+                }).catch(error => console.log('error', error));
+                        }
+                    })
+                })
+</script>
  
     <%- include('../layout-admin/footer') -%>

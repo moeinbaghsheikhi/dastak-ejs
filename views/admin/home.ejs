@@ -445,6 +445,9 @@
             .then(result => {
                 result = JSON.parse(result)?.result
           
+                if(!result|| result.length == 0){
+                    $(".transaction-body").append("<p class='alert alert-dismissible bg-light-primary d-flex flex-column flex-sm-row w-100 p-5 mb-10'>هنوز تراکنشی ثبت نشده:)</p>")
+                }
                 $.each(result, function (index, value) {
                         console.log(value)
                         let type 
@@ -452,7 +455,6 @@
                         else type = '<div class="circle-icon bg-danger"><i class="fas fa-minus-circle"></i></div>' 
                         // if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ') else
                         $(".transaction-body").append('<div class="bg-light py-4 px-4 rounded mb-4"><div class="circle-with-text">'+type+'<div class="text-content"><h3 class="mb-1">'+value.title+'</h3><p>'+value.message+'</p></div><div class="price-end"><span>'+separate(value.amount)+' <span>تومان</span></span></div></div></div>')
-           
                 })
             }).catch(error => console.log('error', error));
         $(document).ready(function(){
