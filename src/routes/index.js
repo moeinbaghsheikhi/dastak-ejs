@@ -20,7 +20,9 @@ router.get('/admin/factor', factor.index)
 router.get('/admin/payment', payment.index)
 router.get('/factor/:code', template.factor1)
 router.get('/admin/factor/:code', template.admin)
-router.get('/*', res.render('404'))
+router.get('/*', (req, res)=>{
+    return res.render('404')
+})
 // router.get('/routine', routineorder.index)
 
 // USER routes
