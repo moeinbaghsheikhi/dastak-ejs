@@ -49,7 +49,7 @@
                 $.each(result, function (index, value) {
                         console.log(value)
                         let type 
-                        if(value.type == 1) type = '<div class="circle-icon bg-success"><i class="fas fa-check-circle"></i></div>'
+                        if(value.type == 1 || value.type == 3 || value.type == 4) type = '<div class="circle-icon bg-success"><i class="fas fa-check-circle"></i></div>'
                         else type = '<div class="circle-icon bg-danger"><i class="fas fa-minus-circle"></i></div>' 
                         // if (index == 0) $("#add #categories_id").append('<option value="' + value.id + '" selected>' + value.title + '</option> ') else
                         $(".transaction-body").append('<div class="bg-light py-4 px-4 rounded mb-4"><div class="circle-with-text">'+type+'<div class="text-content"><h3 class="mb-1">'+value.title+'</h3><p>'+value.message+'</p></div><div class="price-end"><span>'+separate(value.amount)+' <span>تومان</span></span></div></div></div>')
