@@ -248,7 +248,7 @@
                         let factor_code = $("#copyBtn").attr("factor_code_copy")
                         let tracking_code = $("#tracking-code").val()
                         if(!tracking_code || tracking_code == "" || tracking_code.length != 24){
-                            toastr.error("لطفا کد رهگیری رو وارد کن")
+                            toastr.error("کد رهگیری وارد شده صحیح نیست")
                         } else{
                             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
