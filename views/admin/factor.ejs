@@ -602,7 +602,7 @@
                             navigator.clipboard.writeText("dastakapp.ir/factor/" + factor_code);
 
                             toastr.success(factor_code + ": لینک فاکتور در کلیپ بورد کپی شد");
-                            // setTimeout(function () { location.reload() }, 1500)
+                            setTimeout(function () { location.reload() }, 1500)
                         }).catch(error => console.log('error', error));
                 else {
                     toastr.error("!فاکتور شما هنوز خالیه")
