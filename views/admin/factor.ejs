@@ -161,12 +161,22 @@
                                 </table>
                                 <!--end::Table-->
                             </div>
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                <!--begin::Label-->
+                                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                    <span>هزینه پستی</span>
+                                        <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip"></i>
+                                </label>
+                                <!--end::Label-->
+                                <input id="postalCost" style="text-align: right;" type="number" class="form-control form-control-solid" value="35000">
+                            </div>
+                            <!--end::Input group-->
                             <br>
                             <!--end::Table container-->
                             <div class="d-flex flex-column mb-8 fv-row">
                                 <!--begin::Label-->
                                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                    <span">درصد تخفیف <span style="font-size: 11px;"> (1 تا 99)</span></span>
+                                    <span>درصد تخفیف <span style="font-size: 11px;"> (1 تا 99)</span></span>
                                         <i class="bi bi-info-circle ms-2 fs-7" data-bs-toggle="tooltip" title=""
                                             data-bs-original-title="درصد تخفیفی که میخوای روی فاکتوراعمال بشه رو بگو"
                                             aria-label="عنوانی برای محصولت باید اینجا بنویسی"></i>
@@ -542,7 +552,7 @@
                 let product_id = $("#products").val()
 
                 if (!product_id)
-                    toastr.error("!اول یکی از محصولاتت رو انتخاب کن")
+                    toastr.error("اول یکی از محصولاتت رو انتخاب کن!")
                 else MagicRequest("get", "products/" + product_id).then(response => response.text())
                     .then(result => {
                         result = JSON.parse(result).result
