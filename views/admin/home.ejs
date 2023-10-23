@@ -887,6 +887,7 @@
                                         $("#titleFormCard").text('کارت بانکی ثبت شده');
                                         $("#showCardNumber").text(formatCreditCard($("#cardNumber").val()));
                                         $("#showCardName").text($("#cardName").val());
+                                        $(".card-holder-money").text("موجودی : " + separate(result.result.amount) + " تومان")
                                     },500);
                                     $("#checkout-price").click(()=>{
                                         $("#price-card").val('0')

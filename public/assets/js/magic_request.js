@@ -156,9 +156,17 @@ function MagicRequest(method, url, params = {}, reload = true, list= false) {
                 }
                 return result
             }else{
-                console.log(result.alert)
+                // console.log(result)
                 // if(Array.isArray(result.validationErrors)) toastr.error(responseMsg(result.alert.title[0])); else 
                 toastr.error(result.alert);
+                if(result.alert == "لطفا برای دسترسی به سایت وارد شوید"){
+                    toastr.info("درحال خروج از حساب!");
+                    setTimeout(()=> {
+                        localStorage.removeItem("login")
+                        localStorage.removeItem("token")
+                        window.location.replace("/")
+                    }, 1500)
+                }
                 
             }
            }
