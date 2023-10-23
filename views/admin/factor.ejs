@@ -577,6 +577,7 @@
 
             $("#submit").click(function () {
                 let offPercent = parseInt($("#offPercent").val()) || null
+                let postalCost = parseInt($("#postalCost").val()) || 35000
                 let description = $("#description").val()
                 // console.log(offPercent)
 
@@ -588,7 +589,8 @@
                 let factor_data = {
                     "products": product_list,
                     "OffPercent": offPercent,
-                    "description" : description
+                    "description" : description,
+                    "postalCost": postalCost
                 }
 
                 if (factor_list.length >= 1)
@@ -600,7 +602,7 @@
                             navigator.clipboard.writeText("dastakapp.ir/factor/" + factor_code);
 
                             toastr.success(factor_code + ": لینک فاکتور در کلیپ بورد کپی شد");
-                            setTimeout(function () { location.reload() }, 1500)
+                            // setTimeout(function () { location.reload() }, 1500)
                         }).catch(error => console.log('error', error));
                 else {
                     toastr.error("!فاکتور شما هنوز خالیه")
