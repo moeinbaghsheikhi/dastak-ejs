@@ -233,7 +233,7 @@ License: For each use you must have a valid license purchased only from above li
                         <% { let ave=0; let offer=data.offPercent; data.products.forEach(i=> {
                             ave += parseInt(i.price*i.count);
                             }); 
-                            let finalPrice = ave/100*(100-data.offPercent)
+                            let finalPrice = ave/100*(100-data.offPercent) + data.postalCost
                             %>
                         <!--begin::Number-->
                         <div class="d-flex align-items-center justify-content-center">
